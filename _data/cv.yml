@@ -119,8 +119,8 @@
   type: time_table
   contents:
     - title: 
-    - year: 2023
-      items: 
+      year: 2023
+      description: 
         - Top ten finalist for the Federal Aviation Administration Data Challenge (<a href="https://faadatachallenge.nianet.org/2023-finalists/">Link</a>)
         - Winner of the Connection Creation Contest at 2023 Marine Energy Collegiate Competition (<a href="https://www.energy.gov/eere/articles/us-department-energy-announces-winners-2023-hydropower-and-marine-energy-collegiate">Link</a>)
 #    - year: 2029
