@@ -99,19 +99,19 @@
 - title: Grants
   type: time_table
   contents:
-    - title: “Currents to Current - Converting River Energy to Electricity” ($20,000)
+    - title: "Currents to Current - Converting River Energy to Electricity" (20,000 USD)
       institution: The U.S. Department of Energy
       year: 2023 - 2024
-    -title: “Development of a Physics-Informed Model for a Fluid-Structure Interaction Environment - Gearing Toward a Simulation of a Hydrokinetic Energy Harvesting System” ($3000)
+    -title: "Development of a Physics-Informed Model for a Fluid-Structure Interaction Environment - Gearing Toward a Simulation of a Hydrokinetic Energy Harvesting System" (3000 USD)
       institution: Manhattan College
       year: 2023
-    - title: “Piezoelectric Based River Current Energy Harvester” ($20,000)
+    - title: "Piezoelectric Based River Current Energy Harvester" (20,000 USD)
       institution: The U.S. Department of Energy
       year: 2022 - 2023
-    - title: "Wave Characteristics Prediction Using Machine Learning Algorithms" (¥30,000)
+    - title: "Wave Characteristics Prediction Using Machine Learning Algorithms" (30,000 JPY)
       institution: Institute of Ocean Energy at Saga University
       year: 2021
-    - title: "Ocean Wave Energy Converter Module for Observation and Navigation Buoys" ($20,000)
+    - title: "Ocean Wave Energy Converter Module for Observation and Navigation Buoys" (20,000 USD)
       institution: The U.S. Department of Energy
       year: 2020 - 2021
 
