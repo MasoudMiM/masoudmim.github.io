@@ -1,12 +1,10 @@
 github_users:
-  - torvalds
-  - alshedivat
+  - masoudmim
+#  - alshedivat
 
 github_repos:
-  - alshedivat/al-folio
-  - twbs/bootstrap
-  - jekyll/jekyll
-  - jquery/jquery
-  - FortAwesome/Font-Awesome
-  - jpswalsh/academicons
-  - mathjax/MathJax
+  - masoudmim/Ocean_Data_Analysis
+  - masoudmim/WEC_Performance_Evaluation
+  - masoudmim/Ocean_Data_Visualization
+  - masoudmim/Hobby_Python_Codes 
+  - masoudmim/Hobby_MATLAB_Codes 
