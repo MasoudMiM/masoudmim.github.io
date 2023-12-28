@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://masoud.github.io/sitemap.xml
+Sitemap: https://masoudmim.github.io/sitemap.xml
