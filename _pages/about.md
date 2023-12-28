@@ -25,5 +25,5 @@ In addition to my academic pursuits, I've earned certificates in Applied Mathema
 
 What sets me apart is the synergy between academia and practical problem-solving. I've secured grants, published extensively, and mentored students on impactful projects, emphasizing the real-world applications of theoretical knowledge. While my roots are in academia, my vision extends to utilizing machine learning and data science as powerful tools for addressing both social and technical issues. 
 
-In essence, I see myself not just as an academic but as a bridge between theory and application, constantly exploring new frontiers where data science and engineering converge to create impactful solutions.
+In essence, I see myself not just as a researcher and teacher but as a bridge between theory and application, constantly exploring new frontiers where data science and engineering converge to create impactful solutions.
 
