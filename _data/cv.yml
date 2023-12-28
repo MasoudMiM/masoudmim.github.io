@@ -11,24 +11,25 @@
 - title: Education
   type: time_table
   contents:
-    - title: Doctor of Philosophy
-      institution: Stony Brook University, New York, USA
+    - title: Doctor of Philosophy in Mechanical Engineering
+      institution: <a href="https://www.stonybrook.edu">Stony Brook University</a>, New York, USA
       year: 2018
       description:
-        - Minor in Design and Manufacturing & Energy Technology
-        #- Description 2.
-        - title: Guided Wave Simulation in Long Pipes using Hybrid Modeling
+        - Focus on Design and Manufacturing
+        - Mintor in Energy Technology
+        - Thesis Title "Guided Wave Simulation in Long Pipes using Hybrid Modeling"
+        #- title: 
           #contents:
           #  - Sub-description 1.
           #  - Sub-description 2.
     - title: Master of Science in Mechanical Engineering
-      institution: Semnan University, Semnan, Iran
+      institution: <a href="https://english.semnan.ac.ir">Semnan University</a>, Semnan, Iran
       year: 2012
       description:
         #- Description 1.
-        - title: Damage Identificaiton in Beam-Type Structures via Modal Analysis
+        - Thesis Title "Damage Identificaiton in Beam-Type Structures via Modal Analysis"
     - title: Bachelor of Science in Mechanical Engineering
-      institution: Semnan University, Semnan, Iran
+      institution: <a href="https://english.semnan.ac.ir">Semnan University</a>, Semnan, Iran
       year: 2009
       #description:
         #- Description 1.
