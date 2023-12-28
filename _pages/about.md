@@ -16,7 +16,7 @@ profile:
 news: false # includes a list of news items
 latest_posts: false  # includes a list of the newest posts
 selected_papers: false # includes a list of papers marked as "selected={true}"
-social: false  # includes social icons at the bottom of the page
+social: true  # includes social icons at the bottom of the page
 ---
  
 Welcome to my corner of the digital space! I'm Masoud Masoumi, a passionate problem solver with a strong academic foundation in Mechanical Engineering. My journey extends beyond traditional engineering, delving into the realm of data science and machine learning. My expertise lies in harnessing cutting-edge technologies to address complex challenges. Beyond the classroom, I've immersed myself in research, exploring applications of machine learning and data analytics in engineering. 
