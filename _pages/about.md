@@ -2,7 +2,7 @@
 layout: about
 title: about
 permalink: /
-subtitle: <a href='#'>Affiliations</a>. Department of Mechanical Engineering, Manhattan College
+#subtitle: <a href='#'>Affiliations</a>. Department of Mechanical Engineering, Manhattan College
 
 profile:
   align: right
