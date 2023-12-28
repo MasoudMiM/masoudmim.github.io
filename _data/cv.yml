@@ -40,7 +40,7 @@
   contents:
     - title: Assistant Professor of Mechanical Engineering
       institution: Manhattan College, New York, NY
-      year: 2021 - present
+      year: 2021
       #description:
       #  - Description 1.
       #  - Description 2.
@@ -56,10 +56,10 @@
       #  - Description 2.
     - title: Adjunct Faculty
       institution: The Cooper Union, New York, NY
-      year: 2022 - present
+      year: 2022
     - title: Associate (part time)
       institution: Columbia University, New York, NY
-      year: 2021 - present
+      year: 2021
     - title: Mechanical Engineering Instructor (part time)
       institution: Duro Workforce, New York, NY
       year: 2018
