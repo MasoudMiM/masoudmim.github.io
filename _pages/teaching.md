@@ -17,7 +17,7 @@ I taught the following courses at <a href="https://manhattan.edu/">Manhattan Col
 - Mechanical Engineering Design I  (Senior Design - Part I)
 - Mechanical Engineering Design II (Senior Design - Part II)
 - Mechanical Vibrations (<a href="https://masoudmim.github.io/assets/pdf/MECH_411_Syllabus.pdf">syllabus</a>)
-- Data Driven Problem Solving in Mechanical Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECG_542_Syllabus.pdf">syllabus</a>) - <strong>I developed this course in totalily</strong>
+- Data Driven Problem Solving in Mechanical Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECG_542_Syllabus.pdf">syllabus</a>) <strong>[I developed this course in totalily]</strong>
 - Introduction to Robotics (<a href="https://masoudmim.github.io/assets/pdf/MECG_548_Syllabus.pdf">syllabus</a>)
 - Control System Theory and Applications (<a href="https://masoudmim.github.io/assets/pdf/MECG_630_Syllabus.pdf">syllabus</a>)
 - Mechanical Engineering Projects (one-semester undergraduate research)
