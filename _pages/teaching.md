@@ -20,7 +20,7 @@ I taught the following courses at <a href="https://manhattan.edu/">Manhattan Col
 - Data Driven Problem Solving in Mechanical Engineering
 - Introduction to Robotics
 - Control System Theory and Applications
-- Mechanical Engineering Projects (one-semester Undergraduate research)
+- Mechanical Engineering Projects (one-semester undergraduate research)
 - Research Project in Mechanical Engineering (one-semester graduate research)
 - Master's Thesis in Mechanical Engineering
 
