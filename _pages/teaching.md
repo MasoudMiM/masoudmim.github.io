@@ -9,7 +9,7 @@ nav_order: 6
 
 I taught the following courses at <a href="https://manhattan.edu/">Manhattan College</a> from Fall 2019 until Fall 2023:
 
-- Statics
+- Statics (<a href="https://masoudmim.github.io/assets/pdf/ENGS_206_Syllabus.pdf">Syllabus</a>)
 - Dynamics
 - Introductory Solid Mechanics
 - Finite Element Analysis and Computer Aided Engineering
