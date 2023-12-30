@@ -9,7 +9,7 @@ nav_order: 6
 
 I taught the following courses at <a href="https://manhattan.edu/">Manhattan College</a> from Fall 2019 until Fall 2023:
 
-- Statics (/assets/pdf/ENGS_206_Syllabus.pdf)
+- Statics (redirect: /assets/pdf/ENGS_206_Syllabus.pdf)
 - Dynamics
 - Introductory Solid Mechanics
 - Finite Element Analysis and Computer Aided Engineering
@@ -24,4 +24,4 @@ I taught the following courses at <a href="https://manhattan.edu/">Manhattan Col
 - Master's Thesis in Mechanical Engineering
 
 
-Furthermore, I have also taught ME 371: Data-Driven Problem Solving as an adjunct professor at <a href="https://cooper.edu/welcome">The Cooper Union for the Advancement of Science and Art</a> since Spring 2021.
+Furthermore, I have also taught Data-Driven Problem Solving as an adjunct professor at <a href="https://cooper.edu/welcome">The Cooper Union for the Advancement of Science and Art</a> since Spring 2021.
