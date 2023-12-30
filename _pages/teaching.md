@@ -5,11 +5,12 @@ title: teaching
 description: #Materials for courses you taught. Replace this text with your description.
 nav: true
 nav_order: 6
+redirect: /assets/pdf/ENGS_206_Syllabus.pdf
 ---
 
 I taught the following courses at <a href="https://manhattan.edu/">Manhattan College</a> from Fall 2019 until Fall 2023:
 
-- Statics (redirect: /assets/pdf/ENGS_206_Syllabus.pdf)
+- Statics
 - Dynamics
 - Introductory Solid Mechanics
 - Finite Element Analysis and Computer Aided Engineering
