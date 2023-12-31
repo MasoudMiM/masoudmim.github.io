@@ -2,9 +2,9 @@
 layout: default
 permalink: /blog/
 title: blog
+description: Where Words Take Flight - Dive into My Blogosphere.
 nav: true
 nav_order: 1
-description: Where Words Take Flight - Dive into My Blogosphere
 pagination:
   enabled: true
   collection: posts
