@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /blog/
-title: blog
+title: Blog
 description: Where Words Take Flight - Dive into My Blogosphere.
 nav: true
 nav_order: 1
