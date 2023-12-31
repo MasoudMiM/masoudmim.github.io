@@ -3,8 +3,8 @@ github_users:
 #  - alshedivat
 
 github_repos:
-  - masoudmim/Ocean_Data_Analysis
-  - masoudmim/WEC_Performance_Evaluation
+  #- masoudmim/Ocean_Data_Analysis
+  #- masoudmim/WEC_Performance_Evaluation
   - masoudmim/Mesh-Gmsh
   - masoudmim/Brimes
   #- masoudmim/Ocean_Data_Visualization
