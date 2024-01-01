@@ -27,7 +27,7 @@
       year: 2012
       description:
         #- Description 1.
-        - <p>Thesis: "Damage Identification in Beam-Type Structures via Modal Analysis"</p>
+        - Thesis <p><span style="white-space: nowrap;">:</span></p> "Damage Identification in Beam-Type Structures via Modal Analysis"
     - title: Bachelor of Science in Mechanical Engineering
       institution: <a href="https://english.semnan.ac.ir">Semnan University</a>, Semnan, Iran
       year: 2009
