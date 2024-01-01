@@ -71,18 +71,18 @@
       description: Led technical aspects, conducted customer interviews, identified market opportunities, and refined the commercialization strategy for an innovative gravity-based energy storage system.
     - title: Master's Certificate in Applied Mathematics - Data Analytics
       year: 2023
-      description: Coursework included Computational Methods for Analytics, Machine Learning, Probability and Statistics for Analytics, Database Methods for Analytics, Data Mining, and Computing in R.
-    - title: Deep Learning Specialization
+      description: "Coursework included: Computational Methods for Analytics, Machine Learning, Probability and Statistics for Analytics, Database Methods for Analytics, Data Mining, and Computing in R.
+    - title: Deep Learning Specialization"
       year: 2020
-      description: Coursework included Neural Networks and Deep Learning, Improving Deep Neural Networks, Structuring Machine Learning Projects, Convolutional Neural Networks, and Sequence Models.
-    - title: IBM Data Science
+      description: "Coursework included: Neural Networks and Deep Learning, Improving Deep Neural Networks, Structuring Machine Learning Projects, Convolutional Neural Networks, and Sequence Models.
+    - title: IBM Data Science"
       year: 2019
-      description: Coursework included What is Data Science?, Tools for Data Science, Data Science Methodology, Python for Data Science, AI & Development, Databases and SQL for Data Science with Python, Data Analysis with Python, Data Visualization with Python, Machine Learning with Python, and Applied Data Science Capstone.
+      description: "Coursework included: What is Data Science?, Tools for Data Science, Data Science Methodology, Python for Data Science, AI & Development, Databases and SQL for Data Science with Python, Data Analysis with Python, Data Visualization with Python, Machine Learning with Python, and Applied Data Science Capstone."
     - title: The Fundamentals of Engineering (FE)
       year: 2019
     - title: Alan Alda Center for Communicating Science
       year: 2016-2017
-      description: Coursework included Distilling Your Message, Improvisation for Scientists, Writing to be Understood, and Engaging Key Audiences.
+      description: "Coursework included: Distilling Your Message, Improvisation for Scientists, Writing to be Understood, and Engaging Key Audiences."
 
 - title: Grants
   type: time_table
