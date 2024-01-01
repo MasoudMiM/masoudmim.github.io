@@ -45,22 +45,22 @@
       institution: Columbia University, New York, NY
       year: 2021 - present
     - title: Assistant Professor of Mechanical Engineering
-      institution: Manhattan College, New York, NY
+      institution: Manhattan College, The Bronx, NY
       year: 2022 - 2024
     - title: Visiting Assistant Professor of Mechanical Engineering
-      institution: Manhattan College, New York, NY
+      institution: Manhattan College, The Bronx, NY
       year: 2019 - 2022
     - title: Chief Technology Officer
-      institution: Brimes Energy
+      institution: Brimes Energy, Holbrook, NY
       year: 2018 - 2019
     - title: Mechanical Engineer (part time)
-      institution: Brimes Energy
+      institution: Brimes Energy, Holbrook, NY
       year: 2015 - 2018
     - title: Mechanical Engineering Instructor (part time)
-      institution: Duro Workforce, New York, NY
+      institution: Duro Workforce, The Bronx, NY
       year: 2018
     - title: CAE Engineer (part time)
-      institution: Energystics LTD
+      institution: Energystics LTD, Stony Brook, NY
       year: 2014 - 2015
     
 - title: Certificates & Trainings
@@ -87,10 +87,10 @@
 - title: Grants
   type: time_table
   contents:
-    - title: Currents to Current - Converting River Energy to Electricity (20,000 USD)
+    - title: "Currents to Current: Converting River Energy to Electricity (20,000 USD)"
       institution: The U.S. Department of Energy
       year: 2023 - 2024
-    - title: Development of a Physics-Informed Model for a Fluid-Structure Interaction Environment - Gearing Toward a Simulation of a Hydrokinetic Energy Harvesting System (3000 USD)
+    - title: "Development of a Physics-Informed Model for a Fluid-Structure Interaction Environment: Gearing Toward a Simulation of a Hydrokinetic Energy Harvesting System (3000 USD)"
       institution: Manhattan College
       year: 2023
     - title: Piezoelectric Based River Current Energy Harvester (20,000 USD)
