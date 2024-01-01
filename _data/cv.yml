@@ -38,9 +38,15 @@
 - title: Experience
   type: time_table
   contents:
+    - title: Adjunct Professor
+      institution: The Cooper Union, New York, NY
+      year: 2022 - present
+    - title: Associate (part time)
+      institution: Columbia University, New York, NY
+      year: 2021 - present
     - title: Assistant Professor of Mechanical Engineering
       institution: Manhattan College, New York, NY
-      year: 2022 - present
+      year: 2022 - 2024
       #description:
       #  - Description 1.
       #  - Description 2.
@@ -54,21 +60,15 @@
       #description:
       #  - Description 1.
       #  - Description 2.
-    - title: Adjunct Professor
-      institution: The Cooper Union, New York, NY
-      year: 2022 - present
-    - title: Associate (part time)
-      institution: Columbia University, New York, NY
-      year: 2021 - present
-    - title: Mechanical Engineering Instructor (part time)
-      institution: Duro Workforce, New York, NY
-      year: 2018
     - title: Chief Technology Officer
       institution: Brimes Energy
       year: 2018 - 2019
     - title: Mechanical Engineer (part time)
       institution: Brimes Energy
       year: 2015 - 2018
+      - title: Mechanical Engineering Instructor (part time)
+      institution: Duro Workforce, New York, NY
+      year: 2018
     - title: CAE Engineer (part time)
       institution: Energystics LTD
       year: 2014 - 2015
