@@ -47,26 +47,16 @@
     - title: Assistant Professor of Mechanical Engineering
       institution: Manhattan College, New York, NY
       year: 2022 - 2024
-      #description:
-      #  - Description 1.
-      #  - Description 2.
-      #  - title: Description 3.
-      #    contents:
-      #      - Sub-description 1.
-      #      - Sub-description 2. 
     - title: Visiting Assistant Professor of Mechanical Engineering
       institution: Manhattan College, New York, NY
-      year: 2019-2022
-      #description:
-      #  - Description 1.
-      #  - Description 2.
+      year: 2019 - 2022
     - title: Chief Technology Officer
       institution: Brimes Energy
       year: 2018 - 2019
     - title: Mechanical Engineer (part time)
       institution: Brimes Energy
       year: 2015 - 2018
-      - title: Mechanical Engineering Instructor (part time)
+    - title: Mechanical Engineering Instructor (part time)
       institution: Duro Workforce, New York, NY
       year: 2018
     - title: CAE Engineer (part time)
