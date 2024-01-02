@@ -23,7 +23,7 @@ Welcome to my corner of the digital space! I'm Masoud Masoumi, a passionate prob
 
 In addition to my academic pursuits, I've earned certificates in Applied Mathematics-Data Analytics and completed specialized training in Deep Learning. My professional trajectory spans a spectrum of projects, ranging from predicting stress fields using Convolutional Neural Networks to designing electricity consumption models with real-time energy data. I've also delved into data analytics and machine learning solutions for atmospheric data analysis and predictions.
 
-What sets me apart is the synergy between academia and practical problem-solving. I've secured grants, published extensively, and mentored students on impactful projects, emphasizing the real-world applications of theoretical knowledge. While my roots are in academia, my vision extends to utilizing machine learning and data science as powerful tools for addressing both social and technical issues. 
+I believe what sets me apart is the synergy between academia and practical problem-solving. I've secured grants, published extensively, and mentored students on impactful projects, emphasizing the real-world applications of theoretical knowledge. While my roots are in academia, my vision extends to utilizing machine learning and data science as powerful tools for addressing both social and technical issues. 
 
 In essence, I see myself not just as a researcher and teacher but as a bridge between theory and application, constantly exploring new frontiers where data science and engineering converge to create impactful solutions.
 
