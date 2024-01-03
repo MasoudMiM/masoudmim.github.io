@@ -19,7 +19,7 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
  
-Welcome to my corner of the digital space! I'm Masoud Masoumi, a passionate problem solver with a strong academic foundation in Mechanical Engineering. My journey extends beyond traditional engineering, delving into the realm of data science and machine learning. My expertise lies in harnessing cutting-edge technologies to address complex challenges. Beyond the classroom, I've immersed myself in research, exploring applications of machine learning and data analytics in engineering. 
+Welcome to my corner of the digital space! I'm Masoud Masoumi, a passionate problem solver with a strong academic foundation in Mechanical Engineering. My journey extends beyond traditional engineering, delving into the realm of data science and machine learning. My expertise lies in harnessing cutting-edge technologies to address complex challenges. Beyond the classroom, I've immersed myself in research, exploring applications of machine learning and data analytics in science and engineering 
 
 In addition to my academic pursuits, I've earned certificates in Applied Mathematics-Data Analytics and completed specialized training in Deep Learning. My professional trajectory spans a spectrum of projects, ranging from predicting stress fields using Convolutional Neural Networks to designing electricity consumption models with real-time energy data. I've also delved into data analytics and machine learning solutions for atmospheric data analysis and predictions.
 
