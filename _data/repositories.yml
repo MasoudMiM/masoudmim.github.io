@@ -3,10 +3,10 @@ github_users:
 #  - alshedivat
 
 github_repos:
-  - masoudmim/Ocean_Data_Analysis
-  - masoudmim/WEC_Performance_Evaluation
-  - masoudmim/Mesh-Gmsh
-  - masoudmim/Brimes
+  - masoudmim/ocean-data-analysis
+  - masoudmim/wec-performance-evaluation
+  - masoudmim/mesh-gmsh
+  - masoudmim/brimes
   #- masoudmim/Ocean_Data_Visualization
-  - masoudmim/Hobby_Python_Codes 
-  - masoudmim/Hobby_MATLAB_Codes 
+  - masoudmim/hobby-python-codes 
+  - masoudmim/hobby-MATLAB-codes 
