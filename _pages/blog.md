@@ -16,6 +16,11 @@ pagination:
     after: 3 # The number of links after the current page
 ---
 
+<<<<<<< HEAD
+=======
+Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos...
+
+>>>>>>> ab180cd59ef55f09f97af9797fd83105d3c84b2e
 <div class="post">
 
 {% assign blog_name_size = site.blog_name | size %}
