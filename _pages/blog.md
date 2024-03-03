@@ -16,13 +16,4 @@ pagination:
     after: 3 # The number of links after the current page
 ---
 
-Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos...
-
-<div class="post">
-
-{% assign blog_name_size = site.blog_name | size %}
-{% assign blog_description_size = site.blog_description | size %}
-
-{% if blog_name_size > 0 or blog_description_size > 0 %}
-
-</div>
+Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos... 
