@@ -3,14 +3,11 @@ layout: post
 title:  "Engineering the Unknown: A Startup Voyage"
 date:   2024-03-03 13:57:00
 description: some thoughts on working in a startup company
-tags: startup life, 
+tags: startup life 
 categories: personal thoughts
 ---
 
 **Engineering the Unknown: A Startup Voyage**
-
-{% include figure.html path="assets/img/plato-allegory-of-the-cave.png" class="img-fluid rounded z-depth-1" %}
-
 
 **Author's Note (Updated Version):** The essay you're about to read was initially written on May 3, 2017, summarizing my personal journey as an engineer navigating the startup landscape. This updated version seeks to improve the narrative, offering further insights and underscoring the lasting significance of the experiences shared.
 
