@@ -1,7 +1,7 @@
 ---
 layout: default
 permalink: /blog/
-title: blog # Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos... 
+title: blog
 nav: true
 nav_order: 1
 pagination:
@@ -16,6 +16,8 @@ pagination:
     after: 3 # The number of links after the current page
 ---
 
+Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos...
+
 <div class="post">
 
 {% assign blog_name_size = site.blog_name | size %}
@@ -23,10 +25,4 @@ pagination:
 
 {% if blog_name_size > 0 or blog_description_size > 0 %}
 
-  <div class="header-bar">
-    <h1>{{ site.blog_name }}</h1>
-    <h2>{{ site.blog_description }}</h2>
-  </div>
-  {% endif %}
-
-{% if site.display_tags or site.display_categories %}
+</div>
