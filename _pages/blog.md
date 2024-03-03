@@ -16,4 +16,6 @@ pagination:
     after: 3 # The number of links after the current page
 ---
 
-Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos... 
+Blog Chronicles: Written thoughts during the moments between coffee sips and chaos... 
+
+[Engineering the Unknown: A Startup Voyage](/_posts/2024-03-03-engineering-the-unknown.md)
