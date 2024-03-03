@@ -1,8 +1,7 @@
 ---
 layout: default
 permalink: /blog/
-title: Blog
-description: Where Words Take Flight - Dive into My Blogosphere.
+title: blog # Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos... 
 nav: true
 nav_order: 1
 pagination:
@@ -14,10 +13,8 @@ pagination:
   sort_reverse: true
   trail:
     before: 1 # The number of links before the current page
-    after: 3  # The number of links after the current page
+    after: 3 # The number of links after the current page
 ---
-
-Blog Chronicles: Waiting for the perfect moment between coffee sips and chaos...
 
 <div class="post">
 
