@@ -18,5 +18,13 @@ pagination:
 
 Blog Chronicles: Written thoughts during the moments between coffee sips and chaos... 
 
-<!-- Link to a specific post -->
-(<a href="https://masoudmim.github.io/_posts/2024-03-03/engineering-the-unknown.md">Engineering the Unknown: A Startup Voyage</a>)
+<div class="post">
+
+  {% if blog_name_size > 0 or blog_description_size > 0 %}
+  <div class="header-bar">
+    <h1>{{ site.blog_name }}</h1>
+    <h2>{{ site.blog_description }}</h2>
+  </div>
+  {% endif %}
+
+</div>
