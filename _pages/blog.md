@@ -18,6 +18,8 @@ pagination:
 
 Blog Chronicles: Written thoughts during the moments between coffee sips and chaos... 
 
+
+
 <div class="post">
 
   <ul class="post-list">
