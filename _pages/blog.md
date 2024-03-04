@@ -19,6 +19,6 @@ pagination:
 Blog Chronicles: Written thoughts during the moments between coffee sips and chaos... 
 
 <!-- Link to a specific post -->
-[Engineering the Unknown: A Startup Voyage]({{ site.baseurl }}/_posts/2024-03-03/engineering-the-unknown.md)
+[Engineering the Unknown: A Startup Voyage]({{ site.baseurl }}/blog/_posts/2024-03-03/engineering-the-unknown.md)
 
 
