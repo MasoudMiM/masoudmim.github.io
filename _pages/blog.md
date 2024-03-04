@@ -95,5 +95,9 @@ Blog Chronicles: Written thoughts during the moments between coffee sips and cha
 
     {% endfor %}
   </ul>
+
+  {%- if page.pagination.enabled -%}
+    {%- include pagination.html -%}
+  {%- endif -%}
  
 </div>
