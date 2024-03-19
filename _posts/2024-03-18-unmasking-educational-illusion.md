@@ -10,7 +10,7 @@ categories: personal-thoughts
 <div style="text-align: justify;">
 
 
-<p>The exploration of [Antifragility](https://en.wikipedia.org/wiki/Antifragility#:~:text=Antifragility%20is%20a%20property%20of,Antifragile%2C%20and%20in%20technical%20papers), as illuminated by Nassim Taleb, can spark profound inquiries into the foundational principles of contemporary education. It is vital to acknowledge that while Taleb's critiques of the educational system are enlightening, the following discussion represents personal reflections and interpretations.</p>
+<p>The exploration of <a href="https://en.wikipedia.org/wiki/Antifragility#:~:text=Antifragility%20is%20a%20property%20of,Antifragile%2C%20and%20in%20technical%20papers">Antifragility</a>, as illuminated by <a href="https://en.wikipedia.org/wiki/Nassim_Nicholas_Taleb">Nassim Taleb</a>, can spark profound inquiries into the foundational principles of contemporary education. It is vital to acknowledge that while Taleb's critiques of the educational system are enlightening, the following discussion represents personal reflections and interpretations.</p>
 
 <p>Central to Taleb's discourse is the provocative assertion regarding the perceived utility of a college degree:</p>
 
