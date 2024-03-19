@@ -14,7 +14,11 @@ categories: personal-thoughts
 
 <p>Central to Taleb's discourse is the provocative assertion regarding the perceived utility of a college degree:</p>
 
-> "If a U.S. college degree appears to be useless, it is by design. For 'liberal arts' = training for upper-class free men (liber) who were above having a profession. You learn to earn \$$ in vocational or professional schools. Middle-class parents were tricked & fleeced."
+
+<blockquote>
+    <p>"If a U.S. college degree appears to be useless, it is by design. For 'liberal arts' = training for upper-class free men (liber) who were above having a profession. You learn to earn \$$ in vocational or professional schools. Middle-class parents were tricked & fleeced."</p>
+</blockquote>
+
 
 <p>This perspective unveils a pervasive ambiguity surrounding the objectives and outcomes of modern education. Many students embark on their college journey with the expectation of securing lucrative careers that validate their investment. However, a stark misalignment often exists between these aspirations and the educational system's capacity to fulfill them.</p>
 
@@ -32,7 +36,9 @@ categories: personal-thoughts
 
 <p>I, however, am not specifically advocating for this shift in views and expectations. I think there needs to be a much clearer discussion about what we expect from a college education. Do we want to have citizens who are cultured and are familiar with art, science, and history? Or are we looking to train skilled workers? I fully agree with Taleb that the role of university research in technology development has been greatly exaggerated, sometimes to justify budgetary requests for research. That is not to say the research has not resulted in advances in technology; it is to emphasize that historically, we have seen the majority of innovations and advances in technology coming not from theorizing but from tinkerers with a great sense of curiosity and risk-taking attitude. Here is what Taleb says:</p>
 
-> "Technology is the result of antifragility, exploited by risk-takers in the form of tinkering and trial and error, with nerd-driven design confined to the backstage. Engineers and tinkerers develop things while history books are written by academics; we will have to refine historical interpretations of growth, innovation, and many such things."
+<blockquote>
+    <p>"Technology is the result of antifragility, exploited by risk-takers in the form of tinkering and trial and error, with nerd-driven design confined to the backstage. Engineers and tinkerers develop things while history books are written by academics; we will have to refine historical interpretations of growth, innovation, and many such things."</p>
+</blockquote>
 
 <p>Embracing Taleb's concept of antifragility in education necessitates a transformative shift—a departure from the conventional 'lecturing birds how to fly' approach towards an ethos that celebrates exploration, adaptability, and continuous learning. Educators must evolve into facilitators of curiosity and discovery, guiding students towards becoming resilient agents of change and innovation. Although this is much easier said than done, especially within the constraints of the current educational system and the dynamic between families, college administration, and educators, which imposes extreme limitations on what can and needs to be accomplished.</p>
 
