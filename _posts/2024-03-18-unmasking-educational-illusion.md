@@ -21,7 +21,7 @@ categories: personal-thoughts
 <p>The prevalent narrative advocates for a comprehensive college education encompassing vocational skills and intellectual growth. Yet, this broad mandate has inadvertently led to disillusionment among students, parents, and educators alike. Students envision tangible returns on their educational investments, anticipating heightened employability. However, the reality often diverges drastically, leaving numerous graduates grappling with underemployment and unfulfilled expectations. This disconnect has cultivated a culture of credentialism, resulting in students facing mounting debt burdens, and the intrinsic value of learning is overshadowed by credential-centric pursuits.</p>
 
 
-<div style="text-align: center;">
+<div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
     <img src="/assets/img/technology-is-the-result-of-antifragility-exploit.jpg" alt="technology is the result of antifragility exploit.jpg" width="400" height="250">
 </div>
 
