@@ -1,8 +1,8 @@
 ---
 layout: post
 title:  "Engineering the Unknown: A Startup Voyage"
-date:   2024-03-03 20:15:00
-description: some thoughts on working in a startup company
+date: 2024-03-03 20:15:00
+description: Thoughts on Working in a Startup Company
 tags: startup-life 
 categories: personal-thoughts
 ---
