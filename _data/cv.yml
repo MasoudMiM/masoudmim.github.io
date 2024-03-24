@@ -8,6 +8,40 @@
     - name: Languages
       value: English, Persian (Farsi)
 
+- title: Experience
+  type: time_table
+  contents:
+    - title: Data Scientist
+      institution: Internal Revenue Service, New York, NY
+      year: 2024 - present
+    - title: Adjunct Professor (part time)
+      institution: The Cooper Union, New York, NY
+      year: 2022 - present
+    - title: Associate (part time)
+      institution: Columbia University, New York, NY
+      year: 2021 - present
+    - title: Physical Scientist
+      institution: NOAA's National Ocean Service, Silver Spring, MD
+      year: 2024 - 2024
+    - title: Assistant Professor of Mechanical Engineering
+      institution: Manhattan College, The Bronx, NY
+      year: 2022 - 2024
+    - title: Visiting Assistant Professor of Mechanical Engineering
+      institution: Manhattan College, The Bronx, NY
+      year: 2019 - 2022
+    - title: Chief Technology Officer
+      institution: Brimes Energy, Holbrook, NY
+      year: 2018 - 2019
+    - title: Mechanical Engineer (part time)
+      institution: Brimes Energy, Holbrook, NY
+      year: 2015 - 2018
+    - title: Mechanical Engineering Instructor (part time)
+      institution: Duro Workforce, The Bronx, NY
+      year: 2018
+    - title: CAE Engineer (part time)
+      institution: Energystics LTD, Stony Brook, NY
+      year: 2014 - 2015
+
 - title: Education
   type: time_table
   contents:
@@ -34,38 +68,7 @@
       #description:
         #- Description 1.
       #  - Thesis Title: Damage Identificaiton in Beam-Type Structures via Modal Analysis
-
-- title: Experience
-  type: time_table
-  contents:
-    - title: Physical Scientist
-      institution: Hydrographic Surveys Division, NOAA's National Ocean Service
-      year: 2024 - present
-    - title: Adjunct Professor (part time)
-      institution: The Cooper Union, New York, NY
-      year: 2022 - present
-    - title: Associate (part time)
-      institution: Columbia University, New York, NY
-      year: 2021 - present
-    - title: Assistant Professor of Mechanical Engineering
-      institution: Manhattan College, The Bronx, NY
-      year: 2022 - 2024
-    - title: Visiting Assistant Professor of Mechanical Engineering
-      institution: Manhattan College, The Bronx, NY
-      year: 2019 - 2022
-    - title: Chief Technology Officer
-      institution: Brimes Energy, Holbrook, NY
-      year: 2018 - 2019
-    - title: Mechanical Engineer (part time)
-      institution: Brimes Energy, Holbrook, NY
-      year: 2015 - 2018
-    - title: Mechanical Engineering Instructor (part time)
-      institution: Duro Workforce, The Bronx, NY
-      year: 2018
-    - title: CAE Engineer (part time)
-      institution: Energystics LTD, Stony Brook, NY
-      year: 2014 - 2015
-    
+      
 - title: Certificates & Trainings
   type: time_table
   contents:
