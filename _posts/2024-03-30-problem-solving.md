@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Data-Driven Versus First-Principles"
+title:  "Data-Driven vs. First-Principles"
 date:   2024-03-30 10:18:00
 description: First-Principles Meets Data-Driven Problem Solving
 tags: problem-solving, data-driven 
