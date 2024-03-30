@@ -4,7 +4,7 @@ title:  "Engineering the Unknown: A Startup Voyage"
 date: 2024-03-03 20:15:00
 description: Thoughts on Working in a Startup Company
 tags: startup-life 
-categories: personal-thoughts
+categories: essay
 ---
 
 > **Author's Note:** The essay you're about to read was initially written on May 3, 2017, summarizing my personal journey as an engineer navigating the startup landscape. This updated version seeks to improve the narrative, offering further insights and underscoring the lasting significance of the experiences shared.

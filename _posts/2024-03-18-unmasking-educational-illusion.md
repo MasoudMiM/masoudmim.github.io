@@ -4,7 +4,7 @@ title:  "Unmasking Educational Illusions: A Journey Towards Antifragility"
 date:   2024-03-18 19:45:00
 description: Exploring Antifragility and Its Implications for Education
 tags: education, antifragility 
-categories: personal-thoughts
+categories: essay
 ---
 
 <div style="text-align: justify;">
