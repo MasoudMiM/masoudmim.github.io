@@ -13,8 +13,8 @@ categories: essay
 <p>In first-principles approach, a deep understanding of system components and their workings is essential. For instance, in engineering, implementing laws like Newton's laws of motion or conservation of energy allows for a detailed study of physical systems. Similarly, domain-specific knowledge plays a crucial role, such as a contractor estimating renovation costs or an engineer sizing radiators for a space. Examples of problems effectively tackled using the first-principles approach include trajectory calculations for projectiles, structural designs like bridges, optimizing mechanical systems, predicting chemical reactions, designing materials, and developing simplified mathematical models for complex systems like population dynamics or economic models.</p>
 
 <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/first-principles.jpg" alt="first-principle" width="400" height="250">
-    <img src="/assets/img/data-driven.jpg" alt="data-driven" width="400" height="250">
+    <img src="/assets/img/first-principles.jpg" alt="first-principle" width="400" height="350">
+    <img src="/assets/img/data-driven.jpg" alt="data-driven" width="400" height="350">
 </div>
 
 
