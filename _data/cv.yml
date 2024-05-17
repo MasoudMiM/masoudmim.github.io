@@ -69,12 +69,15 @@
         #- Description 1.
       #  - Thesis Title: Damage Identificaiton in Beam-Type Structures via Modal Analysis
       
-- title: Certificates & Trainings
+- title: Selected Certificates & Trainings
   type: time_table
   contents:
-    - title: NSF I-Corps Hub Northeast Region
-      year: 2023
-      description: Led technical aspects, conducted customer interviews, identified market opportunities, and refined the commercialization strategy for an innovative gravity-based energy storage system.
+    - title: Leveraging Deep Learning for Natural Language Processing
+      year: 2024
+      description: "Topics covered: text pre-processing, word embeddings, sentiment classification, Named Entity Recognition, various neural networks such as RNN, GRU, and LSTM, and advanced techniques like Attention Models and Transformers."
+    - title: Components of a Data and AI Solution
+      year: 2024
+      description: "Courses included: The course covers: Data and the Enterprise, Storing and Querying Data, HDFS, Spark, and Kafka, NoSQL Databases, Analyzing and Interpreting Data, Neural Networks, Data Visualization"
     - title: Master's Certificate in Applied Mathematics - Data Analytics
       year: 2023
       description: "Coursework included: Computational Methods for Analytics, Machine Learning, Probability and Statistics for Analytics, Database Methods for Analytics, Data Mining, and Computing in R."
