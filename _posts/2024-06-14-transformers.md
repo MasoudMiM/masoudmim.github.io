@@ -41,8 +41,8 @@ Softmax function is a mathematical function that converts a vector of values int
 $$ \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}} $$
 
 where:
-- $x_i$​ is the i$^{th}$ element of the input vector.
-- $e$ is the base of the natural logarithm. 
+- $$x_i$$​ is the $$i^{th}$$ element of the input vector.
+- $$e$$ is the base of the natural logarithm. 
 
 and the denominator is the sum of the exponentials of all elements in the input vector. Here is a simple implementation in Python:
 
@@ -281,31 +281,36 @@ So at this point, knowing the tokens, we can implement some form of linear trans
   
 $$Q_i=W_Q\times x_i \quad, \quad K_i=W_K\times x_i \quad , \quad V_i=W_V\times x_i$$
 
-Here, $x_i$ is the _vector space_ for each token, i.e. each row in Matrix $E$ (in previous section) and $W$'s are **weight matrices that need to be found during the training**. Also,
+Here, $$x_i$$ is the _vector space_ for each token, i.e. each row in Matrix $$E$$ (in previous section) and $$W$$'s are **weight matrices that need to be found during the training**. Also,
+
 $$Q_i=[q_1, q_2, q_3, ...] \quad , \quad K_i=[k_1, k_2, k_3, ...] \quad, \quad \text{and} \quad V_i=[v_i, v_2, v_3,...]$$
-where $q_i$, $k_i$, and $v_i$ are each a vector.
+
+where $$q_i$$, $$k_i$$, and $$v_i$$ are each a vector.
   
 This matrix representation is basically telling you that you will have one query vector, one key vector, and one value vector for each word embedding vector. In another word, now we have three vector representations for each word embedding vector.
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="600" height="250">
+    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="700" height="250">
 </div>
 
 ### Self-Attention Mechanism <a name="selfatt"></a>
 This mechanism calculates a score between each query and every key to determine how much _weight_ should be given to each word. This weight is usually computed as a dot product of the query and key vectors. We typically apply a softmax to the outcome to keep things under control! 
+
 $$\text{Attention Weights}=Softmax[K^TQ]$$
+
 The weighted values are then calculated using 
+
 $$\text{Weighted Values}=V.Softmax[K^TQ]$$
+
 Let me try to put everything together so you can get a better picture of the general procedure for the case of an input with three tokens:
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/attention.png" alt="attention-mechanism" width="600" height="250">
+    <img src="/assets/img/attention.png" alt="attention-mechanism" width="700" height="250">
 </div>
 
-So at this point, the output for each token incorporates information from all other tokens in the sequence, weighted by their relevance. This means that the representation of token $i$ is not just based on the token itself but it is also influenced by how much attention it gives to other tokens.
+So at this point, the output for each token incorporates information from all other tokens in the sequence, weighted by their relevance. This means that the representation of token $$i$$ is not just based on the token itself but it is also influenced by how much attention it gives to other tokens.
 
-**NOTE:** In order to deal with large magnitudes in the dot product operation, when calculating the weights, we typically scale the dot product as $\text{Weighted Values}=V.Softmax[\frac{K^TQ}{\sqrt{D_q}}]$, where $D_q$ is the dimension of the queries. This scaling procedure when dealing with large magnitudes in attention computation is important since
-
+**NOTE:** In order to deal with large magnitudes in the dot product operation, when calculating the weights, we typically scale the dot product as $$\text{Weighted Values}=V.Softmax[\frac{K^TQ}{\sqrt{D_q}}]$$, where $$D_q$$ is the dimension of the queries. This scaling procedure when dealing with large magnitudes in attention computation is important since
 
 > "Small changes to the inputs to the softmax function might have little effect on the output (i.e. the gradients are very small), making the model difficult to train". ~ Simon J.D. Prince, "Understanding Deep Learning"
 
@@ -365,15 +370,17 @@ Positional encodings are added to the input embeddings to give the model some in
 One common approach is to use sine and cosine functions of different frequencies. The idea is to generate unique positional encodings that the model can learn to interpret.
 
 For even indices:
-$\text{PE}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{\frac{2i}{d_{\text{model}}}}}\right)$
 
-For the odd indices
-$\text{PE}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{\frac{2i}{d_{\text{model}}}}}\right)$
+$$\text{PE}_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{\frac{2i}{d_{\text{model}}}}}\right)$$
+
+For the odd indices:
+
+$$\text{PE}_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{\frac{2i}{d_{\text{model}}}}}\right)$$
 
 where
-- $pos$ is the position in the sequence,
-- $i$ is the dimension,
-- $d_{model}$​ is the dimension of the model, i.e. size of the vector space in which the tokens are represented.
+- $$pos$$ is the position in the sequence,
+- $$i$$ is the dimension,
+- $$d_{model}$$​ is the dimension of the model, i.e. size of the vector space in which the tokens are represented.
 
 Here's a simple implementation of positional encoding in Python:
 ```python
@@ -450,7 +457,7 @@ Here’s an example of what this might look like (with randomly chosen values fo
 These vectors (embeddings) are typically learned from large corpora of text and capture semantic meanings. For example, "rain" and "storm" might have similar embeddings because they both relate to weather.
 
 ### Building the Embedding Matrix
-For our sentence, we create an embedding matrix where each row corresponds to the embedding of a token. If our sentence has 19 tokens and each token is embedded in a 4-dimensional space, our embedding matrix $E$ would be of size $19\times4$:
+For our sentence, we create an embedding matrix where each row corresponds to the embedding of a token. If our sentence has 19 tokens and each token is embedded in a 4-dimensional space, our embedding matrix $E$ would be of size $$19\times4$$:
 
 | Token       | Dimension 1 | Dimension 2 | Dimension 3 | Dimension 4 |
 | ----------- | ----------- | ----------- | ----------- | ----------- |
@@ -471,26 +478,31 @@ For our sentence, we create an embedding matrix where each row corresponds to th
 | approaching | 0.3         | 0.4         | 0.6         | 0.2         |
 | storm       | 0.5         | -0.1        | 0.4         | 0.3         |
 | .           | 0.0         | 0.0         | 0.0         | 0.0         |
+
 ### Queries, Keys, and Values
 For illustration purposes, let's define our weight matrices with arbitrary values
+
 $$W_Q=\begin{bmatrix} 
 0.1 & 0.2 & 0.3 & 0.4\\
 0.5 & 0.6 & 0.7 & 0.8\\
 0.9 & 1.0 & 1.1 & 1.2\\
 1.3 & 1.4 & 1.5 & 1.6
 \end{bmatrix}$$
+
 $$W_K=\begin{bmatrix} 
 1.6 & 1.5 & 1.4 & 1.3\\
 1.2 & 1.1 & 1.0 & 0.9\\
 0.8 & 0.7 & 0.6 & 0.5\\
 0.4 & 0.3 & 0.2 & 0.1
 \end{bmatrix}$$
+
 $$W_V=\begin{bmatrix} 
 0.1 & -0.2 & 0.3 & -0.4\\
 -0.5 & 0.6 & -0.7 & 0.8\\
 0.9 & -1.0 & 1.1 & -1.2\\
 -1.3 & 1.4 & -1.5 & 1.6
 \end{bmatrix}$$
+
 and use them to calculate queries, keys, and values for the first three tokens 
 - "Despite" with embedding [0.2, −0.1, 0.5, 0.3]:
 
@@ -527,6 +539,7 @@ $$V_{Despite}=W_V\begin{bmatrix} 0.2 \\ -0.1 \\ 0.5 \\ 0.3 \end{bmatrix}=
 	\begin{bmatrix} 0.07 \\ -0.27 \\ 0.47 \\ -0.67\end{bmatrix}$$
 
 - "the" with embedding [0.1, 0.0, −0.1, 0.4] and "heavy" with embedding [−0.3, 0.8, 0.1, 0.2]:
+
 $$Q_{the}=W_Q\begin{bmatrix} 0.1 \\ 0.0 \\ -0.1 \\ 0.4 \end{bmatrix}= \begin{bmatrix} 0.14 \\ 0.3 \\ 0.46 \\0.62\end{bmatrix} \quad, \quad Q_{heavy}=W_Q\begin{bmatrix} -0.3 \\ 0.8 \\ 0.1 \\ 0.2 \end{bmatrix}= \begin{bmatrix} 0.24 \\ 0.56 \\ 0.88 \\ 1.2 \end{bmatrix}$$
 
 $$K_{the}=W_K\begin{bmatrix} 0.1 \\ 0.0 \\ -0.1 \\ 0.4 \end{bmatrix}= \begin{bmatrix} 0.54 \\ 0.38 \\ 0.22 \\ 0.06\end{bmatrix} \quad, \quad K_{heavy}=W_K\begin{bmatrix} -0.3 \\ 0.8 \\ 0.1 \\ 0.2 \end{bmatrix}= \begin{bmatrix} 1.12 \\ 0.8 \\ 0.48 \\ 0.16\end{bmatrix}$$
@@ -539,14 +552,19 @@ By applying the learned weight matrices $W_Q$​, $W_K$​, and $W_V$, we transf
 For each token, we compute the dot product of its query vector with the key vectors of all tokens. This results in the attention scores for each token relative to every other token.
 
 Let's continue with the example of "Despite" with
+
 $$Q_{Despite}=\begin{bmatrix} 0.27 \\ 0.63 \\ 0.99 \\ 1.35\end{bmatrix}$$
+
 and then find the attention scores between "Despite" and three other tokens, including itself ("the", "heavy", and "Despite" ) with 
- $$K_{the}=\begin{bmatrix} 0.54 \\ 0.38 \\ 0.22 \\ 0.06\end{bmatrix} \quad , \quad K_{heavy}=\begin{bmatrix} 1.12 \\ 0.8 \\ 0.48 \\ 0.16\end{bmatrix} \quad , \quad K_{Despite}=\begin{bmatrix} 1.26 \\ 0.9 \\ 0.54 \\ 0.18\end{bmatrix}$$
+
+$$K_{the}=\begin{bmatrix} 0.54 \\ 0.38 \\ 0.22 \\ 0.06\end{bmatrix} \quad , \quad K_{heavy}=\begin{bmatrix} 1.12 \\ 0.8 \\ 0.48 \\ 0.16\end{bmatrix} \quad , \quad K_{Despite}=\begin{bmatrix} 1.26 \\ 0.9 \\ 0.54 \\ 0.18\end{bmatrix}$$
 
 1. Dot product between "Despite" and "the":    $$Dot(Q_{Despite}, K_{the})= 0.1458 + 0.2394 + 0.2178 + 0.081 = 0.684 $$
 2. Dot product between "Despite" and "heavy": $$Dot(Q_{Despite}, K_{heavy})= 0.3024 + 0.504 + 0.4752 + 0.216 = 1.4976$$ 
 3. Dot product between "Despite" and "Despite" (self-attention): $$Dot(Q_{Despite}, K_{Despite})= 0.3402 + 0.567 + 0.5346 + 0.243 = 1.6848$$ 
+
 These dot products represent the raw attention weights for "Despite" in relation to "the", "heavy," and itself.
+
 $$\text{Softmax}([0.684, 1.4976, 1.6848]) = \left[ \frac{e^{0.684}}{e^{0.684} + e^{1.4976} + e^{1.6848}}, \frac{e^{1.4976}}{e^{0.684} + e^{1.4976} + e^{1.6848}}, \frac{e^{1.6848}}{e^{0.684} + e^{1.4976} + e^{1.6848}} \right]$$
 	
 These softmax values represent the normalized attention scores for "Despite" with respect to "the," "heavy," and itself, respectively. They indicate the relative importance of "Despite" compared to the other tokens during the attention mechanism.
@@ -555,16 +573,13 @@ These softmax values represent the normalized attention scores for "Despite" wit
 ## 4. Transformer Models <a name="models"></a>
 We can generally classify transformers into three models, **Encoders**, **Decoders**, and **Encoder-Decoders**. An encoder:
 
-> "...transforms the text embeddings into a representation that can support variety of tasks."
-~ Simon J.D. Prince, "Understanding Deep Learning"
-
+> "...transforms the text embeddings into a representation that can support variety of tasks." ~ Simon J.D. Prince, "Understanding Deep Learning"
 
 A decoder, however, is typically used to generate the next output and to continue the given input text, like GPT models. 
 
 Finally, encoder-decoders are implemented in 
 
-> "...sequence-to-sequence tasks, where one text string is converted into another."
-~ Simon J.D. Prince, "Understanding Deep Learning"
+> "...sequence-to-sequence tasks, where one text string is converted into another." ~ Simon J.D. Prince, "Understanding Deep Learning"
 
 A common example for encoder-decoder model is language translation. 
 
@@ -904,6 +919,6 @@ print("Output Matrix after DecoderLayer:\n", output_matrix)
 ## 6. Final Comments <a name="fincom"></a>
 The main place to experiment with various Transformer-based models, used for NLP, Computer Vision, and automatic speech recognition is the [Hugging Face](https://huggingface.co/docs/transformers/en/index). I strongly suggest joining the community and learn by following tutorials and implementing models for your own projects.
 
-To have a much better understanding of how the mechanics of Transformers for NLP-related tasks along with learning how to implement various NLP-related tasks, I suggest looking at  [Andrej Karpathy YouTube channel](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ), specially [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=8) and [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=11).
+To have a much better understanding of how the mechanics of Transformers for NLP-related tasks work along with learning how to implement various NLP-related tasks, I suggest looking at  [Andrej Karpathy YouTube channel](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ), specially [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=8) and [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=11).
 	
 If you are looking for more comprehensive and clear discussion about Transformers and their working principles, I suggest [Deep Learning: Foundations and Concepts](https://issuu.com/cmb321/docs/deep_learning_ebook) by _Christopher M. Bishop_ and _Hugh Bishop_ (chapter 12) and also [Understanding Deep Learning](https://github.com/udlbook/udlbook/releases/download/v4.0.1/UnderstandingDeepLearning_05_27_24_C.pdf) by _Simon J.D. Prince_ (chapter 12).
