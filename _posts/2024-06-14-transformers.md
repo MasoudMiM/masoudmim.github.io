@@ -262,7 +262,7 @@ $$E=\begin{bmatrix}
 0.3 & 0.5 & 0.7 & -> (\text{embedding for ''mat''})\\
 \end{bmatrix}$$
 
-then, we can look up the corresponding rows in the embedding matrix $$E$$ given the indices [0,1,2] for the input matrix ($X$). Therefore, our input matrix for the model becomes:
+then, we can look up the corresponding rows in the embedding matrix $$E$$ given the indices [0,1,2] for the input matrix ($$X$$). Therefore, our input matrix for the model becomes:
 
 $$E=\begin{bmatrix}
 0.1 & 0.2 & 0.3 \\
