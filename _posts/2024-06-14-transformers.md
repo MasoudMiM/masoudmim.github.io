@@ -290,7 +290,7 @@ where $$q_i$$, $$k_i$$, and $$v_i$$ are each a vector.
 This matrix representation is basically telling you that you will have one query vector, one key vector, and one value vector for each word embedding vector. In another word, now we have three vector representations for each word embedding vector.
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="800" height="250">
+    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="900" height="250">
 </div>
 
 ### Self-Attention Mechanism <a name="selfatt"></a>
