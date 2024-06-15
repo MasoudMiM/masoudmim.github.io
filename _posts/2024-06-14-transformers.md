@@ -2,7 +2,7 @@
 layout: post
 title:  "Transformers - Fundamental Concepts with Python Implementation"
 date:   2024-06-14 21:10:00
-description: A clear explanation of working principle of Transformers for NLP work tasks 
+description: A clear explanation of working principles of Transformers for NLP tasks 
 tags: transformers, python, NLP 
 categories: technical
 ---
@@ -25,6 +25,7 @@ categories: technical
 4. [Final Comments](#fincom)
 
 ## 1. Motivation - Why Transformers? <a name="motiv"></a>
+
 If you are interested in modern natural language processing (NLP), machine learning, and artificial intelligence, you probably need to learn 
 [Transformers](https://arxiv.org/pdf/1706.03762) and know how they can be implemented for various tasks. Transformers have set new benchmarks in a variety of NLP tasks such as language translation, text summarization, and question answering. Models like [BERT](https://huggingface.co/docs/transformers/en/model_doc/bert), [GPT-3](https://en.wikipedia.org/wiki/GPT-3), [GPT-4](https://openai.com/index/gpt-4/), [T5](https://huggingface.co/docs/transformers/en/model_doc/t5), [LLaMA](https://huggingface.co/docs/transformers/main/en/model_doc/llama), and [Claude](https://claude.ai/chats) are all implementing Transformers in their architectures. Transformers have also been adapted for use in other domains such as computer vision ([Vision Transformers ViTs](https://huggingface.co/docs/transformers/en/model_doc/vit)) and [speech processing](https://huggingface.co/docs/transformers/en/model_doc/speech_to_text). One major advantage of Transformers, when compared with Recurrent Neural Networks, is their capability for parallelization.
 
@@ -35,6 +36,7 @@ Understanding Transformers provides a foundation for delving into more advanced 
 Transformers use a mechanism called **attention** to determine the importance of different words in a sequence. The core components of this **attention mechanism** are _queries_, _keys_, and _values_. Let's take a closer look at some fundamental components of Transformers first and familiarize ourselves with some important concepts.
 
 ### softmax<a name="softmax"></a> 
+
 Softmax function is a mathematical function that converts a vector of values into a probability distribution. It is widely used in machine learning, especially in classification tasks and attention mechanisms, because it transforms input values to be in the range (0, 1) and ensures they sum up to 1. The softmax function is defined as follows:
 
 $$ \text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j} e^{x_j}} $$
@@ -60,13 +62,16 @@ and the denominator is the sum of the exponentials of all elements in the input 
 	print("Input Vector:", input_vector)
 	print("Softmax Output:", softmax_output)
 ```
+
 which will return
+
 ```sh
 	Input Vector: [1. 2. 3.]
 	Softmax Output: [0.09003057 0.24472847 0.66524096] 
 ```
 
 ### Tokenization and Word Embedding<a name="tokenization"></a> 
+
 This is the process of breaking down a text into smaller units, which are called _tokens_. These tokens can be words, subwords, or characters. Tokenization is an important step in natural language processing because it transforms raw text data into a format that can be processed and converted into numerical format later (using embedding process). 
 
 _Word embeddings_ are dense vector representations of words in a high-dimensional space, where similar words are closer to each other in this space. This is where we convert words into _numerical_ format, which is essential for computing purposes. Here is a simple Python code to get a better sense of tokenization procedure:
@@ -903,3 +908,5 @@ The main place to experiment with various Transformer-based models, used for NLP
 To have a much better understanding of how the mechanics of Transformers for NLP-related tasks along with learning how to implement various NLP-related tasks, I suggest looking at  [Andrej Karpathy YouTube channel](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ), specially [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=8) and [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=11).
 	
 If you are looking for more comprehensive and clear discussion about Transformers and their working principles, I suggest [Deep Learning: Foundations and Concepts](https://issuu.com/cmb321/docs/deep_learning_ebook) by _Christopher M. Bishop_ and _Hugh Bishop_ (chapter 12) and also [Understanding Deep Learning](https://github.com/udlbook/udlbook/releases/download/v4.0.1/UnderstandingDeepLearning_05_27_24_C.pdf) by _Simon J.D. Prince_ (chapter 12).
+
+</div>
