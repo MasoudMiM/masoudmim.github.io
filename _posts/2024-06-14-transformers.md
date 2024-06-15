@@ -7,7 +7,6 @@ tags: transformers, python, NLP
 categories: technical
 ---
 
-<div style="text-align: justify;">
 
 #### Table of Contents
 
@@ -289,7 +288,7 @@ where $q_i$, $k_i$, and $v_i$ are each a vector.
 This matrix representation is basically telling you that you will have one query vector, one key vector, and one value vector for each word embedding vector. In another word, now we have three vector representations for each word embedding vector.
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="400" height="250">
+    <img src="/assets/img/qkv.png" alt="queries-keys-values" width="600" height="250">
 </div>
 
 ### Self-Attention Mechanism <a name="selfatt"></a>
@@ -300,7 +299,7 @@ $$\text{Weighted Values}=V.Softmax[K^TQ]$$
 Let me try to put everything together so you can get a better picture of the general procedure for the case of an input with three tokens:
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/attention.png" alt="attention-mechanism" width="400" height="250">
+    <img src="/assets/img/attention.png" alt="attention-mechanism" width="600" height="250">
 </div>
 
 So at this point, the output for each token incorporates information from all other tokens in the sequence, weighted by their relevance. This means that the representation of token $i$ is not just based on the token itself but it is also influenced by how much attention it gives to other tokens.
@@ -409,7 +408,7 @@ Here's a simple implementation of positional encoding in Python:
 ```
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/pencoding.png" alt="positional-encoding" width="400" height="250">
+    <img src="/assets/img/pencoding.png" alt="positional-encoding" width="500" height="300">
 </div>
 
 In the output figure, you can see that for any given position across the dimensions, we have a unique set of color combination.
@@ -908,5 +907,3 @@ The main place to experiment with various Transformer-based models, used for NLP
 To have a much better understanding of how the mechanics of Transformers for NLP-related tasks along with learning how to implement various NLP-related tasks, I suggest looking at  [Andrej Karpathy YouTube channel](https://www.youtube.com/playlist?list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ), specially [Let's build GPT: from scratch, in code, spelled out.](https://www.youtube.com/watch?v=kCc8FmEb1nY&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=8) and [Let's reproduce GPT-2 (124M)](https://www.youtube.com/watch?v=l8pRSuU81PU&list=PLAqhIrjkxbuWI23v9cThsA9GvCAUhRvKZ&index=11).
 	
 If you are looking for more comprehensive and clear discussion about Transformers and their working principles, I suggest [Deep Learning: Foundations and Concepts](https://issuu.com/cmb321/docs/deep_learning_ebook) by _Christopher M. Bishop_ and _Hugh Bishop_ (chapter 12) and also [Understanding Deep Learning](https://github.com/udlbook/udlbook/releases/download/v4.0.1/UnderstandingDeepLearning_05_27_24_C.pdf) by _Simon J.D. Prince_ (chapter 12).
-
-</div>
