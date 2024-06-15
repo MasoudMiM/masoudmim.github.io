@@ -13,7 +13,7 @@ categories: technical
 1. [Motivation - Why Transformers?](#motiv)
 2. [Terminology](#term)
 	- [Softmax](#softmax)
-	- [Tokenization and Word Embedding](#tokenization)
+	- [Tokenization and Word Embedding](#tokeniz)
 	- [Queries, Keys, and Values](#qkv)
 	- [Self Attention Mechanism](#selfatt)
 	- [Normalization](#norm)
@@ -69,7 +69,7 @@ which will return
 	Softmax Output: [0.09003057 0.24472847 0.66524096] 
 ```
 
-### Tokenization and Word Embedding<a name="tokenization"></a> 
+### Tokenization and Word Embedding<a name="tokeniz"></a> 
 
 This is the process of breaking down a text into smaller units, which are called _tokens_. These tokens can be words, subwords, or characters. Tokenization is an important step in natural language processing because it transforms raw text data into a format that can be processed and converted into numerical format later (using embedding process). 
 
