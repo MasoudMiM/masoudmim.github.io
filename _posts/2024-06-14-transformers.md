@@ -281,7 +281,7 @@ So at this point, knowing the tokens, we can implement some form of linear trans
   
 $$Q_i=W_Q\times x_i \quad, \quad K_i=W_K\times x_i \quad , \quad V_i=W_V\times x_i$$
 
-Here, $$x_i$$ is the _vector space_ for each token, i.e. each row in Matrix $$E$$ (in previous section) and $$W$$'s are **weight matrices that need to be found during the training**. Also,
+Here, $$x_i$$ is the _vector space_ for each token, i.e. each row in Matrix $$X$$ (in previous section) and $$W$$'s are **weight matrices that need to be found during the training**. Also,
 
 $$Q_i=[q_1, q_2, q_3, ...] \quad , \quad K_i=[k_1, k_2, k_3, ...] \quad, \quad \text{and} \quad V_i=[v_i, v_2, v_3,...]$$
 
