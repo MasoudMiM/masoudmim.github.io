@@ -250,7 +250,7 @@ For example,  let's say you end up having a vocabulary with the following index 
 
 so for an input text "The cat sat" with tokenization ["The", "cat", "sat"], you ended up having a token-to-index mapping [0,1,2]. 
 
-Let's assume that your embedding matrix, $E$, is a matrix where each row corresponds to the embedding vector of a token in the vocabulary. Let's assume the embeddings are 3-dimensional, i.e. I can show each embedding with a vector with three components in the vector space. I am also going to assume some random values for the entries. Keep in mind that the embedding matrix $E$ is typically learned during the training of the model.
+Let's assume that your embedding matrix, $$E$$, is a matrix where each row corresponds to the embedding vector of a token in the vocabulary. Let's assume the embeddings are 3-dimensional, i.e. I can show each embedding with a vector with three components in the vector space. I am also going to assume some random values for the entries. Keep in mind that the embedding matrix $$E$$ is typically learned during the training of the model.
 
 
 $$E=\begin{bmatrix}
@@ -262,7 +262,7 @@ $$E=\begin{bmatrix}
 0.3 & 0.5 & 0.7 & -> (\text{embedding for ''mat''})\\
 \end{bmatrix}$$
 
-then, we can loop up the corresponding rows in the embedding matrix $E$ given the indices [0,1,2] for the input matrix ($X$). Therefore, our input matrix for the model becomes:
+then, we can look up the corresponding rows in the embedding matrix $$E$$ given the indices [0,1,2] for the input matrix ($X$). Therefore, our input matrix for the model becomes:
 
 $$E=\begin{bmatrix}
 0.1 & 0.2 & 0.3 \\
