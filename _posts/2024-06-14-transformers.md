@@ -429,7 +429,7 @@ In this section, I will try to focus on detailed calculations for the attention 
 ### Tokenization 
 First, let's tokenize the sentence into individual words or subwords:
 
-Tokens=["Despite","the","heavy","rain",",","the","children","played","happily","in","the","park",",","unaware","of","the","approaching","storm","."]
+Tokens=[ "Despite", "the" , "heavy" , "rain", "," , "the" , "children" , "played" , "happily" , "in" , "the" , "park" , "," , "unaware" , "of" , "the" , "approaching" , "storm" , "." ]
 
 ### Embedding
 We then map the tokens into a vector in a high-dimensional space. This mapping is achieved using a pre-trained embedding matrix (e.g., Word2Vec, GloVe, or embeddings learned as part of a transformer model like BERT or GPT).
