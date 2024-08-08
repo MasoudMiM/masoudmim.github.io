@@ -3,10 +3,10 @@ github_users:
 #  - alshedivat
 
 github_repos:
+  - masoudmim/websearch_duckduckGo
   - masoudmim/ocean-data-analysis
   - masoudmim/wec-performance-evaluation
+  - masoudmim/college-data-vis
   - masoudmim/mesh-gmsh
   - masoudmim/brimes
-  #- masoudmim/Ocean_Data_Visualization
   - masoudmim/hobby-python-codes 
-  - masoudmim/hobby-MATLAB-codes 
