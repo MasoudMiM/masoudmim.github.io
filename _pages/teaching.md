@@ -24,7 +24,9 @@ I taught the following courses at <a href="https://manhattan.edu/">Manhattan Col
 - Research Project in Mechanical Engineering (one-semester graduate research)
 - Master's Thesis in Mechanical Engineering
 
+I have been serving as an adjunct professor, teaching "Data-Driven Problem Solving" at <a href='https://cooper.edu/welcome'>The Cooper Union for the Advancement of Science and Art</a> since Spring 2022.
 
-Furthermore, I have been serving as an adjunct professor, teaching "Data-Driven Problem Solving" at <a href='https://cooper.edu/welcome'>The Cooper Union for the Advancement of Science and Art</a> since Spring 2022.
+I previously served as an associate for the "Python for Data Analysis" course within the Applied Analytics program at the <a href="https://sps.columbia.edu">School of Professional Studies</a> at <a href="https://www.columbia.edu">Columbia University</a>.
 
-Finally, I am an associate for the "Python for Data Analysis" course within the Applied Analytics program at the <a href="https://sps.columbia.edu">School of Professional Studies</a> at <a href="https://www.columbia.edu">Columbia University</a>.
+
+
