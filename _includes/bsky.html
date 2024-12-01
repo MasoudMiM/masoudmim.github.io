@@ -1,7 +1,7 @@
 {% if site.bluesky.enabled %}
 <div class="bsky-feed">
   <bsky-embed
-    username="{{ site.bluesky.username }}"
+    feed="at://did:plc:{{ site.bluesky.username }}/app.bsky.feed.post"
     mode="{% if site.enable_darkmode %}dark{% endif %}"
     limit="{{ site.bluesky.post_limit }}"
     link-target="_blank"
