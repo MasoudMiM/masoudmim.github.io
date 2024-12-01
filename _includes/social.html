@@ -116,3 +116,8 @@
             </div>
             {% include scripts/wechatModal.html %}
             {% endif %}
+            {%- if site.bluesky_username -%}
+            <a href="https://bsky.app/profile/{{ site.bluesky_username }}" title="Bluesky">
+              {%- include social-icons/bluesky.html -%}
+            </a>
+            {%- endif -%}
