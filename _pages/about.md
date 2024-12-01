@@ -27,4 +27,4 @@ Since leaving my full-time academic position, I worked as a Physical Scientist a
 
 Recently, I joined the Internal Revenue Service as a Data Scientist, where I will focus on exploring novel data retrieval methods and providing innovative recommendations for data-driven decisions. Additionally, I will be collaborating with business and technology partners to understand their needs and implement analytical solutions. My responsibilities will also include cleaning, transforming, analyzing, and integrating structured and unstructured data from various sources, as well as troubleshooting and proposing solutions to project bottlenecks.
 
-{% include bsky.html %}
+<!-- {% include bsky.html %} -->
