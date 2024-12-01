@@ -1,0 +1,100 @@
+---
+---
+
+<div class="row">
+  <div class="col-sm-2 abbr">
+  {% if entry.abbr %}
+    {% if site.data.venues[entry.abbr] %}
+    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
+    {% else %}
+    <abbr class="badge">{{entry.abbr}}</abbr>
+    {% endif %}
+  {% endif %}
+  </div>
+
+  <div id="{{entry.key}}" class="col-sm-8">
+    {% if entry.type == "thesis" %}
+      {{reference}}
+    {% else %}
+      <div class="title">{{entry.title}}</div>
+      <div class="author">
+        {% for author in entry.author_array %}
+          {% assign author_is_self = false %}
+          {% if author.last == site.scholar.last_name %}
+            {% if site.scholar.first_name contains author.first %}
+              {% assign author_is_self = true %}
+            {% endif %}
+          {% endif %}
+          {% assign coauthor_url = nil %}
+          {% if site.data.coauthors[author.last] %}
+            {% for coauthor in site.data.coauthors[author.last] %}
+              {% if coauthor.first contains author.first %}
+                {% assign coauthor_url = coauthor.url %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+          
+          {% if forloop.length == 1 %}
+            {% if author_is_self %}
+              <em>{{author.last}}, {{author.first}}</em>
+            {% else %}
+              {{author.last}}, {{author.first}}
+            {% endif %}
+          {% else %}
+            {% unless forloop.last %}
+              {% if author_is_self %}
+                <em>{{author.last}}, {{author.first}}</em>,
+              {% else %}
+                {% if coauthor_url %}
+                  <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>,
+                {% else %}
+                  {{author.last}}, {{author.first}},
+                {% endif %}
+              {% endif %}
+            {% else %}
+              {% if author_is_self %}
+                and <em>{{author.last}}, {{author.first}}</em>
+              {% else %}
+                {% if coauthor_url %}
+                  and <a href="{{coauthor_url}}">{{author.last}}, {{author.first}}</a>
+                {% else %}
+                  and {{author.last}}, {{author.first}}
+                {% endif %}
+              {% endif %}
+            {% endunless %}
+          {% endif %}
+        {% endfor %}
+      </div>
+
+      <div class="periodical">
+        {% if entry.type == "article" %}
+          <em>{{entry.journal}}</em>
+        {% elsif entry.type == "inproceedings" %}
+          <em>In {{entry.booktitle}}</em>
+        {% endif %}
+        {% if entry.year %}
+          {{entry.year}}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    <div class="links">
+      {% if entry.doi %}
+        <a href="https://doi.org/{{ entry.doi }}" class="btn btn-sm z-depth-0" role="button" target="_blank">DOI</a>
+      {% endif %}
+      {% if entry.url %}
+        <a href="{{ entry.url }}" class="btn btn-sm z-depth-0" role="button" target="_blank">URL</a>
+      {% endif %}
+      {% if entry.pdf %}
+        <a href="{{ entry.pdf }}" class="btn btn-sm z-depth-0" role="button" target="_blank">PDF</a>
+      {% endif %}
+      {% if entry.code %}
+        <a href="{{ entry.code }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Code</a>
+      {% endif %}
+      {% if entry.website %}
+        <a href="{{ entry.website }}" class="btn btn-sm z-depth-0" role="button" target="_blank">Project Page</a>
+      {% endif %}
+    </div>
+  </div>
+</div>
