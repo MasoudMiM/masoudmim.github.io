@@ -430,3 +430,9 @@ jsonresume:
 #  - languages
 #  - interests
 #  - references
+
+# Bluesky Feed Configuration
+bluesky:
+  enabled: true
+  username: masoudmim.bsky.social
+  post_limit: 10

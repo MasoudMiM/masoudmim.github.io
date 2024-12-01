@@ -1,0 +1,21 @@
+{% if site.bluesky.enabled %}
+<div class="bsky-feed">
+  <bsky-embed
+    username="{{ site.bluesky.username }}"
+    mode="{% if site.enable_darkmode %}dark{% endif %}"
+    limit="{{ site.bluesky.post_limit }}"
+    link-target="_blank"
+    link-image="true"
+    load-more="true"
+  >
+  </bsky-embed>
+</div>
+{% endif %}
+
+<style>
+  .bsky-feed {
+    margin: 20px 0;
+    width: 100%;
+    max-width: 600px;
+  }
+</style>
