@@ -9,6 +9,14 @@ categories: essay
 
 > **Author's Note:** The essay you're about to read was initially written on May 3, 2017, summarizing my personal journey as an engineer navigating the startup landscape. This updated version seeks to improve the narrative, offering further insights and underscoring the lasting significance of the experiences shared.
 
+<figure>
+    <audio controls>
+        <source src="/assets/audio/engineering-the-unknown.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <figcaption>Listen to this article</figcaption>
+</figure>
+
 <div style="text-align: justify;">
 
 <p>Embracing the role of an engineer has always been a source of immense joy for me, with its inherent challenges in design and manufacturing that fuel my fascination for the intricacies of my work and research. Each day is an exploration, filled with learning, modeling, experimenting, and designing, where every task demands creativity and innovation to prevent monotony from overshadowing the excitement of the job.</p>
