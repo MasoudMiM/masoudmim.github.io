@@ -10,12 +10,14 @@ categories: essay
 > **Author's Note:** The essay you're about to read was initially written on May 3, 2017, summarizing my personal journey as an engineer navigating the startup landscape. This updated version seeks to improve the narrative, offering further insights and underscoring the lasting significance of the experiences shared.
 
 <figure style="text-align: center; max-width: 500px; margin: 0 auto;">
-    <audio controls style="width: 50%;">
+    <audio controls style="width: 100%;">
         <source src="/assets/audio/engineering-the-unknown.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
     </audio>
-    <figcaption>Listen to this article</figcaption>
+    <figcaption>(Listen to this article)</figcaption>
 </figure>
+
+<br>
 
 <div style="text-align: justify;">
 
