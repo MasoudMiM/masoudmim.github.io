@@ -7,6 +7,16 @@ tags: problem-solving, data-driven
 categories: essay
 ---
 
+<figure style="text-align: center; max-width: 500px; margin: 0 auto;">
+    <audio controls style="width: 100%;">
+        <source src="/assets/audio/data-driven.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <figcaption>(Listen to this article)</figcaption>
+</figure>
+
+<br>
+
 <div style="text-align: justify;">
 
 <p>In the realm of problem-solving methodologies, two distinct yet powerful approaches emerge: the first-principles method and the data-driven approach. The first-principles strategy involves dissecting problems into fundamental truths and building solutions from there, grounded in foundational concepts, scientific laws, and logical reasoning. Conversely, the data-driven approach leverages available or collected data to extract insights and patterns, relying on statistical analysis, machine learning, and data mining for valuable information. These methodologies play pivotal roles in innovation and problem-solving across diverse fields.</p>
