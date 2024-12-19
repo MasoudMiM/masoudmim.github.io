@@ -7,6 +7,15 @@ tags: idea, innovation
 categories: essay
 ---
 
+<figure style="text-align: center; max-width: 500px; margin: 0 auto;">
+    <audio controls style="width: 100%;">
+        <source src="/assets/audio/ideasmatter.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <figcaption>(Listen to this article)</figcaption>
+</figure>
+
+<br>
 
 "Ideas are cheap, execution is everything" - this saying has guided business thinking for many years. For decades, turning an idea into reality required specialized skills, substantial capital, and extensive networks. This high barrier to execution led to a natural emphasis on implementation over ideation.
 
