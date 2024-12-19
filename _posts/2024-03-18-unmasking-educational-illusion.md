@@ -7,6 +7,16 @@ tags: education, antifragility
 categories: essay
 ---
 
+<figure style="text-align: center; max-width: 500px; margin: 0 auto;">
+    <audio controls style="width: 100%;">
+        <source src="/assets/audio/unmasking-education.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+    <figcaption>(Listen to this article)</figcaption>
+</figure>
+
+<br>
+
 <div style="text-align: justify;">
 
 
