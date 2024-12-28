@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Embracing the Repair Mindset from Gadgets to Good Times"
+title:  "Embracing the Repair Mindset"
 date: 2024-12-27 21:20:00
 description: 
 tags: repair, sustainability
