@@ -1,0 +1,321 @@
+<!DOCTYPE html> <html lang="en"> <head> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <meta charset="utf-8"> <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> <meta http-equiv="X-UA-Compatible" content="IE=edge"> <title>Dynamic Mode Decomposition for Fluid Dynamics | Masoud Masoumi</title> <meta name="author" content="Masoud Masoumi"> <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design. "> <meta name="keywords" content="jekyll, jekyll-theme, academic-website, portfolio-website"> <link rel="stylesheet" href="/assets/css/bootstrap.min.css?a4b3f509e79c54a512b890d73235ef04"> <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/css/mdb.min.css" integrity="sha256-jpjYvU3G3N6nrrBwXJoVEYI/0zw8htfFnhT9ljN3JJw=" crossorigin="anonymous"> <link defer rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.css"> <link rel="stylesheet" href="/assets/css/academicons.min.css?f0b7046b84e425c55f3463ac249818f5"> <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons"> <link rel="stylesheet" href="/assets/css/jekyll-pygments-themes-github.css?19f3075a2d19613090fe9e16b564e1fe" media="" id="highlight_theme_light"> <link rel="shortcut icon" href="data:image/svg+xml,&lt;svg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%220%200%20100%20100%22&gt;&lt;text%20y=%22.9em%22%20font-size=%2290%22&gt;%E2%9A%9B%EF%B8%8F&lt;/text&gt;&lt;/svg&gt;"> <link rel="stylesheet" href="/assets/css/main.css?d41d8cd98f00b204e9800998ecf8427e"> <link rel="canonical" href="https://masoudmim.github.io/blog/2025/svd/"> <link rel="stylesheet" href="/assets/css/jekyll-pygments-themes-native.css?e74e74bf055e5729d44a7d031a5ca6a5" media="none" id="highlight_theme_dark"> <script src="/assets/js/theme.js?96d6b3e1c3604aca8b6134c7afdd5db6"></script> <script src="/assets/js/dark_mode.js?9b17307bb950ffa2e34be0227f53558f"></script> </head> <body class="fixed-top-nav "> <header> <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top"> <div class="container"> <a class="navbar-brand title font-weight-lighter" href="/">Masoud Masoumi</a> <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar top-bar"></span> <span class="icon-bar middle-bar"></span> <span class="icon-bar bottom-bar"></span> </button> <div class="collapse navbar-collapse text-right" id="navbarNav"> <ul class="navbar-nav ml-auto flex-nowrap"> <li class="nav-item "> <a class="nav-link" href="/">About</a> </li> <li class="nav-item "> <a class="nav-link" href="/blog/">blog</a> </li> <li class="nav-item "> <a class="nav-link" href="/publications/">Publications</a> </li> <li class="nav-item "> <a class="nav-link" href="/repositories/">Repositories</a> </li> <li class="nav-item "> <a class="nav-link" href="/cv/">CV</a> </li> <li class="nav-item "> <a class="nav-link" href="/teaching/">Teaching</a> </li> <li class="toggle-container"> <button id="light-toggle" title="Change theme"> <i class="fa-solid fa-moon"></i> <i class="fa-solid fa-sun"></i> </button> </li> </ul> </div> </div> </nav> <progress id="progress" value="0"> <div class="progress-container"> <span class="progress-bar"></span> </div> </progress> </header> <div class="container mt-5"> <div class="post"> <header class="post-header"> <h1 class="post-title">Dynamic Mode Decomposition for Fluid Dynamics</h1> <p class="post-meta">January 11, 2025</p> <p class="post-tags"> <a href="/blog/2025"> <i class="fa-solid fa-calendar fa-sm"></i> 2025 </a>   ·   <a href="/blog/tag/svd"> <i class="fa-solid fa-hashtag fa-sm"></i> SVD,</a>   <a href="/blog/tag/dmd"> <i class="fa-solid fa-hashtag fa-sm"></i> DMD</a>     ·   <a href="/blog/category/technical"> <i class="fa-solid fa-tag fa-sm"></i> technical</a>   </p> </header> <article class="post-content"> <div id="markdown-content"> <blockquote> <p><strong>Author’s Note:</strong> This post is based on a class project that I assigned to students in the Data-Driven Problem Solving course, which I taught in the Mechanical Engineering Department at the Cooper Union for the Advancement of Science and Art in Fall 2024.</p> </blockquote> <h2 id="theoretical-background">Theoretical Background</h2> <p>Before we dive into the specifics of SVD and DMD, let’s understand why we need these data-driven modeling techniques:</p> <ol> <li> <p><strong>Complex Systems</strong>: Many real-world systems, like fluid flows, are incredibly complex. Traditional physics-based models can be too complicated or computationally expensive to solve.</p> </li> <li> <p><strong>Data Abundance</strong>: We often have lots of data from sensors or simulations, but we need ways to make sense of it all.</p> </li> <li> <p><strong>Pattern Discovery</strong>: Data-driven methods can help us find hidden patterns or structures in our data that we might not see otherwise.</p> </li> <li> <p><strong>Prediction</strong>: Once we understand the patterns, we can use them to make predictions about how the system will behave in the future.</p> </li> <li> <p><strong>Simplification</strong>: These methods can help us simplify complex systems, focusing on the most important aspects.</p> </li> </ol> <p>Now, let’s look at a powerful data-driven modeling techniques: <strong>Dynamic Mode Decomposition</strong> (DMD). First, we look at Singular Value Decomposition (SVD) concept and then expand that to DMD.</p> <h3 id="singular-value-decomposition-svd">Singular Value Decomposition (SVD)</h3> <p>Think of SVD as a way to break down a complicated puzzle into simpler pieces.</p> <ol> <li> <p><strong>What it does</strong>: SVD takes a big, complex matrix (like a puzzle) and breaks it into three simpler matrices.</p> </li> <li> <p><strong>The Math</strong>: If A is our data matrix, SVD says we can write it as:</p> <p>A = $U$ * Σ * $V^T$</p> <p>Where:</p> <ul> <li>$U$ and $V$ are like the puzzle’s edge pieces and corner pieces</li> <li>Σ (Sigma) is like the importance of each piece</li> </ul> </li> <li> <p><strong>Simple Example</strong>: Imagine you have data about students’ heights and weights. SVD might show you that there’s one main pattern (taller students tend to weigh more) and some smaller patterns.</p> </li> <li> <p><strong>Why it’s useful</strong>:</p> <ul> <li>It helps us find the most important patterns in our data.</li> <li>We can use it to reduce noise in our data.</li> <li>It’s a key step in many other techniques, including DMD.</li> </ul> </li> </ol> <p>If you want to get a better understading of the concept of SVD, I strongly recommend reading <a href="https://gregorygundersen.com/blog/2018/12/10/svd/" rel="external nofollow noopener" target="_blank">this short post</a> and then watching these two, videos explaining the applications and mathematical derivation: - <a href="https://www.youtube.com/watch?v=gXbThCXjZFM" rel="external nofollow noopener" target="_blank">Singular Value Decomposition (SVD): Overview</a> - <a href="https://www.youtube.com/watch?v=nbBvuuNVfco" rel="external nofollow noopener" target="_blank">Singular Value Decomposition (SVD): Mathematical Overview</a></p> <p>If you want to dive deeper, here is <a href="https://www.youtube.com/watch?v=vSczTbgc8Rc" rel="external nofollow noopener" target="_blank">another video</a> that I suggest watching, which requires some background in linear algebra and matrix operations.</p> <h3 id="dynamic-mode-decomposition-dmd">Dynamic Mode Decomposition (DMD)</h3> <p>DMD is like a video editor for your data, helping you find repeating patterns over time.</p> <ol> <li> <p><strong>What it does</strong>: DMD looks at how your system changes over time and tries to find the main “actors” (modes) and their “scripts” (how they change).</p> </li> <li> <p><strong>The Math</strong>: If we have a series of data snapshots X₁, X₂, X₃, …, DMD assumes there’s some matrix A such that:</p> <p>X₂ ≈ A * X₁</p> <p>X₃ ≈ A * X₂</p> <p>And so on…</p> </li> <li> <p><strong>Simple Example</strong>: Imagine watching waves on a beach. DMD might find that there’s a big, slow wave (one mode) and smaller, faster ripples (other modes).</p> </li> <li> <strong>How it works</strong>: <ol> <li>We arrange our data into two matrices: X₁ (earlier times) and X₂ (later times)</li> <li>We use SVD on X₁ to break it down: X₁ = $U$ * Σ * $V^T$</li> <li>We use this to find our A matrix: A ≈ X₂ * $V$ * Σ⁻¹ * $U^T$</li> <li>The eigenvectors of A are our modes, and the eigenvalues tell us how these modes change over time</li> </ol> </li> <li> <strong>Why it’s useful</strong>: <ul> <li>It can find patterns that repeat over time.</li> <li>It can help us predict future behavior.</li> <li>It works well even with complex, nonlinear systems.</li> </ul> </li> </ol> <p>If you want to know more about DMD, I suggest watching <a href="https://www.youtube.com/watch?v=sQvrK8AGCAo" rel="external nofollow noopener" target="_blank">this video</a>. However, keep in mind that the complete understanding requires some background in linear algebra.</p> <h3 id="putting-it-all-together">Putting It All Together</h3> <p>Imagine you’re studying a river (our complex system). You take many photos over time (your data). SVD helps you identify the main features of the river (like bends or rapids). DMD then shows you how these features change over time (like how water flows around a bend). With this information, you can better understand the river’s behavior and even predict how it might change in the future.</p> <p>These techniques allow us to make sense of complex systems using data, even when we don’t fully understand all the underlying physics. They’re powerful tools in many fields, from fluid dynamics to finance to neuroscience.</p> <h2 id="dmd-analysis-of-2d-fluid-flow-around-a-cylinder">DMD Analysis of 2D Fluid Flow Around a Cylinder</h2> <p>In this post, we’ll apply DMD to model the fluid flow around a cylinder in 2D, a classic problem in fluid dynamics. By the end of this post, you’ll have implemented DMD from scratch and gained insights into how it can be used to analyze fluid flow patterns.</p> <h3 id="step-1-data-preparation">Step 1: Data Preparation</h3> <p>In this step, we’ll prepare the data for our DMD analysis. We’ll use a pre-generated dataset of fluid flow around a cylinder.</p> <h4 id="task-11-load-and-explore-the-data">Task 1.1: Load and Explore the Data</h4> <p>First, we write a function to load the fluid flow data and explore its basic properties. This step is crucial for understanding the structure of our data before we apply DMD.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="kn">import</span> <span class="n">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span>
+
+<span class="k">def</span> <span class="nf">load_fluid_flow_data</span><span class="p">(</span><span class="n">file_path</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Load fluid flow data from a file and return it as a numpy array.
+    
+    Parameters:
+    file_path (str): Path to the data file
+    
+    Returns:
+    np.array: 3D array of shape (n_timesteps, n_x, n_y) containing fluid flow data
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click to see the solution</summary> ```python def load_fluid_flow_data(file_path): """ Load fluid flow data from a file and return it as a numpy array. Parameters: file_path (str): Path to the data file Returns: np.array: 3D array of shape (n_timesteps, n_x, n_y) containing fluid flow data """ try: data = np.load(file_path) if data.ndim != 3: raise ValueError("Expected 3D array, but got array with {} dimensions".format(data.ndim)) return data except FileNotFoundError: print(f"Error: File not found at {file_path}") return None except Exception as e: print(f"Error loading data: {str(e)}") return None ``` </details> <p><br></p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_flow_field</span><span class="p">(</span><span class="n">flow_data</span><span class="p">,</span> <span class="n">timestep</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Plot the flow field at a given timestep.
+    NOTE:
+        - use imshow from matplotlib library
+        - use extent=[-2, 4, -1, 1] and aspect=</span><span class="sh">'</span><span class="s">equal</span><span class="sh">'</span><span class="s"> options in your imshow plot to get better visulizations
+
+
+    Parameters:
+    flow_data (np.array): 3D array of fluid flow data
+    timestep (int): Timestep to plot
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click to see the solution</summary> ```python def plot_flow_field(flow_data, timestep): """ Plot the flow field at a given timestep. Parameters: flow_data (np.array): 3D array of fluid flow data timestep (int): Timestep to plot """ plt.figure(figsize=(10, 8)) plt.imshow(flow_data[timestep], cmap='viridis', extent=[-2, 4, -1, 1]) plt.colorbar(label='Flow Magnitude') plt.title(f'Flow Field at Timestep {timestep}') plt.xlabel('X') plt.ylabel('Y') plt.show() ``` </details> <p><br></p> <p>Try the following code to test the functions.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="nf">load_fluid_flow_data</span><span class="p">(</span><span class="sh">'</span><span class="s">cylinder_flow_data.npy</span><span class="sh">'</span><span class="p">)</span>
+<span class="nf">plot_flow_field</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">timestep</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</code></pre></div></div> <p>If we want to create an animtation of the data, we can write a separate function to achieve that goal:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">animate_flow</span><span class="p">(</span><span class="n">flow_data</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Create an animation of the fluid flow.
+    Parameters:
+    flow_data (np.array): 3D array of fluid flow data
+    interval (int): Delay between frames in milliseconds
+    Returns:
+    matplotlib.animation.FuncAnimation: Animation object
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def animate_flow(flow_data, interval=50): """ Create an animation of the fluid flow. Parameters: flow_data (np.array): 3D array of fluid flow data interval (int): Delay between frames in milliseconds Returns: matplotlib.animation.FuncAnimation: Animation object """ fig, ax = plt.subplots() # Plot the initial frame im = ax.imshow(flow_data[0], cmap='coolwarm', animated=True, extent=[-2, 4, -1, 1]) def update(frame): im.set_array(flow_data[frame]) return [im] anim = FuncAnimation(fig, update, frames=flow_data.shape[0], interval=interval, blit=True) plt.colorbar(im) plt.title("Fluid Flow Animation") return anim ``` </details> <p><br></p> <p>You can use the following code snippet to check the function’s output:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">data</span> <span class="o">=</span> <span class="nf">load_fluid_flow_data</span><span class="p">(</span><span class="sh">'</span><span class="s">cylinder_flow_data.npy</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">anim</span> <span class="o">=</span> <span class="nf">animate_flow</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="nf">show</span><span class="p">()</span>
+</code></pre></div></div> <div style="text-align: center;"> <img src="/assets/img/2dFlow.png" alt="animation of 2D flow" width="400" height="250"> </div> <h4 id="task-12-reshape-the-data-for-dmd">Task 1.2: Reshape the Data for DMD</h4> <p>DMD requires the data to be in a specific format. We need to reshape our 3D flow field data (time, x, y) into a 2D matrix where each column represents a flattened snapshot of the flow field at a particular time.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reshape_for_dmd</span><span class="p">(</span><span class="n">flow_data</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Reshape 3D flow data into a 2D matrix suitable for DMD.
+
+    Parameters:
+    flow_data (np.array): 3D array of shape (n_timesteps, n_x, n_y)
+
+    Returns:
+    np.array: 2D array of shape (n_x * n_y, n_timesteps)
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def reshape_for_dmd(flow_data): """ Reshape 3D flow data into a 2D matrix suitable for DMD. Parameters: flow_data (np.array): 3D array of shape (n_timesteps, n_x, n_y) Returns: np.array: 2D array of shape (n_x * n_y, n_timesteps) """ n_timesteps, n_x, n_y = flow_data.shape return flow_data.reshape(n_timesteps, -1).T ``` </details> <h3 id="step-2-implementing-the-dmd-algorithm">Step 2: Implementing the DMD Algorithm</h3> <p>In this step, we’ll implement the core DMD algorithm. We’ll break it down into smaller functions to make it easier to understand and implement.</p> <h4 id="task-21-compute-the-dmd-matrices">Task 2.1: Compute the DMD Matrices</h4> <p>Lets start with creating the matrices $X_1$ and $X_2$ needed for DMD analysis, and then compute the SVD of $X_1$.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_dmd_matrices</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Compute the matrices needed for DMD analysis.
+    
+    Parameters:
+    X (np.array): 2D data matrix of shape (n_features, n_samples)
+    
+    Returns:
+    tuple: (X1, X2) where X1 is X[:, :-1] and X2 is X[:, 1:]
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_svd</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Compute the Singular Value Decomposition (SVD) of a matrix.
+    
+    Parameters:
+    X (np.array): 2D matrix
+    
+    Returns:
+    tuple: (U, S, Vt) - The SVD components
+    </span><span class="sh">"""</span>
+    <span class="c1"># Use numpy's SVD function    
+</span>    <span class="c1"># The SVD decomposition gives X = U * S * Vt, where:
+</span>    <span class="c1"># U: Left singular vectors (columns are orthonormal)
+</span>    <span class="c1"># S: Singular values (diagonal matrix, but returned as 1D array)
+</span>    <span class="c1"># Vt: Right singular vectors (rows are orthonormal)
+</span>    
+    <span class="c1"># Note: full_matrices=False returns the compact SVD, which is more efficient for DMD
+</span>    
+    <span class="c1"># Your code here
+</span>
+    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solutions</summary> ```python def compute_dmd_matrices(X): """ Compute the matrices needed for DMD analysis. Parameters: X (np.array): 2D data matrix of shape (n_features, n_samples) Returns: tuple: (X1, X2) where X1 is X[:, :-1] and X2 is X[:, 1:] """ X1 = X[:, :-1] X2 = X[:, 1:] return X1, X2 def compute_svd(X): """ Compute the Singular Value Decomposition (SVD) of a matrix. Parameters: X (np.array): 2D matrix Returns: tuple: (U, S, Vt) - The SVD components """ # Use numpy's SVD function # The SVD decomposition gives X = U * S * Vt, where: # U: Left singular vectors (columns are orthonormal) # S: Singular values (diagonal matrix, but returned as 1D array) # Vt: Right singular vectors (rows are orthonormal) # Note: full_matrices=False returns the compact SVD, which is more efficient for DMD U, S, Vt = np.linalg.svd(X, full_matrices=False) return U, S, Vt ``` </details> <p>You can use the following lines to check the functions:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="c1"># Testing compute_dmd_matrices
+</span><span class="n">X_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">X1</span><span class="p">,</span> <span class="n">X2</span> <span class="o">=</span> <span class="nf">compute_dmd_matrices</span><span class="p">(</span><span class="n">X_test</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">X1</span><span class="p">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="sh">"</span><span class="s">X1 should have one less column than X</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">X2</span><span class="p">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="sh">"</span><span class="s">X2 should have one less column than X</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="nf">array_equal</span><span class="p">(</span><span class="n">X1</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]),</span> <span class="sh">"</span><span class="s">X1 should be all but the last column of X</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="nf">array_equal</span><span class="p">(</span><span class="n">X2</span><span class="p">,</span> <span class="n">X_test</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]),</span> <span class="sh">"</span><span class="s">X2 should be all but the first column of X</span><span class="sh">"</span>
+
+<span class="c1"># Testing compute_svd
+</span><span class="n">X_svd_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span> <span class="o">=</span> <span class="nf">compute_svd</span><span class="p">(</span><span class="n">X_svd_test</span><span class="p">)</span>
+<span class="k">assert</span> <span class="n">U</span><span class="p">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="sh">"</span><span class="s">U should have the same number of rows as X and min(X.shape) columns</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">S</span><span class="p">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,),</span> <span class="sh">"</span><span class="s">S should have length min(X.shape)</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">Vt</span><span class="p">.</span><span class="n">shape</span> <span class="o">==</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="sh">"</span><span class="s">Vt should be square with size min(X.shape)</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="nf">allclose</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">U</span> <span class="o">*</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span><span class="p">),</span> <span class="n">X_svd_test</span><span class="p">),</span> <span class="sh">"</span><span class="s">SVD decomposition should satisfy X = U * S * Vt</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="nf">allclose</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">U</span><span class="p">.</span><span class="n">T</span><span class="p">,</span> <span class="n">U</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span> <span class="sh">"</span><span class="s">U should be orthonormal</span><span class="sh">"</span>
+<span class="k">assert</span> <span class="n">np</span><span class="p">.</span><span class="nf">allclose</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">Vt</span><span class="p">,</span> <span class="n">Vt</span><span class="p">.</span><span class="n">T</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">5</span><span class="p">)),</span> <span class="sh">"</span><span class="s">Vt should be orthonormal</span><span class="sh">"</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">All tests passed successfully!</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div> <h4 id="task-22-compute-dmd-modes-and-eigenvalues">Task 2.2: Compute DMD Modes and Eigenvalues</h4> <p>Now, we’ll use the results of the SVD to compute the DMD modes and eigenvalues. These represent the fundamental patterns and their temporal evolution in our fluid flow system.</p> <p>The theory behind computing DMD modes and eigenvalues is as follows:</p> <ol> <li> <p>Given the SVD of $X_1$ (U, S, Vt) and $X_2$, we can approximate the linear operator A that maps $X_1$ to $X_2$:</p> <p>A ≈ X₂ * $V$ * $S^{(-1)}$ * $U^T$</p> </li> <li> <p>We then compute the eigendecomposition of A:</p> <p>AW = WΛ</p> <p>where W are the eigenvectors and Λ are the eigenvalues.</p> </li> <li> <p>The DMD modes Φ are then given by:</p> <p>Φ = X₂ * $V$ * $S^{(-1)}$ * W</p> </li> <li> <p>The DMD eigenvalues are simply the eigenvalues Λ of A.</p> </li> </ol> <p>These DMD modes and eigenvalues capture the dominant spatial and temporal patterns in the data, respectively. The modes represent spatial structures, while the eigenvalues determine how these structures evolve over time.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">compute_dmd_modes_and_eigenvalues</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">S</span><span class="p">,</span> <span class="n">Vt</span><span class="p">,</span> <span class="n">X2</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Compute the DMD modes and eigenvalues.
+
+    Parameters:
+    U, S, Vt (np.array): SVD components of X1
+    X2 (np.array): Second snapshot matrix
+
+    Returns:
+    tuple: (modes, eigenvalues)
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def compute_dmd_modes_and_eigenvalues(U, S, Vt, X2): """ Compute the DMD modes and eigenvalues. Parameters: U, S, Vt (np.array): SVD components of X1 X2 (np.array): Second snapshot matrix Returns: tuple: (modes, eigenvalues) """ # Compute the pseudoinverse of S S_inv = np.linalg.pinv(np.diag(S)) # Compute the reduced DMD matrix A_tilde = U.T @ X2 @ Vt.T @ S_inv # Compute eigenvalues and eigenvectors of A_tilde eigenvalues, W = np.linalg.eig(A_tilde) # Compute the DMD modes modes = X2 @ Vt.T @ S_inv @ W return modes, eigenvalues ``` </details> <h3 id="step-3-applying-dmd-to-fluid-flow-data">Step 3: Applying DMD to Fluid Flow Data</h3> <p>Now that we have implemented the core DMD algorithm, let’s apply it to our fluid flow data.</p> <h4 id="task-31-perform-dmd-on-fluid-flow-data">Task 3.1: Perform DMD on Fluid Flow Data</h4> <p>We write a function that combines all the previous steps to perform DMD on the fluid flow data. This function will give us the modes and eigenvalues that characterize our fluid flow system.</p> <p>To develop this function, we need to understand the theory behind the DMD process:</p> <ol> <li>Data Preparation: <ul> <li>Reshape the 3D flow_data array into a 2D matrix $X$, where each column represents a flattened snapshot.</li> <li>Split $X$ into $X_1$ (all columns except the last) and $X_2$ (all columns except the first).</li> </ul> </li> <li>Singular Value Decomposition (SVD): <ul> <li>Perform SVD on $X_1$: $X_1$ = U * S * Vt</li> <li>Truncate the SVD to the first $r$ modes for dimensionality reduction.</li> </ul> </li> <li> <p>Compute the DMD operator:</p> <ul> <li>Ã = $U_r^T$ * X₂ * $V_r$ * $S_r^{(-1)}$</li> </ul> <p>where $U_r$, $V_r$, and $S_r$ are the truncated versions of U, V, and S.</p> </li> <li> <p>Eigendecomposition of Ã:</p> <ul> <li>Solve the eigenvalue problem: Ã * W = W * Λ where W are the eigenvectors and Λ are the eigenvalues.</li> </ul> </li> <li>Compute DMD modes: <ul> <li>Φ = X₂ * $V_r$ * $S_r^{(-1)}$ * W</li> </ul> </li> <li>Compute DMD dynamics: <ul> <li>Calculate the continuous-time eigenvalues: ω = log(Λ) / Δt, where Δt is the time step between snapshots (assumed to be 1/100 in this case).</li> <li>Create a time vector t spanning the number of snapshots.</li> <li>Compute the time dynamics: exp(ω * t), which can be efficiently calculated using np.exp(np.outer(ω, t)).</li> <li>The resulting dynamics matrix will have dimensions (number of modes, number of timesteps).</li> </ul> </li> </ol> <p>With this theory in mind, we can now implement the function to perform DMD on the fluid flow data. We can implement <code class="language-plaintext highlighter-rouge">reshape_for_dmd</code>, <code class="language-plaintext highlighter-rouge">compute_dmd_matrices</code>, <code class="language-plaintext highlighter-rouge">compute_svd</code>, and <code class="language-plaintext highlighter-rouge">compute_dmd_modes_and_eigenvalues</code> functions within this function.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">perform_dmd</span><span class="p">(</span><span class="n">flow_data</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Perform DMD on the fluid flow data.
+
+    Parameters:
+    flow_data (np.array): 3D array of fluid flow data
+    r (int): Number of modes to retain
+
+    Returns:
+    tuple: (modes, eigenvalues, dynamics)
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def perform_dmd(flow_data, r=10): """ Perform DMD on the fluid flow data. Parameters: flow_data (np.array): 3D array of fluid flow data r (int): Number of modes to retain Returns: tuple: (modes, eigenvalues, dynamics) """ # Reshape the data into a 2D matrix X = reshape_for_dmd(flow_data) # Split the data into two snapshot matrices X1, X2 = compute_dmd_matrices(X) # Perform SVD on X1 U, S, Vt = compute_svd(X1) # Truncate to r modes U_r = U[:, :r] S_r = S[:r] Vt_r = Vt[:r, :] # Compute DMD modes and eigenvalues modes, eigenvalues = compute_dmd_modes_and_eigenvalues(U_r, S_r, Vt_r, X2) # Compute mode dynamics n_timesteps = flow_data.shape[0] dt = 1/100 # Assuming 1/100 time step, adjust if necessary omega = np.log(eigenvalues) / dt t = np.arange(n_timesteps) * dt dynamics = np.exp(np.outer(omega, t)) return modes, eigenvalues, dynamics ``` </details> <h3 id="step-4-visualizing-and-interpreting-results">Step 4: Visualizing and Interpreting Results</h3> <p>In this final step, we’ll visualize the DMD results and interpret what they mean for our fluid flow system.</p> <h4 id="task-41-visualize-dmd-modes">Task 4.1: Visualize DMD Modes</h4> <p>In this task, we’ll visualize the DMD modes and their corresponding frequencies. This will help us understand the spatial patterns and temporal behavior of the dominant fluid flow structures.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_dmd_mode</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="n">shape</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Plot a single DMD mode for fluid flow around a cylinder.
+    
+    Parameters:
+    -----------
+    mode (np.array): 1D array representing a DMD mode
+        Complex-valued array that will be reshaped to 2D
+        Only the real part will be visualized
+    
+    shape (tuple): Original shape of the flow field (n_x, n_y)
+        Dimensions to reshape the mode into its 2D representation
+
+    Expected Output:
+    ---------------
+    A single figure (10x8 inches) showing:
+    - 2D visualization of the DMD mode
+    - Grayscale colormap
+    - Physical domain extent: x=[-2,4], y=[-1,1]
+    - Cylinder shown as black circle at origin (radius=0.2)
+    - Colorbar showing mode magnitude
+    - Axis labels </span><span class="sh">'</span><span class="s">x</span><span class="sh">'</span><span class="s"> and </span><span class="sh">'</span><span class="s">y</span><span class="sh">'</span><span class="s">
+    - Title </span><span class="sh">"</span><span class="s">DMD Mode</span><span class="sh">"</span><span class="s">
+    
+    Visualization Details:
+    ---------------------
+    - Use imshow with aspect=</span><span class="sh">'</span><span class="s">equal</span><span class="sh">'</span><span class="s">
+    - Include cylinder as black circle at (0,0)
+    - Show real part of mode only
+    - Maintain physical dimensions using extent parameter
+    - Add colorbar with label </span><span class="sh">'</span><span class="s">Mode Magnitude</span><span class="sh">'</span><span class="s">
+
+    Note:
+    -----
+    The visualization represents the spatial pattern of the mode
+    in the physical domain around the cylinder, with darker and
+    lighter regions showing the mode</span><span class="sh">'</span><span class="s">s structure.
+    </span><span class="sh">"""</span>
+    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def plot_dmd_mode(mode, shape): """ Plot a single DMD mode. Parameters: mode (np.array): 1D array representing a DMD mode shape (tuple): Original shape of the flow field (n_x, n_y) """ import matplotlib.pyplot as plt import numpy as np # Reshape the mode to the original flow field shape mode_2d = mode.reshape(shape) # Create a figure and axis fig, ax = plt.subplots(figsize=(10, 8)) # Plot the mode using imshow im = ax.imshow(np.real(mode_2d), cmap='gray', aspect='equal', extent=[-2, 4, -1, 1]) # Add a colorbar plt.colorbar(im, ax=ax, label='Mode Magnitude') # Set title and labels ax.set_title('DMD Mode') ax.set_xlabel('x') ax.set_ylabel('y') # Add the cylinder circle = plt.Circle((0, 0), 0.2, fill=False, color='k') ax.add_artist(circle) plt.tight_layout() plt.show() ``` </details> <div style="text-align: center;"> <img src="/assets/img/DMDMode.png" alt="DMD Mode" width="400" height="250"> </div> <h5 id="understanding-plot_dmd_mode">Understanding <code class="language-plaintext highlighter-rouge">plot_dmd_mode</code> </h5> <p>The <code class="language-plaintext highlighter-rouge">plot_dmd_mode</code> function helps us visualize individual DMD modes. Here’s what it does in simple terms:</p> <ol> <li> <strong>What is a DMD mode?</strong> <ul> <li>A DMD mode is a spatial pattern in the fluid flow that evolves over time.</li> <li>It represents a recurring structure or behavior in the flow.</li> </ul> </li> <li> <strong>What does the plot show?</strong> <ul> <li>The plot shows a 2D image of a single DMD mode.</li> <li>The colors in the image represent the strength or importance of the mode at different locations.</li> <li>Brighter areas show where the mode has a stronger effect on the flow.</li> <li>Darker areas show where the mode has less influence.</li> </ul> </li> <li> <strong>How to interpret the plot:</strong> <ul> <li>Look for patterns: Are there areas of high intensity? Do you see any symmetries or recurring structures?</li> <li>Compare with the original flow: How does this pattern relate to what you see in the overall flow?</li> <li>Consider the location: Are there strong patterns near the cylinder or in the wake behind it?</li> </ul> </li> <li> <strong>Why is this useful?</strong> <ul> <li>It helps us identify important spatial structures in the flow.</li> <li>We can see where the most significant flow behaviors are occurring.</li> <li>By looking at multiple modes, we can build up a picture of the complex flow behavior.</li> </ul> </li> </ol> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">plot_mode_frequencies</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">dt</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Plot the frequencies and growth rates of DMD modes.
+    
+    Parameters:
+    -----------
+    eigenvalues (np.array): DMD eigenvalues
+        Complex-valued array containing temporal information
+        Used to compute frequencies and growth rates
+    
+    dt (float): Time step between snapshots
+        Time interval between data frames
+        Used to convert eigenvalues to physical frequencies
+
+    Expected Output:
+    ---------------
+    A single figure (10x5 inches) showing:
+    - Scatter plot of mode frequencies vs growth rates
+    - X-axis: Frequencies (computed as imag(log(λ))/(2π*dt))
+    - Y-axis: Growth rates (computed as real(log(λ))/dt)
+    - Red dashed line at y=0 separating growing/decaying modes
+    - Grid lines for better readability
+    
+    Visualization Details:
+    ---------------------
+    - X-axis label: </span><span class="sh">"</span><span class="s">Frequency</span><span class="sh">"</span><span class="s">
+    - Y-axis label: </span><span class="sh">"</span><span class="s">Growth Rate</span><span class="sh">"</span><span class="s">
+    - Title: </span><span class="sh">"</span><span class="s">DMD Mode Frequencies and Growth Rates</span><span class="sh">"</span><span class="s">
+    - Points above y=0: Growing modes
+    - Points below y=0: Decaying modes
+
+    Note:
+    -----
+    The plot helps identify:
+    - Dominant frequencies in the flow
+    - Stability of different modes (growing vs decaying)
+    - Patterns in mode behavior
+    </span><span class="sh">"""</span>
+    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def plot_mode_frequencies(eigenvalues, dt): """ Plot the frequencies of the DMD modes. Parameters: eigenvalues (np.array): DMD eigenvalues dt (float): Time step between snapshots """ frequencies = np.log(eigenvalues).imag / (2 * np.pi * dt) growth_rates = np.log(eigenvalues).real / dt plt.figure(figsize=(10, 5)) plt.scatter(frequencies, growth_rates) plt.xlabel('Frequency') plt.ylabel('Growth Rate') plt.title('DMD Mode Frequencies and Growth Rates') plt.axhline(y=0, color='r', linestyle='--') plt.grid(True) plt.show() ``` </details> <h5 id="understanding-plot_mode_frequencies">Understanding <code class="language-plaintext highlighter-rouge">plot_mode_frequencies</code> </h5> <p>The <code class="language-plaintext highlighter-rouge">plot_mode_frequencies</code> function helps us visualize two important aspects of each DMD mode: its frequency and its growth rate.</p> <ol> <li> <strong>Frequency:</strong> <ul> <li>Imagine a mode as a pattern in the fluid flow that repeats over time.</li> <li>The frequency tells us how quickly this pattern repeats.</li> <li>A higher frequency means the pattern repeats more often in a given time.</li> <li>For example, a high-frequency mode might represent rapid, small-scale fluctuations in the flow.</li> </ul> </li> <li> <strong>Growth Rate:</strong> <ul> <li>The growth rate tells us whether the pattern is getting stronger or weaker over time.</li> <li>A positive growth rate means the pattern is amplifying (getting stronger).</li> <li>A negative growth rate means the pattern is decaying (getting weaker).</li> <li>A growth rate near zero means the pattern stays about the same strength over time.</li> </ul> </li> <li> <strong>What does the plot show?</strong> <ul> <li>Each point on the plot represents one DMD mode.</li> <li>The horizontal axis (x-axis) shows the frequency of each mode.</li> <li>The vertical axis (y-axis) shows the growth rate of each mode.</li> <li>The red dashed line at y=0 separates growing modes (above the line) from decaying modes (below the line).</li> </ul> </li> <li> <strong>How to interpret the plot:</strong> <ul> <li>Points on the right side represent high-frequency modes (fast-repeating patterns).</li> <li>Points on the left side represent low-frequency modes (slow-repeating patterns).</li> <li>Points above the red line are growing modes (getting stronger over time).</li> <li>Points below the red line are decaying modes (getting weaker over time).</li> <li>Points near the red line are relatively stable modes (neither growing nor decaying much).</li> </ul> </li> <li> <strong>Why is this useful?</strong> <ul> <li>It helps us identify which patterns (modes) are most important in the fluid flow.</li> <li>We can see if there are any dominant frequencies in the flow.</li> <li>We can tell if the flow has any unstable patterns that might grow over time.</li> <li>It can help us understand the overall behavior of the fluid system.</li> </ul> </li> </ol> <p>In the context of fluid flow around a cylinder, you might see:</p> <ul> <li>Low-frequency modes representing the overall flow pattern around the cylinder.</li> <li>Higher-frequency modes that might correspond to vortex shedding behind the cylinder.</li> <li>Possibly some growing modes if the flow becomes unstable under certain conditions.</li> </ul> <p>Both <code class="language-plaintext highlighter-rouge">plot_dmd_mode</code> and <code class="language-plaintext highlighter-rouge">plot_mode_frequencies</code> provide a comprehensive understanding of the key patterns in your fluid flow simulation, how they’re distributed in space, and how they behave over time.</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Example use
+# Testing the functions using the first 2 modes
+</span><span class="n">flow_data</span> <span class="o">=</span> <span class="nf">load_fluid_flow_data</span><span class="p">(</span><span class="sh">'</span><span class="s">cylinder_flow_data.npy</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">modes</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">dynamics</span> <span class="o">=</span> <span class="nf">perform_dmd</span><span class="p">(</span><span class="n">flow_data</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="nf">plot_dmd_mode</span><span class="p">(</span><span class="n">modes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">],</span> <span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="mi">100</span><span class="p">))</span>
+<span class="n">dt</span> <span class="o">=</span> <span class="mf">0.01</span>  <span class="c1"># Assuming time step of 0.01
+</span><span class="nf">plot_mode_frequencies</span><span class="p">(</span><span class="n">eigenvalues</span><span class="p">,</span> <span class="n">dt</span><span class="p">)</span>
+</code></pre></div></div> <h4 id="task-42-reconstruct-and-compare-flow-fields">Task 4.2: Reconstruct and Compare Flow Fields</h4> <p>The theory behind reconstructing the flow field using DMD is as follows:</p> <ol> <li> <strong>DMD Reconstruction:</strong> The DMD approximation of the flow field at time t is given by: x(t) ≈ Φ * b(t) where: <ul> <li>Φ are the DMD modes (spatial patterns)</li> <li>b(t) are the mode amplitudes at time t (stored in dynamics matrix)</li> </ul> </li> <li> <strong>Matrix Implementation:</strong> For a specific timestep k: <ul> <li>Select the $k^{th}$ column from dynamics matrix: b(k) = dynamics[:, k]</li> <li>Multiply modes with dynamics: x(k) = modes @ b(k)</li> <li>Take real part for physical solution</li> <li>Reshape to original flow field dimensions</li> </ul> </li> </ol> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">reconstruct_flow_field</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">timestep</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Reconstruct the flow field at a given timestep using DMD.
+    
+    Parameters:
+    -----------
+    modes (np.array): DMD modes, shape (n_features, n_modes)
+        Spatial patterns extracted by DMD
+        Each column represents one spatial mode
+    
+    dynamics (np.array): DMD mode dynamics, shape (n_modes, n_timesteps)
+        Temporal evolution of each mode
+        Each row shows how one mode evolves over time
+    
+    timestep (int): Timestep to reconstruct
+        Index of the time point to reconstruct
+        Must be less than n_timesteps
+    
+    Returns:
+    --------
+    np.array: Reconstructed flow field, shape (n_x, n_x)
+        2D array representing the reconstructed flow field
+        Dimensions are square (n_x = sqrt(n_features))
+        Contains real-valued flow field data
+
+    Expected Steps:
+    --------------
+    1. Combine modes and dynamics at specified timestep
+    2. Reshape result to square 2D array
+
+    Note:
+    -----
+    - Input data should be properly normalized
+    - Result will be real-valued (use np.real())
+    - Assumes square flow field domain
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+
+<span class="k">def</span> <span class="nf">compare_original_and_reconstructed</span><span class="p">(</span><span class="n">original</span><span class="p">,</span> <span class="n">reconstructed</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Compare the original and reconstructed flow fields visually and quantitatively.
+    
+    Parameters:
+    -----------
+    original (np.array): Original flow field, shape (n_x, n_x)
+        2D array containing the original flow field data
+        Used as ground truth for comparison
+    
+    reconstructed (np.array): Reconstructed flow field, shape (n_x, n_x)
+        2D array containing the DMD-reconstructed flow field
+        Should have same dimensions as original
+
+    Expected Output:
+    ---------------
+    A single figure (12x5 inches) with:
+    1. Left subplot:
+       - Original flow field visualization
+       - Title: </span><span class="sh">"</span><span class="s">Original Flow Field</span><span class="sh">"</span><span class="s">
+       - Colormap: </span><span class="sh">'</span><span class="s">coolwarm</span><span class="sh">'</span><span class="s">
+       - Physical domain: x=[-2,4], y=[-1,1]
+       - Colorbar showing flow values
+    
+    2. Right subplot:
+       - Reconstructed flow field visualization
+       - Title: </span><span class="sh">"</span><span class="s">Reconstructed Flow Field</span><span class="sh">"</span><span class="s">
+       - Same colormap and domain as original
+       - Colorbar showing flow values
+    
+    3. Overall figure:
+       - Suptitle showing relative error
+       - Equal aspect ratio for both plots
+       - Tight layout
+
+    Printed Metrics:
+    ---------------
+    - Mean Squared Error (MSE)
+    - Mean Absolute Error (MAE)
+    - Relative Error (norm of difference / norm of original)
+
+    Note:
+    -----
+    - Both visualizations use same scale for fair comparison
+    - Error metrics help quantify reconstruction quality
+    - Lower error values indicate better reconstruction
+    </span><span class="sh">"""</span>
+    <span class="c1"># Your code here
+</span>    <span class="k">pass</span>
+</code></pre></div></div> <details> <summary>Click here to see the solution</summary> ```python def reconstruct_flow_field(modes, dynamics, timestep): """ Reconstruct the flow field at a given timestep using DMD. Parameters: modes (np.array): DMD modes dynamics (np.array): DMD mode dynamics timestep (int): Timestep to reconstruct Returns: np.array: Reconstructed flow field """ # Reconstruct the flow field by combining modes and dynamics reconstructed = np.real(np.dot(modes, dynamics[:, timestep])) # Reshape the reconstructed field to match the original dimensions original_shape = int(np.sqrt(reconstructed.shape[0])) reconstructed = reconstructed.reshape((original_shape, original_shape)) return reconstructed def compare_original_and_reconstructed(original, reconstructed): """ Compare the original and reconstructed flow fields. Parameters: original (np.array): Original flow field reconstructed (np.array): Reconstructed flow field """ # Create a figure with two subplots side by side fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5)) # Plot original flow field im1 = ax1.imshow(original, cmap='coolwarm', aspect='equal', extent=[-2, 4, -1, 1]) ax1.set_title('Original Flow Field') plt.colorbar(im1, ax=ax1) # Plot reconstructed flow field im2 = ax2.imshow(reconstructed, cmap='coolwarm', aspect='equal', extent=[-2, 4, -1, 1]) ax2.set_title('Reconstructed Flow Field') plt.colorbar(im2, ax=ax2) # Compute and display the relative error relative_error = np.linalg.norm(original - reconstructed) / np.linalg.norm(original) plt.suptitle(f'Comparison (Relative Error: {relative_error:.4f})') plt.tight_layout() plt.show() # Print additional error metrics mse = np.mean((original - reconstructed)**2) mae = np.mean(np.abs(original - reconstructed)) print(f'Mean Squared Error: {mse:.6f}') print(f'Mean Absolute Error: {mae:.6f}') ``` </details> <p><br></p> <div style="text-align: center;"> <img src="/assets/img/Comparison.png" alt="Comparison between original and reconstructed" width="400" height="250"> </div> <p>The following code sample can be used to test the functions:</p> <div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Loading the original data
+</span><span class="n">original_data</span> <span class="o">=</span> <span class="nf">load_fluid_flow_data</span><span class="p">(</span><span class="sh">'</span><span class="s">cylinder_flow_data.npy</span><span class="sh">'</span><span class="p">)</span>
+<span class="c1"># Performing DMD 
+</span><span class="n">modes</span><span class="p">,</span> <span class="n">eigenvalues</span><span class="p">,</span> <span class="n">dynamics</span> <span class="o">=</span> <span class="nf">perform_dmd</span><span class="p">(</span><span class="n">original_data</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>  <span class="c1"># r is the number of modes to retain
+</span>
+<span class="n">timestep</span> <span class="o">=</span> <span class="mi">50</span>  <span class="c1"># for example
+</span>
+<span class="c1"># Reconstructing the flow field
+</span><span class="n">reconstructed_field</span> <span class="o">=</span> <span class="nf">reconstruct_flow_field</span><span class="p">(</span><span class="n">modes</span><span class="p">,</span> <span class="n">dynamics</span><span class="p">,</span> <span class="n">timestep</span><span class="p">)</span>
+<span class="c1"># Comparing original and reconstructed fields
+</span><span class="nf">compare_original_and_reconstructed</span><span class="p">(</span><span class="n">original_data</span><span class="p">[</span><span class="n">timestep</span><span class="p">],</span> <span class="n">reconstructed_field</span><span class="p">)</span>
+</code></pre></div></div> <p>Interpreting the Outputs:</p> <ol> <li>Reconstructed Flow Field: <ul> <li>The output of <code class="language-plaintext highlighter-rouge">reconstruct_flow_field</code> is a 2D array representing the reconstructed flow field at the specified timestep.</li> <li>This field should resemble the original flow field, capturing the main features of the flow around the cylinder.</li> <li>The accuracy of the reconstruction depends on the number of modes used in the DMD analysis.</li> </ul> </li> <li>Comparison Visualization: <ul> <li>The <code class="language-plaintext highlighter-rouge">compare_original_and_reconstructed</code> function should produce a side-by-side plot of the original and reconstructed flow fields.</li> <li>Look for similarities in the overall structure of the flow, particularly around the cylinder and in the wake region.</li> <li>Pay attention to the color scales: they should be similar for both plots if the reconstruction is accurate.</li> </ul> </li> <li>Number of Modes: <ul> <li>Try reconstructing the flow field with different numbers of DMD modes.</li> <li>Generally, using more modes will improve the accuracy of the reconstruction but may also introduce noise or overfitting.</li> <li>Find a balance where the reconstruction captures the important flow features without including too much detail that might be noise.</li> </ul> </li> </ol> <p>By comparing the reconstructed flow field with the original data, you can assess how well the DMD analysis has captured the essential dynamics of the system. This comparison helps validate the DMD results and provides insight into which flow features are most significant in the overall dynamics.</p> <h3 id="conclusion">Conclusion</h3> <p>We’ve implemented the Dynamic Mode Decomposition algorithm from scratch and applied it to analyze 2D fluid flow around a cylinder. You’ve learned how to:</p> <ol> <li>Prepare and preprocess fluid flow data for DMD analysis</li> <li>Implement the core DMD algorithm, including SVD</li> <li>Apply DMD to extract dominant modes and dynamics from fluid flow data</li> <li>Visualize and interpret the results of DMD analysis</li> </ol> <p>I hope this post has given you hands-on experience with a powerful data-driven method for analyzing complex fluid systems. The skills you’ve developed can be applied to a wide range of problems in fluid dynamics and other fields of engineering.</p> </div> </article> <br> <hr> <br> <ul class="list-disc pl-8"></ul> <h2 class="text-3xl font-semibold mb-4 mt-12">Enjoy Reading This Article?</h2> <p class="mb-2">Here are some more articles you might like to read next:</p> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/transformers/">Transformers - Fundamental Concepts with Python Implementation</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/execution/">Ideas Matter More Than Ever</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/problem-solving/">Data-Driven vs. First-Principles</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/unmasking-educational-illusion/">Unmasking Educational Illusions: A Journey Towards Antifragility</a> </li> <li class="my-2"> <a class="text-pink-700 underline font-semibold hover:text-pink-800" href="/blog/2024/repair-minset/">Embracing the Repair Mindset</a> </li> </div> </div> <footer class="fixed-bottom"> <div class="container mt-0"> © Copyright 2023-2025 Masoud Masoumi. Modified by Masoud Masoumi based on the <a href="https://github.com/alshedivat/al-folio" rel="external nofollow noopener" target="_blank">al-folio</a> theme. Powered by <a href="https://jekyllrb.com/" target="_blank" rel="external nofollow noopener">Jekyll</a>. </div> </footer> <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> <script src="/assets/js/bootstrap.bundle.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/mdbootstrap@4.20.0/js/mdb.min.js" integrity="sha256-NdbiivsvWt7VYCt6hYNT3h/th9vSTL4EDWeGs5SN3DA=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/masonry-layout@4.2.2/dist/masonry.pkgd.min.js" integrity="sha256-Nn1q/fx0H7SNLZMQ5Hw5JLaTRZp0yILA/FRexe19VdI=" crossorigin="anonymous"></script> <script defer src="https://cdn.jsdelivr.net/npm/imagesloaded@4/imagesloaded.pkgd.min.js"></script> <script defer src="/assets/js/masonry.js" type="text/javascript"></script> <script defer src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.8/dist/medium-zoom.min.js" integrity="sha256-7PhEpEWEW0XXQ0k6kQrPKwuoIomz8R8IYyuU1Qew4P8=" crossorigin="anonymous"></script> <script defer src="/assets/js/zoom.js?7b30caa5023af4af8408a472dc4e1ebb"></script> <script defer src="https://unpkg.com/bootstrap-table@1.22.1/dist/bootstrap-table.min.js"></script> <script src="/assets/js/no_defer.js?d633890033921b33e0ceb13d22340a9c"></script> <script defer src="/assets/js/common.js?acdb9690d7641b2f8d40529018c71a01"></script> <script defer src="/assets/js/copy_code.js?07b8786bab9b4abe90d10e61f7d12ff7" type="text/javascript"></script> <script async src="https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js"></script> <script async src="https://badge.dimensions.ai/badge.js"></script> <script type="text/javascript">window.MathJax={tex:{tags:"ams"}};</script> <script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script> <script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script> <script type="text/javascript">function progressBarSetup(){"max"in document.createElement("progress")?(initializeProgressElement(),$(document).on("scroll",function(){progressBar.attr({value:getCurrentScrollPosition()})}),$(window).on("resize",initializeProgressElement)):(resizeProgressBar(),$(document).on("scroll",resizeProgressBar),$(window).on("resize",resizeProgressBar))}function getCurrentScrollPosition(){return $(window).scrollTop()}function initializeProgressElement(){let e=$("#navbar").outerHeight(!0);$("body").css({"padding-top":e}),$("progress-container").css({"padding-top":e}),progressBar.css({top:e}),progressBar.attr({max:getDistanceToScroll(),value:getCurrentScrollPosition()})}function getDistanceToScroll(){return $(document).height()-$(window).height()}function resizeProgressBar(){progressBar.css({width:getWidthPercentage()+"%"})}function getWidthPercentage(){return getCurrentScrollPosition()/getDistanceToScroll()*100}const progressBar=$("#progress");window.onload=function(){setTimeout(progressBarSetup,50)};</script> </body> </html>
