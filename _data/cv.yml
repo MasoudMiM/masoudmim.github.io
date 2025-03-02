@@ -11,12 +11,12 @@
 - title: Experience
   type: time_table
   contents:
-    - title: Data Scientist
-      institution: Internal Revenue Service, New York, NY
-      year: 2024 - present
     - title: Adjunct Professor (part time)
       institution: The Cooper Union, New York, NY
       year: 2022 - present
+    - title: Data Scientist
+      institution: Internal Revenue Service, New York, NY
+      year: 2024 - 2025
     - title: Associate (part time)
       institution: Columbia University, New York, NY
       year: 2021 - 2024
