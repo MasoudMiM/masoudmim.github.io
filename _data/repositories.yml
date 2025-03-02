@@ -3,9 +3,9 @@ github_users:
 #  - alshedivat
 
 github_repos:
+  - masoudmim/internet-lens
   - masoudmim/websearch_duckduckGo
   - masoudmim/ocean-data-analysis
   - masoudmim/wec-performance-evaluation
   - masoudmim/college-data-vis
   - masoudmim/brimes
-  - masoudmim/hobby-python-codes 
