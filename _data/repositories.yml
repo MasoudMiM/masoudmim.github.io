@@ -3,6 +3,7 @@ github_users:
 #  - alshedivat
 
 github_repos:
+  - masoudmim/qpt_qa
   - masoudmim/internet-lens
   - masoudmim/websearch_duckduckGo
   - masoudmim/ocean-data-analysis
