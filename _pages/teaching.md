@@ -13,8 +13,8 @@ nav_order: 6
 
 - I taught the following courses at <a href="https://manhattan.edu/">Manhattan College</a> from Fall 2019 until Fall 2023:
 
-    - Statics (<a href="https://masoudmim.github.io/assets/pdf/ENGS_206_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course [here on YouTube](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2Ssu7h9jFcIGThbxhAreQPm).
-    - Dynamics (<a href="https://masoudmim.github.io/assets/pdf/ENGS_220_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course [here on YouTube](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2TeM9aHaIX9h8bLclAuG768).
+    - Statics (<a href="https://masoudmim.github.io/assets/pdf/ENGS_206_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2Ssu7h9jFcIGThbxhAreQPm).
+    - Dynamics (<a href="https://masoudmim.github.io/assets/pdf/ENGS_220_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2TeM9aHaIX9h8bLclAuG768).
     - Introductory Solid Mechanics (<a href="https://masoudmim.github.io/assets/pdf/MECH_230_Syllabus.pdf">syllabus</a>)
     - Finite Element Analysis and Computer Aided Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECH_332_Syllabus.pdf">syllabus</a>)
     - Manufacturing Systems Lab (<a href="https://masoudmim.github.io/assets/pdf/MECH_337_Syllabus.pdf">syllabus</a>)
