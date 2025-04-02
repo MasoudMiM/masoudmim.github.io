@@ -19,7 +19,7 @@ nav_order: 6
     - Finite Element Analysis and Computer Aided Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECH_332_Syllabus.pdf">syllabus</a>)
     - Manufacturing Systems Lab (<a href="https://masoudmim.github.io/assets/pdf/MECH_337_Syllabus.pdf">syllabus</a>)
     - Mechanical Vibrations (<a href="https://masoudmim.github.io/assets/pdf/MECH_411_Syllabus.pdf">syllabus</a>)
-    - Data Driven Problem Solving in Mechanical Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECG_542_Syllabus.pdf">syllabus</a>) <strong>[I developed this course in totalily]</strong>
+    - Data Driven Problem Solving in Mechanical Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECG_542_Syllabus.pdf">syllabus</a>) <strong>[I developed this course in totalily]</strong> - You can find the videos covering the Python programming overview for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2S6S-e_nE0d0V-aVgtvV8vS).
     - Introduction to Robotics (<a href="https://masoudmim.github.io/assets/pdf/MECG_548_Syllabus.pdf">syllabus</a>)
     - Control System Theory and Applications (<a href="https://masoudmim.github.io/assets/pdf/MECG_630_Syllabus.pdf">syllabus</a>)
     - Mechanical Engineering Design I  (Senior Design - Part I)
