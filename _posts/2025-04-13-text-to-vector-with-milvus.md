@@ -17,7 +17,7 @@ Before we get started, make sure you have the following:
 2. **Python Packages**: Install the required packages with this command:
 
    ```bash
-   pip install nltk sentence-transformers numpy pymilvus
+   pip install nltk sentence-transformers pymilvus
    ```
 
 3. **Your Text**: Have a text file ready that you want to convert into a vector database. Just name it `text.txt` and place it in a `data` folder.
