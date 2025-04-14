@@ -93,8 +93,12 @@ python vdb_gen.py
 
 Make sure to replace `vdb_gen.py` with the actual name of your Python file. The script will handle the rest!
 
-## What’s Next?
+## What's Next?
 
 After running the script, you'll have a Milvus collection filled with your text data, ready for querying. You can now perform similarity searches and retrieve relevant information quickly and efficiently. Here is an example of how the output collection can look like in [attu interface](https://milvus.io/docs/v2.0.x/attu.md).
+
+<div style="text-align: center;">
+    <img src="/assets/img/db_example_attu.png" alt="attu showing the vector database" width="600">
+</div>
 
 You have now successfully converted text into a vector database using Milvus. One exciting application of this approach is in Retrieval-Augmented Generation (RAG). By storing your text data in a vector database, you can enhance the capabilities of language models. When generating responses, the model can retrieve relevant information from the database, leading to more accurate and contextually relevant outputs. This is particularly useful in applications like chatbots, content generation, and question-answering systems.
