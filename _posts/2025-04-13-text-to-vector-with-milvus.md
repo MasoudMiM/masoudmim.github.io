@@ -91,8 +91,6 @@ Once you have everything set up, just run the script:
 python vdb_gen.py
 ```
 
-Make sure to replace `vdb_gen.py` with the actual name of your Python file. The script will handle the rest!
-
 ## What's Next?
 
 After running the script, you'll have a Milvus collection filled with your text data, ready for querying. You can now perform similarity searches and retrieve relevant information quickly and efficiently. Here is an example of how the output collection can look like in [attu interface](https://milvus.io/docs/v2.0.x/attu.md).
