@@ -10,7 +10,8 @@ nav_order: 6
 - I have been serving as an adjunct professor, teaching "Data-Driven Problem Solving" at <a href='https://cooper.edu/welcome'>The Cooper Union for the Advancement of Science and Art</a> since Spring 2022. 
 
     - You can find the videos covering the Python programming overview for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2S6S-e_nE0d0V-aVgtvV8vS).
-    - You can find a series of video recordings for the fall 2022 version of this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2SyF25E9HJC0h1DqnEEtc40)
+    - The course has gone through multiple major changes, however, you can find a series of video recordings for the Fall 2022 semester version of this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2SyF25E9HJC0h1DqnEEtc40)
+
 
 - I previously served as an associate for the "Python for Data Analysis" course within the Applied Analytics program at the <a href="https://sps.columbia.edu">School of Professional Studies</a> at <a href="https://www.columbia.edu">Columbia University</a>.
 
