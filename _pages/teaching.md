@@ -7,7 +7,10 @@ nav: true
 nav_order: 6
 ---
 
-- I have been serving as an adjunct professor, teaching "Data-Driven Problem Solving" at <a href='https://cooper.edu/welcome'>The Cooper Union for the Advancement of Science and Art</a> since Spring 2022. You can find the videos covering the Python programming overview for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2S6S-e_nE0d0V-aVgtvV8vS).
+- I have been serving as an adjunct professor, teaching "Data-Driven Problem Solving" at <a href='https://cooper.edu/welcome'>The Cooper Union for the Advancement of Science and Art</a> since Spring 2022. 
+
+    - You can find the videos covering the Python programming overview for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2S6S-e_nE0d0V-aVgtvV8vS).
+    - You can find a series of video recordings for the fall 2022 version of this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2SyF25E9HJC0h1DqnEEtc40)
 
 - I previously served as an associate for the "Python for Data Analysis" course within the Applied Analytics program at the <a href="https://sps.columbia.edu">School of Professional Studies</a> at <a href="https://www.columbia.edu">Columbia University</a>.
 
@@ -20,7 +23,7 @@ nav_order: 6
     - Manufacturing Systems Lab (<a href="https://masoudmim.github.io/assets/pdf/MECH_337_Syllabus.pdf">syllabus</a>)
     - Mechanical Vibrations (<a href="https://masoudmim.github.io/assets/pdf/MECH_411_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2TyZbxTmLnb1upotHBp_mKh)
     - Data Driven Problem Solving in Mechanical Engineering (<a href="https://masoudmim.github.io/assets/pdf/MECG_542_Syllabus.pdf">syllabus</a>) <strong>[I developed this course in totalily]</strong>
-    - Introduction to Robotics (<a href="https://masoudmim.github.io/assets/pdf/MECG_548_Syllabus.pdf">syllabus</a>)
+    - Introduction to Robotics (<a href="https://masoudmim.github.io/assets/pdf/MECG_548_Syllabus.pdf">syllabus</a>) - You can find a series of video recordings for this course on my [YouTube channel](https://www.youtube.com/playlist?list=PLhD0SCr3Tf2QNRlKu0hOnuKafEqFsZjAY)
     - Control System Theory and Applications (<a href="https://masoudmim.github.io/assets/pdf/MECG_630_Syllabus.pdf">syllabus</a>)
     - Mechanical Engineering Design I  (Senior Design - Part I)
     - Mechanical Engineering Design II (Senior Design - Part II)
