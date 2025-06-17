@@ -203,7 +203,7 @@ The expandable source section lets users dive deeper into where the answer came 
 <br>
 
 <div style="text-align: center;">
-    <img src="/assets/img/rag_gmsh" alt="streamlit interface for the rag system" width="700">
+    <img src="/assets/img/rag_gmsh.png" alt="streamlit interface for the rag system" width="700">
 </div>
 
 <br>
