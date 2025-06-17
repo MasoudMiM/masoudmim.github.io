@@ -22,20 +22,13 @@ we take a text document and break it into meaningful chunks. These chunks get co
 
 When someone asks a question, we convert their query into the same type of embedding, search for the most similar chunks in our database, and then feed both the question and the relevant context to a language model. The LLM generates an answer based on the retrieved information rather than just its training data.
 
-```mermaid
-graph TB
-    A[Text Document] --> B[Text Processing & Chunking]
-    B --> C[Sentence Transformer]
-    C --> D[Vector Embeddings]
-    D --> E[Milvus Vector Database]
-    
-    F[User Query] --> G[Query Embedding]
-    G --> H[Similarity Search in Milvus]
-    H --> I[Retrieve Top-K Documents]
-    I --> J[Context + Query]
-    J --> K[Ollama LLM]
-    K --> L[Generated Answer]
-```
+<br>
+
+<div style="text-align: center;">
+    <img src="/assets/img/rag1.png" alt="rag architecture" width="700">
+</div>
+
+<br>
 
 ## Setting Up the Tools
 
@@ -210,7 +203,7 @@ The expandable source section lets users dive deeper into where the answer came 
 <br>
 
 <div style="text-align: center;">
-    <img src="/assets/img/rag-gmsh" alt="streamlit interface for the rag system" width="700">
+    <img src="/assets/img/rag_gmsh" alt="streamlit interface for the rag system" width="700">
 </div>
 
 <br>
@@ -219,25 +212,13 @@ The expandable source section lets users dive deeper into where the answer came 
 
 When someone asks a question through the web interface, the system follows a clear sequence. First, it converts the question into an embedding using the same sentence transformer model we used for indexing. Then it searches the Milvus database for chunks with similar embeddings. These chunks, along with the original question, get formatted into a prompt that's sent to Ollama. The language model generates an answer based on the provided context, and the web interface displays both the answer and the source material.
 
-```mermaid
-sequenceDiagram
-    participant User
-    participant Streamlit
-    participant RAGSystem
-    participant Milvus
-    participant Ollama
-    
-    User->>Streamlit: Asks question
-    Streamlit->>RAGSystem: Process query
-    RAGSystem->>RAGSystem: Convert query to embedding
-    RAGSystem->>Milvus: Search similar documents
-    Milvus-->>RAGSystem: Return top-k results
-    RAGSystem->>RAGSystem: Create contextualized prompt
-    RAGSystem->>Ollama: Send prompt with context
-    Ollama-->>RAGSystem: Generate response
-    RAGSystem-->>Streamlit: Return answer + sources
-    Streamlit-->>User: Display results
-```
+<br>
+
+<div style="text-align: center;">
+    <img src="/assets/img/rag2.png" alt="general process from text to rag interface" width="700">
+</div>
+
+<br>
 
 This approach ensures that answers are grounded in your actual documents rather than the model's training data. It's particularly powerful for domain-specific knowledge where you need accurate, up-to-date information that might not be widely available.
 
