@@ -67,7 +67,7 @@ The sentence tokenization ensures we break text at natural boundaries, while the
 
 ## Building the Milvus Collection
 
-To do this, I basically follow the same process that I discussed in a [previous post](2025-04-13-text-to-vector-with-milvus.md). Milvus requires us to define a schema for our data before we can start storing vectors. Our schema is straightforward: we need an ID field for each record, the embedding vector itself, and the original text. The embedding field uses Milvus's `FLOAT_VECTOR` type with 384 dimensions to match our sentence transformer output.
+To do this, I basically follow the same process that I discussed in a [previous post](https://masoudmim.github.io/blog/2025/text-to-vector-with-milvus/). Milvus requires us to define a schema for our data before we can start storing vectors. Our schema is straightforward: we need an ID field for each record, the embedding vector itself, and the original text. The embedding field uses Milvus's `FLOAT_VECTOR` type with 384 dimensions to match our sentence transformer output.
 
 ```python
 def create_milvus_collection(collection_name):
