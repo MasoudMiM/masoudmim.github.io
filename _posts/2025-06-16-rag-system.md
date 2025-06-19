@@ -25,7 +25,7 @@ When someone asks a question, we convert their query into the same type of embed
 <br>
 
 <div style="text-align: center;">
-    <img src="/assets/img/rag1.png" alt="rag architecture" width="700">
+    <img src="/assets/img/rag1.png" alt="rag architecture" width="400">
 </div>
 
 <br>
