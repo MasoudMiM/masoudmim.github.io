@@ -1,9 +1,9 @@
 ---
 layout: post
 title:  "A statistical argument against supporting mainly successful researchers and optimizing research allocation"
-date: 2025-07-01 20:25:00
+date: 2025-07-01 19:36:00
 description:
-tags: research, Funding
+tags: research, funding
 categories: essay
 ---
 
