@@ -17,8 +17,6 @@ categories: essay
 
 <br>
 
-# A statistical argument against supporting mainly successful researchers and optimizing research allocation
-
 <p>The allocation of research funding represents one of the most consequential decisions in scientific policy, specially these days with some of the most drastic cuts happening in available funding. One major approach by reviewers and groups in charge of fund apprpriation is to often prioritize researchers/research groups with established track records, operating under the assumption that past success predicts future breakthroughs. However, statistical principles suggest that maximizing the diversity and volume of funded research—rather than concentrating resources among previously successful investigators—may yield superior outcomes for scientific discovery.</p>
 
 ## The Numbers Game
