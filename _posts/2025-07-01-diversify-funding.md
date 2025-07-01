@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  ""
+title:  "Why More Beats Best"
 date: 2025-07-01 19:36:00
-description: Why More Beats Best
+description: A statistical argument against supporting mainly successful researchers and optimizing research allocation
 tags: research, funding
 categories: essay
 ---
