@@ -1,0 +1,78 @@
+<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+  <!-- Title -->
+  <text x="500" y="50" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1a1a1a" text-anchor="middle">
+    The Two-Way Street of Teaching and Learning
+  </text>
+  
+  <!-- Educator Circle -->
+  <circle cx="250" cy="300" r="80" fill="none" stroke="#2c5f8d" stroke-width="3"/>
+  <text x="250" y="310" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#2c5f8d" text-anchor="middle">
+    Educator
+  </text>
+  
+  <!-- Learner Circle -->
+  <circle cx="750" cy="300" r="80" fill="none" stroke="#6b8e7d" stroke-width="3"/>
+  <text x="750" y="310" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#6b8e7d" text-anchor="middle">
+    Learner
+  </text>
+  
+  <!-- Arrow markers -->
+  <defs>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2c5f8d" />
+    </marker>
+    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#6b8e7d" />
+    </marker>
+  </defs>
+  
+  <!-- Top curved arrow: Educator to Learner -->
+  <path d="M 340 270 Q 500 180 660 270" fill="none" stroke="#2c5f8d" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
+  
+  <!-- Theory of Mind labels on top arrow -->
+  <text x="500" y="165" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#2c5f8d" text-anchor="middle">
+    Theory of Mind
+  </text>
+  <text x="500" y="185" font-family="Arial, sans-serif" font-size="13" fill="#555" text-anchor="middle">
+    Projects into learner's mind to understand their knowledge
+  </text>
+  
+  <!-- Bottom curved arrow: Learner to Educator -->
+  <path d="M 660 330 Q 500 420 340 330" fill="none" stroke="#6b8e7d" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
+  
+  <!-- Theory of Mind labels on bottom arrow -->
+  <text x="500" y="445" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#6b8e7d" text-anchor="middle">
+    Theory of Mind
+  </text>
+  <text x="500" y="465" font-family="Arial, sans-serif" font-size="13" fill="#555" text-anchor="middle">
+    Projects into educator's mind to understand their intent
+  </text>
+  
+  <!-- Future Planning - Educator side -->
+  <text x="120" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#2c5f8d" text-anchor="middle">
+    Future Planning
+  </text>
+  <text x="120" y="400" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    Anticipates learner
+  </text>
+  <text x="120" y="417" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    needs and prepares
+  </text>
+  <text x="120" y="434" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    materials
+  </text>
+  
+  <!-- Future Planning - Learner side -->
+  <text x="880" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#6b8e7d" text-anchor="middle">
+    Future Planning
+  </text>
+  <text x="880" y="400" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    Anticipates own
+  </text>
+  <text x="880" y="417" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    needs and seeks
+  </text>
+  <text x="880" y="434" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
+    relevant materials
+  </text>
+</svg>
