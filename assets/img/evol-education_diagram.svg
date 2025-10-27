@@ -1,78 +1,239 @@
-<svg width="1000" height="600" xmlns="http://www.w3.org/2000/svg">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="900"
+   height="350"
+   version="1.1"
+   id="svg48"
+   sodipodi:docname="evol-education_diagram.svg"
+   viewBox="50 150 900 350"
+   inkscape:version="1.1.2 (0a00cf5339, 2022-02-04)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview50"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     viewbox-width="500"
+     scale-x="1"
+     viewbox-y="150"
+     viewbox-x="50"
+     inkscape:zoom="0.91772328"
+     inkscape:cx="637.99188"
+     inkscape:cy="305.64769"
+     inkscape:window-width="1854"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg48" />
   <!-- Title -->
-  <text x="500" y="50" font-family="Arial, sans-serif" font-size="26" font-weight="bold" fill="#1a1a1a" text-anchor="middle">
-    The Two-Way Street of Teaching and Learning
-  </text>
-  
   <!-- Educator Circle -->
-  <circle cx="250" cy="300" r="80" fill="none" stroke="#2c5f8d" stroke-width="3"/>
-  <text x="250" y="310" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#2c5f8d" text-anchor="middle">
-    Educator
-  </text>
-  
   <!-- Learner Circle -->
-  <circle cx="750" cy="300" r="80" fill="none" stroke="#6b8e7d" stroke-width="3"/>
-  <text x="750" y="310" font-family="Arial, sans-serif" font-size="20" font-weight="600" fill="#6b8e7d" text-anchor="middle">
-    Learner
-  </text>
-  
   <!-- Arrow markers -->
-  <defs>
-    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#2c5f8d" />
+  <defs
+     id="defs18">
+    <marker
+       id="arrowBlue"
+       markerWidth="10"
+       markerHeight="10"
+       refX="9"
+       refY="3"
+       orient="auto"
+       markerUnits="strokeWidth">
+      <path
+         d="M 0,0 V 6 L 9,3 Z"
+         fill="#2c5f8d"
+         id="path12" />
     </marker>
-    <marker id="arrowGreen" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
-      <path d="M0,0 L0,6 L9,3 z" fill="#6b8e7d" />
+    <marker
+       id="arrowGreen"
+       markerWidth="10"
+       markerHeight="10"
+       refX="9"
+       refY="3"
+       orient="auto"
+       markerUnits="strokeWidth">
+      <path
+         d="M 0,0 V 6 L 9,3 Z"
+         fill="#6b8e7d"
+         id="path15" />
     </marker>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1039">
+      <rect
+         style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1.00157"
+         id="rect1041"
+         width="893.11755"
+         height="331.81113"
+         x="53.227306"
+         y="149.00174" />
+    </clipPath>
   </defs>
-  
   <!-- Top curved arrow: Educator to Learner -->
-  <path d="M 340 270 Q 500 180 660 270" fill="none" stroke="#2c5f8d" stroke-width="2.5" marker-end="url(#arrowBlue)"/>
-  
   <!-- Theory of Mind labels on top arrow -->
-  <text x="500" y="165" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#2c5f8d" text-anchor="middle">
-    Theory of Mind
-  </text>
-  <text x="500" y="185" font-family="Arial, sans-serif" font-size="13" fill="#555" text-anchor="middle">
-    Projects into learner's mind to understand their knowledge
-  </text>
-  
   <!-- Bottom curved arrow: Learner to Educator -->
-  <path d="M 660 330 Q 500 420 340 330" fill="none" stroke="#6b8e7d" stroke-width="2.5" marker-end="url(#arrowGreen)"/>
-  
   <!-- Theory of Mind labels on bottom arrow -->
-  <text x="500" y="445" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#6b8e7d" text-anchor="middle">
-    Theory of Mind
-  </text>
-  <text x="500" y="465" font-family="Arial, sans-serif" font-size="13" fill="#555" text-anchor="middle">
-    Projects into educator's mind to understand their intent
-  </text>
-  
   <!-- Future Planning - Educator side -->
-  <text x="120" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#2c5f8d" text-anchor="middle">
-    Future Planning
-  </text>
-  <text x="120" y="400" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    Anticipates learner
-  </text>
-  <text x="120" y="417" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    needs and prepares
-  </text>
-  <text x="120" y="434" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    materials
-  </text>
-  
   <!-- Future Planning - Learner side -->
-  <text x="880" y="380" font-family="Arial, sans-serif" font-size="14" font-weight="600" fill="#6b8e7d" text-anchor="middle">
-    Future Planning
-  </text>
-  <text x="880" y="400" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    Anticipates own
-  </text>
-  <text x="880" y="417" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    needs and seeks
-  </text>
-  <text x="880" y="434" font-family="Arial, sans-serif" font-size="12" fill="#555" text-anchor="middle">
-    relevant materials
-  </text>
+  <g
+     id="g1037"
+     clip-path="url(#clipPath1039)"
+     transform="translate(6.1228919,6.4360119)">
+    <circle
+       cx="250"
+       cy="300"
+       r="80"
+       fill="none"
+       stroke="#2c5f8d"
+       stroke-width="3"
+       id="circle4" />
+    <text
+       x="250"
+       y="310"
+       font-family="Arial, sans-serif"
+       font-size="20px"
+       font-weight="600"
+       fill="#2c5f8d"
+       text-anchor="middle"
+       id="text6">Educator</text>
+    <circle
+       cx="750"
+       cy="300"
+       r="80"
+       fill="none"
+       stroke="#6b8e7d"
+       stroke-width="3"
+       id="circle8" />
+    <text
+       x="750"
+       y="310"
+       font-family="Arial, sans-serif"
+       font-size="20px"
+       font-weight="600"
+       fill="#6b8e7d"
+       text-anchor="middle"
+       id="text10">Learner</text>
+    <path
+       d="m 340,270 q 160,-90 320,0"
+       fill="none"
+       stroke="#2c5f8d"
+       stroke-width="2.5"
+       marker-end="url(#arrowBlue)"
+       id="path20" />
+    <text
+       x="500"
+       y="165"
+       font-family="Arial, sans-serif"
+       font-size="15px"
+       font-weight="600"
+       fill="#2c5f8d"
+       text-anchor="middle"
+       id="text22">Theory of Mind</text>
+    <text
+       x="500"
+       y="185"
+       font-family="Arial, sans-serif"
+       font-size="13px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text24">Projects into learner's mind to understand their knowledge</text>
+    <path
+       d="m 660,330 q -160,90 -320,0"
+       fill="none"
+       stroke="#6b8e7d"
+       stroke-width="2.5"
+       marker-end="url(#arrowGreen)"
+       id="path26" />
+    <text
+       x="500"
+       y="445"
+       font-family="Arial, sans-serif"
+       font-size="15px"
+       font-weight="600"
+       fill="#6b8e7d"
+       text-anchor="middle"
+       id="text28">Theory of Mind</text>
+    <text
+       x="500"
+       y="465"
+       font-family="Arial, sans-serif"
+       font-size="13px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text30">Projects into educator's mind to understand their intent</text>
+    <text
+       x="120"
+       y="380"
+       font-family="Arial, sans-serif"
+       font-size="14px"
+       font-weight="600"
+       fill="#2c5f8d"
+       text-anchor="middle"
+       id="text32">Future Planning</text>
+    <text
+       x="120"
+       y="400"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text34">Anticipates learner</text>
+    <text
+       x="120"
+       y="417"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text36">needs and prepares</text>
+    <text
+       x="120"
+       y="434"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text38">materials</text>
+    <text
+       x="880"
+       y="380"
+       font-family="Arial, sans-serif"
+       font-size="14px"
+       font-weight="600"
+       fill="#6b8e7d"
+       text-anchor="middle"
+       id="text40">Future Planning</text>
+    <text
+       x="880"
+       y="400"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text42">Anticipates own</text>
+    <text
+       x="880"
+       y="417"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text44">needs and seeks</text>
+    <text
+       x="880"
+       y="434"
+       font-family="Arial, sans-serif"
+       font-size="12px"
+       fill="#555555"
+       text-anchor="middle"
+       id="text46">relevant materials</text>
+  </g>
 </svg>
