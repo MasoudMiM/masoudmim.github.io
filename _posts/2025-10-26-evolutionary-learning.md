@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Teaching and Learning Through an Evolutionary Lens"
-date: 2025-10-24 20:05:00
+date: 2025-10-26 20:16:00
 description: Exploring how two evolutionary cognitive abilities, Theory of Mind and anticipating future needs, can help educators and students create more effective teaching and learning relationships.
 tags: teaching, education
 categories: essay
