@@ -15,6 +15,8 @@ categories: essay
     <figcaption>(Listen to this article)</figcaption>
 </figure>
 
+<br>
+
 <div style="text-align: justify;">
 
 <p>How can we teach a new generation of students? One approach suggested by various educators is to improve our understanding of students' prior knowledge and view course materials and exercises from their perspective. This could mean to cover topics in ways that resonate with each student. As a student, one should aim to observe and learn through understanding the intent, rather than simply memorizing steps. My goal in this short essay is to examine teaching and learning from an evolutionary perspective and explore how it could help educators and learners connect better with each other's needs.</p>
@@ -28,7 +30,7 @@ categories: essay
 <p>While Theory of Mind provides a framework to understand what one needs in a given situation by projecting the mind into another, our ancestors took learning one step further by developing the ability to anticipate future needs. This cognitive leap allowed them not only to understand others' current mental states but also to imagine future states of mind and make decisions based on those anticipated needs. Think about how you might do your groceries for a week and have to predict what you would want and make plans accordingly. Evolutionarily speaking, one possible reason that our primate brains developed such a feature was to help our primate ancestors become more adaptable to a fruit-based diet and its limited-window availability, so they could plan accordingly for their nutrition. This specific feature can be seen as imagining a future state of mind. We take an action now to satisfy a want in the future, even though we don't want it now. While this specifically concerns how we anticipate our own future needs, it can, for the purpose of teacher-learner context, be thought of as a tool to anticipate someone else's future needs.</p>
 
 <div style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
-    <img src="/assets/img/evol-education_diagram.svg" alt="two-way street between the educator and the learner" height="500">
+    <img src="/assets/img/evol-education_diagram.svg" alt="two-way street between the educator and the learner" width="800" height="500">
 </div>
 
 <p>This capacity for anticipating future needs has direct applications to teaching and learning. An effective teacher can anticipate their students' future needs and prepare the course materials, notes, learning aids, or other needed tools to address those needs. This can come as the teacher becomes more experienced or through meticulous observation of students under their advisement. Similarly, a good learner should be able to anticipate their future needs based on what they are currently learning and seek the relevant materials and related questions from the educator.</p>
