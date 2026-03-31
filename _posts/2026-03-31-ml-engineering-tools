@@ -2,7 +2,7 @@
 layout: post
 title: "Where Data Science Ends and Data Engineering Begins"
 date: 2026-03-31
-categories: machine-learning, data-engineering, tools
+categories: technical, machine-learning, data-engineering, tools
 tags: python, linux, git, mongodb, vector-databases, vscode, devops
 description: "Tools I've had to learn as a data scientist and ML engineer that no course ever mentioned, from command lines and servers to databases and cron jobs."
 ---
