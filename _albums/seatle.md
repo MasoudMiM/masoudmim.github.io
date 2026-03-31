@@ -1,0 +1,16 @@
+---
+layout: album
+title: Seattle
+slug: seattle
+country: U.S.
+flag: "🇫🇷"
+year: 2023
+continent: America
+description: Seattles
+lat: 47.608013
+lng: 57.664833
+photos:
+  - /assets/img/albums/seattle/IMG_8716.JPG
+  - /assets/img/albums/seattle/IMG_8729.JPG
+  - /assets/img/albums/seattle/IMG_8760.JPG
+---
