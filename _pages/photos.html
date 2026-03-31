@@ -1,26 +1,76 @@
 ---
 layout: page
-title: Photography
-permalink: /photos/
+title: Travel-Photos
+permalink: /travel-photos/
 description: A collection of travel albums from cities around the world.
 nav: true
 nav_order: 7
 ---
 
+<style>
+  /* SVG map — all colors via al-folio CSS variables so dark mode works */
+  #world-map .map-bg        { fill: var(--global-bg-color, #f8f9fa); }
+  #world-map .map-grid      { stroke: var(--global-divider-color, #dee2e6); stroke-width: 0.5; fill: none; }
+  #world-map .map-equator   { stroke: var(--global-text-color-light, #adb5bd); stroke-width: 1; }
+  #world-map .map-watermark { fill: var(--global-divider-color, #c8ccd0); }
+  #world-map .city-label    { fill: var(--global-text-color, #495057); font-family: sans-serif; font-size: 11px; }
+  #world-map .dot-halo      { opacity: 0; transition: opacity .2s; }
+  #world-map .city-dot      { cursor: pointer; }
+  #world-map .city-dot:hover .dot-halo { opacity: 0.25; }
+
+  /* Popup */
+  #map-popup {
+    position: absolute;
+    background: var(--global-bg-color, white);
+    border: 1px solid var(--global-divider-color, #dee2e6);
+    border-radius: 8px;
+    padding: 8px 12px 10px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity .15s;
+    z-index: 10;
+    transform: translate(-50%, calc(-100% - 11px));
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+  }
+  #map-popup.show { opacity: 1; }
+  #pp-name { font-size: 13px; font-weight: 600; color: var(--global-text-color, #212529); margin-top: 3px; }
+  #pp-sub  { font-size: 11px; color: var(--global-text-color-light, #6c757d); margin-top: 1px; }
+  #pp-cta  { font-size: 11px; color: var(--global-text-color-light, #adb5bd); margin-top: 4px; }
+
+  /* Album cards */
+  .photo-card {
+    border: 1px solid var(--global-divider-color, #dee2e6);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform .15s, border-color .15s;
+  }
+  .photo-card:hover      { transform: translateY(-2px); border-color: var(--global-text-color-light, #adb5bd); }
+  .photo-card.pin-active { border-color: #7F77DD; }
+  .photo-card-title { font-size: 0.85rem; font-weight: 600; color: var(--global-text-color, #212529); margin: 0; }
+  .photo-card-meta  { font-size: 0.75rem; color: var(--global-text-color-light, #6c757d); margin-top: 2px; margin-bottom: 0; }
+  .continent-heading {
+    font-size: 0.8rem; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--global-text-color-light, #6c757d);
+    border-bottom: 1px solid var(--global-divider-color, #dee2e6);
+    padding-bottom: 0.5rem; margin-bottom: 1rem; font-weight: 500;
+  }
+</style>
+
 <p style="font-size:0.875rem;color:var(--global-text-color-light);margin-bottom:1rem;">
-  Click a city pin on the map or browse by region below.
+  Click a city pin to open the album, or browse by region below.
 </p>
 
-<!-- ── Map ──────────────────────────────────────────────────────────── -->
-<div style="position:relative;width:100%;padding-bottom:50%;border:1px solid #dee2e6;border-radius:8px;overflow:hidden;margin-bottom:2rem;">
+<!-- ── Map ───────────────────────────────────────────────── -->
+<div id="map-wrap" style="position:relative;width:100%;padding-bottom:50%;border:1px solid var(--global-divider-color,#dee2e6);border-radius:8px;overflow:hidden;margin-bottom:2rem;">
   <svg id="world-map" viewBox="0 0 680 340"
        style="position:absolute;inset:0;width:100%;height:100%;"
        xmlns="http://www.w3.org/2000/svg">
 
-    <rect width="680" height="340" fill="#f8f9fa"/>
+    <rect width="680" height="340" class="map-bg"/>
 
-    <!-- Longitude grid lines every 30° -->
-    <g stroke="#dee2e6" stroke-width="0.5">
+    <!-- Longitude grid lines every 30deg -->
+    <g class="map-grid">
       <line x1="57"  y1="0" x2="57"  y2="340"/>
       <line x1="113" y1="0" x2="113" y2="340"/>
       <line x1="170" y1="0" x2="170" y2="340"/>
@@ -32,196 +82,173 @@ nav_order: 7
       <line x1="510" y1="0" x2="510" y2="340"/>
       <line x1="567" y1="0" x2="567" y2="340"/>
       <line x1="623" y1="0" x2="623" y2="340"/>
-      <!-- Latitude grid lines every 30° (skip equator) -->
+      <!-- Latitude lines every 30deg -->
       <line x1="0" y1="60"  x2="680" y2="60"/>
       <line x1="0" y1="120" x2="680" y2="120"/>
       <line x1="0" y1="240" x2="680" y2="240"/>
       <line x1="0" y1="300" x2="680" y2="300"/>
     </g>
-    <!-- Equator slightly bolder -->
-    <line x1="0" y1="180" x2="680" y2="180" stroke="#adb5bd" stroke-width="1"/>
+    <line x1="0" y1="180" x2="680" y2="180" class="map-equator"/>
 
-    <!-- Continent watermark labels -->
-    <text x="148" y="108" text-anchor="middle" font-size="14" fill="#adb5bd" font-family="sans-serif" font-weight="500">North America</text>
-    <text x="205" y="240" text-anchor="middle" font-size="12" fill="#adb5bd" font-family="sans-serif" font-weight="500">South America</text>
-    <text x="350" y="112" text-anchor="middle" font-size="12" fill="#adb5bd" font-family="sans-serif" font-weight="500">Europe</text>
-    <text x="362" y="192" text-anchor="middle" font-size="14" fill="#adb5bd" font-family="sans-serif" font-weight="500">Africa</text>
-    <text x="518" y="112" text-anchor="middle" font-size="20" fill="#adb5bd" font-family="sans-serif" font-weight="500">Asia</text>
-    <text x="592" y="260" text-anchor="middle" font-size="11" fill="#adb5bd" font-family="sans-serif" font-weight="500">Australia</text>
+    <!-- Continent watermarks -->
+    <text class="map-watermark" x="148" y="108" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="500">North America</text>
+    <text class="map-watermark" x="205" y="240" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="500">South America</text>
+    <text class="map-watermark" x="350" y="112" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="500">Europe</text>
+    <text class="map-watermark" x="362" y="192" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="500">Africa</text>
+    <text class="map-watermark" x="518" y="112" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="500">Asia</text>
+    <text class="map-watermark" x="592" y="260" text-anchor="middle" font-size="11" font-family="sans-serif" font-weight="500">Australia</text>
 
-    <!-- City dots — one per album -->
+    <!-- City dots
+         All data lives in data-* attributes.
+         JS reads them at click/hover time — no Liquid inside onclick. -->
     {% for album in site.albums %}
-
-    {% comment %} Pick dot color from continent — no YAML hex needed {% endcomment %}
-    {% if album.continent == "Americas" %}
-      {% assign dot_color = "#1D9E75" %}
-    {% elsif album.continent == "Asia" %}
-      {% assign dot_color = "#BA7517" %}
-    {% elsif album.continent == "Africa" %}
-      {% assign dot_color = "#D85A30" %}
-    {% elsif album.continent == "Oceania" %}
-      {% assign dot_color = "#378ADD" %}
-    {% else %}
-      {% assign dot_color = "#7F77DD" %}
+    {% if album.continent == "Americas" %}{% assign dot_color = "#1D9E75" %}
+    {% elsif album.continent == "Asia" %}{% assign dot_color = "#BA7517" %}
+    {% elsif album.continent == "Africa" %}{% assign dot_color = "#D85A30" %}
+    {% elsif album.continent == "Oceania" %}{% assign dot_color = "#378ADD" %}
+    {% else %}{% assign dot_color = "#7F77DD" %}
     {% endif %}
 
-    <g class="city-dot" data-id="{{ album.slug }}"
-       onclick="openAlbum({{ album.url | relative_url | jsonify }}, {{ album.slug | jsonify }})"
-       style="cursor:pointer;">
-      <circle cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="11"
-              fill="{{ dot_color }}" opacity="0.15" class="dot-halo"
-              style="transition:opacity .2s;"/>
-      <circle cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="5"
-              fill="{{ dot_color }}" stroke="white" stroke-width="1.5"/>
+    <g class="city-dot"
+       data-slug="{{ album.slug }}"
+       data-url="{{ album.url | relative_url }}"
+       data-flag="{{ album.flag }}"
+       data-name="{{ album.title }}"
+       data-sub="{{ album.country }}, {{ album.year }}"
+       data-x="{{ album.map_x }}"
+       data-y="{{ album.map_y }}">
+      <circle class="dot-halo" cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="12" fill="{{ dot_color }}"/>
+      <circle cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="5" fill="{{ dot_color }}" stroke="white" stroke-width="1.5"/>
     </g>
-    <text x="{{ album.map_x | plus: 8 }}" y="{{ album.map_y | plus: 4 }}"
-          font-size="11" fill="#6c757d" font-family="sans-serif"
+    <text class="city-label"
+          x="{{ album.map_x | plus: 8 }}" y="{{ album.map_y | plus: 4 }}"
           pointer-events="none">{{ album.title }}</text>
-
     {% endfor %}
 
     <!-- Legend -->
-    <circle cx="20"  cy="324" r="5" fill="#7F77DD"/>
-    <text x="30"  y="328" font-size="11" fill="#6c757d" font-family="sans-serif">Europe</text>
-    <circle cx="88"  cy="324" r="5" fill="#1D9E75"/>
-    <text x="98"  y="328" font-size="11" fill="#6c757d" font-family="sans-serif">Americas</text>
-    <circle cx="166" cy="324" r="5" fill="#BA7517"/>
-    <text x="176" y="328" font-size="11" fill="#6c757d" font-family="sans-serif">Asia</text>
-    <circle cx="220" cy="324" r="5" fill="#D85A30"/>
-    <text x="230" y="328" font-size="11" fill="#6c757d" font-family="sans-serif">Africa</text>
-
+    <circle cx="20"  cy="324" r="4" fill="#7F77DD"/>
+    <text class="city-label" x="29"  y="328">Europe</text>
+    <circle cx="85"  cy="324" r="4" fill="#1D9E75"/>
+    <text class="city-label" x="94"  y="328">Americas</text>
+    <circle cx="163" cy="324" r="4" fill="#BA7517"/>
+    <text class="city-label" x="172" y="328">Asia</text>
+    <circle cx="216" cy="324" r="4" fill="#D85A30"/>
+    <text class="city-label" x="225" y="328">Africa</text>
   </svg>
 
-  <!-- Popup tooltip -->
-  <div id="map-popup" style="
-      position:absolute;
-      background:white;
-      border:1px solid #dee2e6;
-      border-radius:8px;
-      padding:8px 12px 10px;
-      pointer-events:none;
-      opacity:0;
-      transition:opacity .15s;
-      z-index:10;
-      transform:translate(-50%, calc(-100% - 11px));
-      white-space:nowrap;
-      box-shadow:0 4px 12px rgba(0,0,0,.08);">
+  <!-- Popup tooltip positioned over the map div -->
+  <div id="map-popup">
     <div id="pp-flag" style="font-size:16px;line-height:1;"></div>
-    <div id="pp-name" style="font-size:13px;font-weight:600;color:#212529;margin-top:3px;"></div>
-    <div id="pp-sub"  style="font-size:11px;color:#6c757d;margin-top:1px;"></div>
-    <div style="font-size:11px;color:#adb5bd;margin-top:4px;">Open album →</div>
+    <div id="pp-name"></div>
+    <div id="pp-sub"></div>
+    <div id="pp-cta">Open album &#8594;</div>
   </div>
 </div>
 
-<!-- ── Albums grouped by continent ───────────────────────────────────── -->
+<!-- ── Albums grouped by continent ──────────────────────── -->
 {% assign continents = site.albums | map: "continent" | uniq | sort %}
 {% for continent in continents %}
-
-<h2 style="font-size:0.8rem;letter-spacing:.1em;text-transform:uppercase;color:#6c757d;border-bottom:1px solid #dee2e6;padding-bottom:0.5rem;margin-bottom:1rem;">
-  {{ continent }}
-</h2>
-
+<h2 class="continent-heading">{{ continent }}</h2>
 <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
   {% assign continent_albums = site.albums | where: "continent", continent | sort: "year" | reverse %}
   {% for album in continent_albums %}
 
-  {% comment %} Derive card background from continent — avoids YAML hex color issues {% endcomment %}
-  {% if album.continent == "Americas" %}
-    {% assign card_bg = "#E1F5EE" %}
-  {% elsif album.continent == "Asia" %}
-    {% assign card_bg = "#FAEEDA" %}
-  {% elsif album.continent == "Africa" %}
-    {% assign card_bg = "#FAECE7" %}
-  {% elsif album.continent == "Oceania" %}
-    {% assign card_bg = "#E6F1FB" %}
-  {% else %}
-    {% assign card_bg = "#EEEDFE" %}
+  {% if album.continent == "Americas" %}{% assign card_bg = "#E1F5EE" %}
+  {% elsif album.continent == "Asia" %}{% assign card_bg = "#FAEEDA" %}
+  {% elsif album.continent == "Africa" %}{% assign card_bg = "#FAECE7" %}
+  {% elsif album.continent == "Oceania" %}{% assign card_bg = "#E6F1FB" %}
+  {% else %}{% assign card_bg = "#EEEDFE" %}
   {% endif %}
 
   <div class="col">
     <a href="{{ album.url | relative_url }}" class="text-decoration-none"
-       id="card-{{ album.slug }}"
-       onmouseenter="highlightPin({{ album.slug | jsonify }})"
-       onmouseleave="clearHighlight()">
-      <div class="card h-100 hoverable" style="border-radius:8px;overflow:hidden;border:1px solid #dee2e6;transition:transform .15s,border-color .15s;">
-        <div style="width:100%;aspect-ratio:4/3;background:{{ card_bg }};display:flex;align-items:center;justify-content:center;font-size:2rem;">
-          {{ album.flag }}
-        </div>
+       onmouseenter="cardHover('{{ album.slug }}')"
+       onmouseleave="cardUnhover('{{ album.slug }}')">
+      <div class="photo-card h-100" id="card-{{ album.slug }}">
+        <div style="width:100%;aspect-ratio:4/3;background:{{ card_bg }};display:flex;align-items:center;justify-content:center;font-size:2rem;">{{ album.flag }}</div>
         <div class="card-body p-2">
-          <p class="card-title mb-0" style="font-size:0.85rem;font-weight:600;color:#212529;">
-            {{ album.title }}
-          </p>
-          <p class="card-text" style="font-size:0.75rem;color:#6c757d;margin-top:2px;">
-            {{ album.country }} &middot; {{ album.year }}
-          </p>
+          <p class="photo-card-title">{{ album.title }}</p>
+          <p class="photo-card-meta">{{ album.country }} &middot; {{ album.year }}</p>
         </div>
       </div>
     </a>
   </div>
-
   {% endfor %}
 </div>
 {% endfor %}
 
-<!-- ── JS: album data + interactions ─────────────────────────────────── -->
+<!-- ── Interactions ──────────────────────────────────────── -->
 <script>
-// All math (px/py) done in JS — avoids unreliable Liquid float arithmetic.
-// map_x / map_y are raw SVG coordinates (viewBox 680×340).
-const ALBUMS = {
-  {% for album in site.albums %}
-  {{ album.slug | jsonify }}: {
-    flag: {{ album.flag    | jsonify }},
-    name: {{ album.title   | jsonify }},
-    sub:  {{ album.country | append: " \u00B7 " | append: album.year | jsonify }},
-    url:  {{ album.url     | relative_url | jsonify }},
-    x:    {{ album.map_x  | default: 340 }},
-    y:    {{ album.map_y  | default: 170 }}
-  }{% unless forloop.last %},{% endunless %}
-  {% endfor %}
-};
+(function () {
+  var popup   = document.getElementById('map-popup');
+  var ppFlag  = document.getElementById('pp-flag');
+  var ppName  = document.getElementById('pp-name');
+  var ppSub   = document.getElementById('pp-sub');
+  var popTimer;
 
-const popup = document.getElementById('map-popup');
-const pflag = document.getElementById('pp-flag');
-const pname = document.getElementById('pp-name');
-const psub  = document.getElementById('pp-sub');
-let popTimer;
-
-function showPopup(id) {
-  const a = ALBUMS[id];
-  if (!a) return;
-  pflag.textContent = a.flag;
-  pname.textContent = a.name;
-  psub.textContent  = a.sub;
-  // Convert raw SVG coordinates to percentage of the map wrapper
-  popup.style.left    = (a.x / 680 * 100).toFixed(1) + '%';
-  popup.style.top     = (a.y / 340 * 100).toFixed(1) + '%';
-  popup.style.opacity = '1';
-  clearTimeout(popTimer);
-  popTimer = setTimeout(() => { popup.style.opacity = '0'; }, 3500);
-}
-
-function openAlbum(url, id) {
-  showPopup(id);
-  setTimeout(() => { window.location.href = url; }, 400);
-}
-
-function highlightPin(id) {
-  const halo = document.querySelector('.city-dot[data-id="' + id + '"] .dot-halo');
-  if (halo) halo.style.opacity = '0.3';
-  showPopup(id);
-  clearTimeout(popTimer); // keep popup open while hovering card
-}
-
-function clearHighlight() {
-  document.querySelectorAll('.dot-halo').forEach(function(d) { d.style.opacity = '0'; });
-  popTimer = setTimeout(() => { popup.style.opacity = '0'; }, 600);
-}
-
-// Dismiss popup when clicking blank map area
-document.getElementById('world-map').addEventListener('click', function(e) {
-  if (!e.target.closest('.city-dot')) {
-    popup.style.opacity = '0';
-    document.querySelectorAll('.acard').forEach(function(el) { el.style.borderColor = ''; });
+  /* Read album data straight from SVG data-* attributes.
+     No Liquid interpolation inside JS strings — zero encoding risk. */
+  function getAlbum(slug) {
+    var g = document.querySelector('.city-dot[data-slug="' + slug + '"]');
+    if (!g) return null;
+    return {
+      flag: g.getAttribute('data-flag'),
+      name: g.getAttribute('data-name'),
+      sub:  g.getAttribute('data-sub'),
+      url:  g.getAttribute('data-url'),
+      x:    parseFloat(g.getAttribute('data-x')),
+      y:    parseFloat(g.getAttribute('data-y'))
+    };
   }
-});
+
+  function showPopup(slug) {
+    var a = getAlbum(slug);
+    if (!a) return;
+    ppFlag.textContent = a.flag;
+    ppName.textContent = a.name;
+    ppSub.textContent  = a.sub;
+    /* Convert raw SVG coordinates to % of the wrapper div */
+    popup.style.left = (a.x / 680 * 100).toFixed(1) + '%';
+    popup.style.top  = (a.y / 340 * 100).toFixed(1) + '%';
+    popup.classList.add('show');
+    clearTimeout(popTimer);
+  }
+
+  function hidePopup(delay) {
+    clearTimeout(popTimer);
+    popTimer = setTimeout(function () { popup.classList.remove('show'); }, delay || 0);
+  }
+
+  /* Dot click: show popup, then navigate after a short pause */
+  document.querySelectorAll('.city-dot').forEach(function (g) {
+    g.addEventListener('click', function () {
+      var slug = g.getAttribute('data-slug');
+      var url  = g.getAttribute('data-url');
+      showPopup(slug);
+      setTimeout(function () { window.location.href = url; }, 350);
+    });
+  });
+
+  /* Card hover: light up the matching dot and show popup */
+  window.cardHover = function (slug) {
+    var halo = document.querySelector('.city-dot[data-slug="' + slug + '"] .dot-halo');
+    if (halo) halo.style.opacity = '0.3';
+    var card = document.getElementById('card-' + slug);
+    if (card) card.classList.add('pin-active');
+    showPopup(slug);
+  };
+
+  window.cardUnhover = function (slug) {
+    var halo = document.querySelector('.city-dot[data-slug="' + slug + '"] .dot-halo');
+    if (halo) halo.style.opacity = '';
+    var card = document.getElementById('card-' + slug);
+    if (card) card.classList.remove('pin-active');
+    hidePopup(500);
+  };
+
+  /* Click blank map area to dismiss popup */
+  document.getElementById('world-map').addEventListener('click', function (e) {
+    if (!e.target.closest('.city-dot')) hidePopup(0);
+  });
+})();
 </script>
