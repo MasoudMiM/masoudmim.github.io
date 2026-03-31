@@ -172,7 +172,7 @@ collections:
     permalink: /projects/:path/
   albums:
     output: true
-    permalink: /Travel-Photos/:name/
+    permalink: /travel-photos/:name/
 
 announcements:
   enabled: true
