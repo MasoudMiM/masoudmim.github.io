@@ -7,10 +7,8 @@ flag: "🇬🇧"
 year: 2021
 continent: Europe
 description: Markets, museums, and too much tea.
-thumb_color: "#EEEDFE"
-map_x: 328
-map_y: 70
+lat: 51.5074
+lng: -0.1278
 photos:
   - /assets/img/albums/london/01.jpg
-  - /assets/img/albums/london/02.jpg
 ---

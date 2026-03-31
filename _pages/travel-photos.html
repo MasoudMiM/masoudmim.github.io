@@ -7,36 +7,36 @@ nav: true
 nav_order: 7
 ---
 
-<style>
-  /* SVG map — all colors via al-folio CSS variables so dark mode works */
-  #world-map .map-bg        { fill: var(--global-bg-color, #f8f9fa); }
-  #world-map .map-grid      { stroke: var(--global-divider-color, #dee2e6); stroke-width: 0.5; fill: none; }
-  #world-map .map-equator   { stroke: var(--global-text-color-light, #adb5bd); stroke-width: 1; }
-  #world-map .map-watermark { fill: var(--global-divider-color, #c8ccd0); }
-  #world-map .city-label    { fill: var(--global-text-color, #495057); font-family: sans-serif; font-size: 11px; }
-  #world-map .dot-halo      { opacity: 0; transition: opacity .2s; }
-  #world-map .city-dot      { cursor: pointer; }
-  #world-map .city-dot:hover .dot-halo { opacity: 0.25; }
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css"/>
 
-  /* Popup */
-  #map-popup {
-    position: absolute;
-    background: var(--global-bg-color, white);
-    border: 1px solid var(--global-divider-color, #dee2e6);
+<style>
+  /* Map container */
+  #travel-map {
+    width: 100%;
+    height: 420px;
     border-radius: 8px;
-    padding: 8px 12px 10px;
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity .15s;
-    z-index: 10;
-    transform: translate(-50%, calc(-100% - 11px));
-    white-space: nowrap;
-    box-shadow: 0 4px 12px rgba(0,0,0,.12);
+    border: 1px solid var(--global-divider-color, #dee2e6);
+    margin-bottom: 2rem;
+    z-index: 1;
   }
-  #map-popup.show { opacity: 1; }
-  #pp-name { font-size: 13px; font-weight: 600; color: var(--global-text-color, #212529); margin-top: 3px; }
-  #pp-sub  { font-size: 11px; color: var(--global-text-color-light, #6c757d); margin-top: 1px; }
-  #pp-cta  { font-size: 11px; color: var(--global-text-color-light, #adb5bd); margin-top: 4px; }
+
+  /* Leaflet popup overrides to match al-folio theme */
+  .leaflet-popup-content-wrapper {
+    background: var(--global-bg-color, white);
+    color: var(--global-text-color, #212529);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,.12);
+    border: 1px solid var(--global-divider-color, #dee2e6);
+  }
+  .leaflet-popup-tip {
+    background: var(--global-bg-color, white);
+  }
+  .leaflet-popup-content { margin: 10px 14px; }
+  .popup-title { font-size: 14px; font-weight: 600; color: var(--global-text-color, #212529); }
+  .popup-meta  { font-size: 12px; color: var(--global-text-color-light, #6c757d); margin-top: 2px; }
+  .popup-link  { display: inline-block; margin-top: 7px; font-size: 12px; color: var(--global-theme-color, #7F77DD); text-decoration: none; }
+  .popup-link:hover { text-decoration: underline; }
 
   /* Album cards */
   .photo-card {
@@ -46,14 +46,14 @@ nav_order: 7
     transition: transform .15s, border-color .15s;
   }
   .photo-card:hover      { transform: translateY(-2px); border-color: var(--global-text-color-light, #adb5bd); }
-  .photo-card.pin-active { border-color: #7F77DD; }
+  .photo-card.pin-active { border-color: var(--global-theme-color, #7F77DD); }
   .photo-card-title { font-size: 0.85rem; font-weight: 600; color: var(--global-text-color, #212529); margin: 0; }
   .photo-card-meta  { font-size: 0.75rem; color: var(--global-text-color-light, #6c757d); margin-top: 2px; margin-bottom: 0; }
   .continent-heading {
-    font-size: 0.8rem; letter-spacing: .1em; text-transform: uppercase;
+    font-size: 0.8rem; letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
     color: var(--global-text-color-light, #6c757d);
     border-bottom: 1px solid var(--global-divider-color, #dee2e6);
-    padding-bottom: 0.5rem; margin-bottom: 1rem; font-weight: 500;
+    padding-bottom: 0.5rem; margin-bottom: 1rem;
   }
 </style>
 
@@ -61,93 +61,13 @@ nav_order: 7
   Click a city pin to open the album, or browse by region below.
 </p>
 
-<!-- ── Map ───────────────────────────────────────────────── -->
-<div id="map-wrap" style="position:relative;width:100%;padding-bottom:50%;border:1px solid var(--global-divider-color,#dee2e6);border-radius:8px;overflow:hidden;margin-bottom:2rem;">
-  <svg id="world-map" viewBox="0 0 680 340"
-       style="position:absolute;inset:0;width:100%;height:100%;"
-       xmlns="http://www.w3.org/2000/svg">
+<!-- ── Leaflet Map ─────────────────────────────────────── -->
+<div id="travel-map"></div>
 
-    <rect width="680" height="340" class="map-bg"/>
-
-    <!-- Longitude grid lines every 30deg -->
-    <g class="map-grid">
-      <line x1="57"  y1="0" x2="57"  y2="340"/>
-      <line x1="113" y1="0" x2="113" y2="340"/>
-      <line x1="170" y1="0" x2="170" y2="340"/>
-      <line x1="227" y1="0" x2="227" y2="340"/>
-      <line x1="283" y1="0" x2="283" y2="340"/>
-      <line x1="340" y1="0" x2="340" y2="340"/>
-      <line x1="397" y1="0" x2="397" y2="340"/>
-      <line x1="453" y1="0" x2="453" y2="340"/>
-      <line x1="510" y1="0" x2="510" y2="340"/>
-      <line x1="567" y1="0" x2="567" y2="340"/>
-      <line x1="623" y1="0" x2="623" y2="340"/>
-      <!-- Latitude lines every 30deg -->
-      <line x1="0" y1="60"  x2="680" y2="60"/>
-      <line x1="0" y1="120" x2="680" y2="120"/>
-      <line x1="0" y1="240" x2="680" y2="240"/>
-      <line x1="0" y1="300" x2="680" y2="300"/>
-    </g>
-    <line x1="0" y1="180" x2="680" y2="180" class="map-equator"/>
-
-    <!-- Continent watermarks -->
-    <text class="map-watermark" x="148" y="108" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="500">North America</text>
-    <text class="map-watermark" x="205" y="240" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="500">South America</text>
-    <text class="map-watermark" x="350" y="112" text-anchor="middle" font-size="12" font-family="sans-serif" font-weight="500">Europe</text>
-    <text class="map-watermark" x="362" y="192" text-anchor="middle" font-size="14" font-family="sans-serif" font-weight="500">Africa</text>
-    <text class="map-watermark" x="518" y="112" text-anchor="middle" font-size="20" font-family="sans-serif" font-weight="500">Asia</text>
-    <text class="map-watermark" x="592" y="260" text-anchor="middle" font-size="11" font-family="sans-serif" font-weight="500">Australia</text>
-
-    <!-- City dots
-         All data lives in data-* attributes.
-         JS reads them at click/hover time — no Liquid inside onclick. -->
-    {% for album in site.albums %}
-    {% if album.continent == "Americas" %}{% assign dot_color = "#1D9E75" %}
-    {% elsif album.continent == "Asia" %}{% assign dot_color = "#BA7517" %}
-    {% elsif album.continent == "Africa" %}{% assign dot_color = "#D85A30" %}
-    {% elsif album.continent == "Oceania" %}{% assign dot_color = "#378ADD" %}
-    {% else %}{% assign dot_color = "#7F77DD" %}
-    {% endif %}
-
-    <g class="city-dot"
-       data-slug="{{ album.slug }}"
-       data-url="{{ album.url | relative_url }}"
-       data-flag="{{ album.flag }}"
-       data-name="{{ album.title }}"
-       data-sub="{{ album.country }}, {{ album.year }}"
-       data-x="{{ album.map_x }}"
-       data-y="{{ album.map_y }}">
-      <circle class="dot-halo" cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="12" fill="{{ dot_color }}"/>
-      <circle cx="{{ album.map_x }}" cy="{{ album.map_y }}" r="5" fill="{{ dot_color }}" stroke="white" stroke-width="1.5"/>
-    </g>
-    <text class="city-label"
-          x="{{ album.map_x | plus: 8 }}" y="{{ album.map_y | plus: 4 }}"
-          pointer-events="none">{{ album.title }}</text>
-    {% endfor %}
-
-    <!-- Legend -->
-    <circle cx="20"  cy="324" r="4" fill="#7F77DD"/>
-    <text class="city-label" x="29"  y="328">Europe</text>
-    <circle cx="85"  cy="324" r="4" fill="#1D9E75"/>
-    <text class="city-label" x="94"  y="328">Americas</text>
-    <circle cx="163" cy="324" r="4" fill="#BA7517"/>
-    <text class="city-label" x="172" y="328">Asia</text>
-    <circle cx="216" cy="324" r="4" fill="#D85A30"/>
-    <text class="city-label" x="225" y="328">Africa</text>
-  </svg>
-
-  <!-- Popup tooltip positioned over the map div -->
-  <div id="map-popup">
-    <div id="pp-flag" style="font-size:16px;line-height:1;"></div>
-    <div id="pp-name"></div>
-    <div id="pp-sub"></div>
-    <div id="pp-cta">Open album &#8594;</div>
-  </div>
-</div>
-
-<!-- ── Albums grouped by continent ──────────────────────── -->
+<!-- ── Albums grouped by continent ───────────────────── -->
 {% assign continents = site.albums | map: "continent" | uniq | sort %}
 {% for continent in continents %}
+
 <h2 class="continent-heading">{{ continent }}</h2>
 <div class="row row-cols-2 row-cols-md-4 g-3 mb-4">
   {% assign continent_albums = site.albums | where: "continent", continent | sort: "year" | reverse %}
@@ -173,82 +93,143 @@ nav_order: 7
       </div>
     </a>
   </div>
+
   {% endfor %}
 </div>
 {% endfor %}
 
-<!-- ── Interactions ──────────────────────────────────────── -->
+<!-- ── Leaflet JS ──────────────────────────────────────── -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script>
 (function () {
-  var popup   = document.getElementById('map-popup');
-  var ppFlag  = document.getElementById('pp-flag');
-  var ppName  = document.getElementById('pp-name');
-  var ppSub   = document.getElementById('pp-sub');
-  var popTimer;
 
-  /* Read album data straight from SVG data-* attributes.
-     No Liquid interpolation inside JS strings — zero encoding risk. */
-  function getAlbum(slug) {
-    var g = document.querySelector('.city-dot[data-slug="' + slug + '"]');
-    if (!g) return null;
-    return {
-      flag: g.getAttribute('data-flag'),
-      name: g.getAttribute('data-name'),
-      sub:  g.getAttribute('data-sub'),
-      url:  g.getAttribute('data-url'),
-      x:    parseFloat(g.getAttribute('data-x')),
-      y:    parseFloat(g.getAttribute('data-y'))
-    };
-  }
+  /* Detect al-folio dark mode (it sets data-theme="dark" on <html>) */
+  var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
-  function showPopup(slug) {
-    var a = getAlbum(slug);
-    if (!a) return;
-    ppFlag.textContent = a.flag;
-    ppName.textContent = a.name;
-    ppSub.textContent  = a.sub;
-    /* Convert raw SVG coordinates to % of the wrapper div */
-    popup.style.left = (a.x / 680 * 100).toFixed(1) + '%';
-    popup.style.top  = (a.y / 340 * 100).toFixed(1) + '%';
-    popup.classList.add('show');
-    clearTimeout(popTimer);
-  }
+  /* Tile layers — CartoDB, no API key required */
+  var tileLight = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
+  var tileDark  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+  var tileAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>';
 
-  function hidePopup(delay) {
-    clearTimeout(popTimer);
-    popTimer = setTimeout(function () { popup.classList.remove('show'); }, delay || 0);
-  }
+  var map = L.map('travel-map', {
+    center: [25, 10],
+    zoom: 2,
+    scrollWheelZoom: false,   /* don't hijack page scroll */
+    minZoom: 1,
+    maxZoom: 10
+  });
 
-  /* Dot click: show popup, then navigate after a short pause */
-  document.querySelectorAll('.city-dot').forEach(function (g) {
-    g.addEventListener('click', function () {
-      var slug = g.getAttribute('data-slug');
-      var url  = g.getAttribute('data-url');
-      showPopup(slug);
-      setTimeout(function () { window.location.href = url; }, 350);
+  L.tileLayer(isDark ? tileDark : tileLight, {
+    attribution: tileAttrib,
+    subdomains: 'abcd',
+    maxZoom: 19
+  }).addTo(map);
+
+  /* If user toggles theme after load, swap tile layer */
+  var observer = new MutationObserver(function () {
+    var nowDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    if (nowDark !== isDark) {
+      isDark = nowDark;
+      map.eachLayer(function (layer) { if (layer._url) map.removeLayer(layer); });
+      L.tileLayer(isDark ? tileDark : tileLight, {
+        attribution: tileAttrib,
+        subdomains: 'abcd',
+        maxZoom: 19
+      }).addTo(map);
+    }
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+
+  /* Continent colors */
+  var COLORS = {
+    'Europe':   '#7F77DD',
+    'Americas': '#1D9E75',
+    'Asia':     '#BA7517',
+    'Africa':   '#D85A30',
+    'Oceania':  '#378ADD'
+  };
+
+  /* Album data from Jekyll — lat/lng are real geographic coordinates */
+  var ALBUMS = [
+    {% for album in site.albums %}
+    {
+      slug:      {{ album.slug      | jsonify }},
+      title:     {{ album.title     | jsonify }},
+      country:   {{ album.country   | jsonify }},
+      flag:      {{ album.flag      | jsonify }},
+      year:      {{ album.year      | jsonify }},
+      continent: {{ album.continent | jsonify }},
+      url:       {{ album.url | relative_url | jsonify }},
+      lat:       {{ album.lat | default: 0 }},
+      lng:       {{ album.lng | default: 0 }}
+    }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ];
+
+  /* Marker store for card↔pin cross-highlighting */
+  var markerBySlug = {};
+
+  ALBUMS.forEach(function (album) {
+    var color = COLORS[album.continent] || '#888';
+
+    /* Circular marker styled like our design */
+    var marker = L.circleMarker([album.lat, album.lng], {
+      radius:      7,
+      fillColor:   color,
+      color:       'white',
+      weight:      2,
+      opacity:     1,
+      fillOpacity: 1
+    }).addTo(map);
+
+    markerBySlug[album.slug] = marker;
+
+    /* Popup content */
+    var popupHtml =
+      '<div class="popup-title">' + album.flag + ' ' + album.title + '</div>' +
+      '<div class="popup-meta">'  + album.country + ' &middot; ' + album.year + '</div>' +
+      '<a class="popup-link" href="' + album.url + '">Open album &rarr;</a>';
+
+    marker.bindPopup(popupHtml, { maxWidth: 220, minWidth: 160 });
+
+    /* Click marker → open album directly */
+    marker.on('click', function () {
+      window.location.href = album.url;
+    });
+
+    /* Hover marker → open popup only (don't navigate) */
+    marker.on('mouseover', function () {
+      marker.openPopup();
+      var card = document.getElementById('card-' + album.slug);
+      if (card) card.classList.add('pin-active');
+    });
+    marker.on('mouseout', function () {
+      var card = document.getElementById('card-' + album.slug);
+      if (card) card.classList.remove('pin-active');
     });
   });
 
-  /* Card hover: light up the matching dot and show popup */
+  /* Card hover → pan map to that city and highlight its marker */
   window.cardHover = function (slug) {
-    var halo = document.querySelector('.city-dot[data-slug="' + slug + '"] .dot-halo');
-    if (halo) halo.style.opacity = '0.3';
+    var m = markerBySlug[slug];
+    if (m) {
+      map.panTo(m.getLatLng(), { animate: true, duration: 0.4 });
+      m.openPopup();
+      m.setStyle({ radius: 10 });
+    }
     var card = document.getElementById('card-' + slug);
     if (card) card.classList.add('pin-active');
-    showPopup(slug);
   };
 
   window.cardUnhover = function (slug) {
-    var halo = document.querySelector('.city-dot[data-slug="' + slug + '"] .dot-halo');
-    if (halo) halo.style.opacity = '';
+    var m = markerBySlug[slug];
+    if (m) {
+      m.closePopup();
+      m.setStyle({ radius: 7 });
+    }
     var card = document.getElementById('card-' + slug);
     if (card) card.classList.remove('pin-active');
-    hidePopup(500);
   };
 
-  /* Click blank map area to dismiss popup */
-  document.getElementById('world-map').addEventListener('click', function (e) {
-    if (!e.target.closest('.city-dot')) hidePopup(0);
-  });
 })();
 </script>

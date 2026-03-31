@@ -7,10 +7,8 @@ flag: "🇨🇺"
 year: 2019
 continent: Americas
 description: Colors, cars, and salsa on every corner.
-thumb_color: "#E1F5EE"
-map_x: 184
-map_y: 134
+lat: 23.1136
+lng: -82.3666
 photos:
   - /assets/img/albums/havana/01.jpg
-  - /assets/img/albums/havana/02.jpg
 ---
