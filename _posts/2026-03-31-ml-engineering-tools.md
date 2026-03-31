@@ -1,0 +1,270 @@
+---
+layout: post
+title: "Where Data Science Ends and Data Engineering Begins"
+date: 2026-03-31 18:55:00
+description: Tools I've had to learn as a data scientist and ML engineer that no course ever mentioned, from command lines and servers to databases and cron jobs
+tags: python, linux, git, mongodb, vector-databases, vscode, devops
+categories: technical
+---
+
+When I started working as a data scientist and ML engineer, I quickly realized that a surprising chunk of my day had nothing to do with building or training models. It was about getting data, moving it around, keeping scripts running reliably on servers, and connecting to databases I had never heard of in typical data science training. Nobody warned me I'd need to know any of this.
+
+Over time I've built up a toolkit that sits somewhere between data science and data engineering. These aren't the typical tools you see in data science tutorials, no Jupyter notebooks, no Pandas walkthroughs. These are the things that actually keep the work running. I'm still learning, and I'm sharing this from my own experience, not as a definitive guide.
+
+---
+
+## Where My Time Actually Goes
+
+It might surprise you how little of an ML engineer's day is spent on the modelling itself. Here's a rough honest breakdown from my experience:
+
+| Area | Rough Share | What it looks like |
+|---|---|---|
+| Data prep & pipelines | ████████ 30% | cleaning, moving, transforming data |
+| Model dev & experiments | ██████ 25% | training, tuning, evaluating on CPUs |
+| Infra, jobs & servers | █████ 20% | SSH, cron, logs, scheduling |
+| DB queries & data ops | ████ 15% | SQL, MongoDB, vector search |
+| Git & code review | ██ 10% | branching, reviewing, versioning |
+
+---
+
+## The Command Line: Linux and Windows
+
+Most of my model training and heavy lifting happens on remote Linux servers. That means getting comfortable in a terminal is non-negotiable. I work in Bash on Linux and occasionally PowerShell on Windows for local tasks, but the two feel very different.
+
+### Linux / Bash
+
+A few commands I reach for constantly on the server:
+
+```bash
+# Check what's running and consuming resources
+top
+
+# Tail a log from a long-running training or ingestion job
+tail -f logs/train_run.log
+
+# Find a runaway process and stop it
+ps aux | grep train.py
+kill -9 <PID>
+
+# Quick file checks
+ls -lh checkpoints/   # human-readable sizes
+du -sh data/          # how big is this data folder?
+
+# Grep through logs for errors
+grep "ERROR" logs/run.log | tail -20
+
+# Pipe commands together, which is surprisingly powerful
+cat results.csv | cut -d',' -f1,3 | sort -k2 -nr | head -10
+```
+
+> **One thing I've learned the hard way:** always redirect logs to a file when running long jobs. If the terminal closes, you want a record of what happened. I append `>> logs/job.log 2>&1` to almost every scheduled command.
+
+### Editing Files on the Server: Vim and Nano
+
+At some point you'll need to edit a config file or a script directly on a server, no IDE, no file transfer. This is where **Nano** and **Vim** come in.
+
+**Nano** is the friendlier option. It shows keyboard shortcuts at the bottom of the screen, so you're never stuck wondering how to save or exit:
+
+```bash
+nano config.yaml    # Ctrl+O to save, Ctrl+X to exit
+```
+
+**Vim** has a steeper learning curve but it's fast once it clicks. The basics that got me unstuck early on:
+
+```bash
+vim script.py
+
+# In vim:
+# i          → enter insert mode (start typing)
+# Esc        → return to normal mode
+# :w         → save
+# :q         → quit
+# :wq        → save and quit
+# :q!        → quit without saving (when you've made a mess)
+# /word      → search for "word"
+```
+
+I'd recommend starting with Nano for quick edits and picking up Vim gradually. It's worth the investment if you spend a lot of time on the terminal.
+
+---
+
+## VSCode as a Remote IDE
+
+Locally, VSCode is where I write almost everything. What makes it genuinely powerful for my workflow is the **Remote - SSH extension**; it lets me connect directly to a Linux server and edit, run, and debug code as if I were sitting on that machine. The integrated terminal opens a shell on the remote server. This changed how I work.
+
+Extensions I rely on most:
+
+| Extension | Why I use it |
+|---|---|
+| Remote - SSH | Edit files directly on Linux servers |
+| Python | Environment detection, linting, inline debugging |
+| YAML | Schema validation, catches indentation bugs early |
+| GitLens | Clearer git history and blame right in the editor |
+
+**YAML** comes up more than I expected. Model configs, pipeline definitions, environment specs, a surprising amount of infrastructure is written in YAML. Having validation in the editor has saved me from mysterious runtime errors more than once.
+
+---
+
+## Python Environments: pip, uv, and conda
+
+Dependency management is one of the messier parts of the job. I've settled into a pattern that works for me across different project types:
+
+```bash
+# conda for isolated environments - especially good when you need to manage non-Python dependencies alongside your packages
+conda create -n mlenv python=3.11
+conda activate mlenv
+
+# pip for most installs inside the environment
+pip install -r requirements.txt
+
+# uv when I need speed - noticeably faster than pip for large installs
+uv pip install torch transformers sentence-transformers
+```
+
+My rough rule of thumb:
+- **conda** when the project has complex system-level dependencies or I need a clean isolated environment from scratch
+- **uv** for fast installs in pure Python projects, it's dramatically quicker than pip and I've been reaching for it more lately
+- **pip** as the default fallback, especially on servers where I don't want to install anything extra
+
+> **Lesson learned:** Always pin your dependencies. A `requirements.txt` (or `uv.lock` if using uv) is the minimum I commit to every repo. An unpinned install has broken my environments too many times.
+
+---
+
+## Cron Jobs, Logging, and Parallel Scripts
+
+When I need a script to run on a schedule, nightly model retraining, periodic embedding updates, regular data ingestion, cron is the simplest tool available on any Linux server. No orchestration platform, no extra dependencies.
+
+```bash
+# Edit the crontab
+crontab -e
+
+# Run a retraining job every night at 2 AM
+0 2 * * * /home/user/envs/ml-env/bin/python /home/user/jobs/retrain.py >> /logs/retrain.log 2>&1
+
+# Run a data ingestion job every 6 hours
+0 */6 * * * /home/user/jobs/ingest.sh >> /logs/ingest.log 2>&1
+
+# View scheduled jobs
+crontab -l
+```
+
+For running multiple tasks in parallel, I use Python's `concurrent.futures`, it's straightforward and doesn't require any extra libraries:
+
+```python
+from concurrent.futures import ProcessPoolExecutor
+import logging
+
+logging.basicConfig(
+    filename='logs/job.log',
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s'
+)
+
+def process_batch(batch_id):
+    logging.info(f"Processing batch {batch_id}")
+    # ... your logic here ...
+    logging.info(f"Batch {batch_id} complete")
+
+with ProcessPoolExecutor(max_workers=4) as executor:
+    executor.map(process_batch, range(20))
+```
+
+I write structured logging into every scheduled job. If something breaks at 2 AM, I want to know exactly where and why when I check in the morning.
+
+---
+
+## Git: The Non-Negotiable
+
+I'll keep this short. As an ML engineer, the habits that have saved me most:
+
+```bash
+git pull origin main                          # always pull before starting
+git checkout -b exp/bge-m3-embeddings         # branch per experiment, not just per feature
+git status                                    # review what changed
+git add <file-name>                           # stage specific files
+git commit -m "feat: swap SBERT for BGE-M3"  # clear, descriptive message
+git push origin exp/bge-m3-embeddings
+```
+
+I branch per experiment. Model changes and config tweaks are easy to lose or confuse across runs if everything lives on `main`. And I'm strict about `.gitignore` - no model weights, no `.env` files, no large data files ever go into the repo.
+
+---
+
+## Databases: Three Different Worlds
+
+This is where my work crosses most visibly into data engineering. I regularly interact with three types of databases, each with its own tool and mental model.
+
+| Database type | My tool | What I use it for |
+|---|---|---|
+| Relational (SQL Server) | SSMS + DBeaver | ████████ structured business data, scheduled jobs |
+| Document (MongoDB) | DBeaver | █████ metadata, predictions, flexible-schema storage |
+| Vector DB | Python client | ████ embeddings, semantic search, RAG pipelines |
+
+### SQL Server: SSMS and DBeaver
+
+For SQL Server I use **Microsoft SQL Server Management Studio (SSMS)** to write and test queries, build stored procedures, and manage SQL Agent jobs, which are essentially cron jobs for SQL Server. Knowing some T-SQL is unavoidable in many enterprise environments.
+
+I also use **DBeaver** as a universal database client. It connects to SQL Server, PostgreSQL, MySQL, MongoDB, and many others through a single interface, which is genuinely convenient when you're jumping between database types throughout the day.
+
+### MongoDB: Document Storage
+
+MongoDB is where semi-structured data ends up in my projects: API responses, prediction records, metadata with flexible schemas. I work with it through the Python driver:
+
+```python
+from pymongo import MongoClient
+from datetime import datetime
+
+client = MongoClient("mongodb://localhost:27017/")
+collection = client["ml_project"]["predictions"]
+
+# Store a prediction with metadata
+collection.insert_one({
+    "model_version": "v2.1",
+    "input_id": "doc_884",
+    "score": 0.92,
+    "label": "positive",
+    "timestamp": datetime.utcnow()
+})
+
+# Query recent high-confidence predictions
+results = collection.find(
+    {"score": {"$gte": 0.9}},
+    sort=[("timestamp", -1)],
+    limit=10
+)
+```
+
+The query style is very different from SQL, it took me a while to adjust. But the flexibility is useful during active development when the data shape is still changing.
+
+### Vector Databases
+
+Vector databases have become central to how I build retrieval systems and semantic search. My workflow typically moves through three layers depending on the stage of the project.
+
+**NumPy `.npz` files** are where I often start. When I'm experimenting and don't need a full database yet, saving embeddings to disk is fast and simple, just `np.savez` to store and `np.load` to retrieve. No infrastructure, no setup.
+
+**ChromaDB** is my go-to for local development and small-scale semantic search. It's lightweight, requires no infrastructure, and gets me up and running quickly:
+
+```python
+import chromadb
+
+client = chromadb.Client()
+collection = client.get_or_create_collection("documents")
+collection.add(documents=documents, embeddings=embeddings, ids=doc_ids)
+
+results = collection.query(
+    query_embeddings=model.encode(["What is RAG?"]).tolist(),
+    n_results=5
+)
+```
+
+**DuckDB** comes in when I need to combine embedding metadata with structured queries, it handles analytical queries on top of stored results efficiently and feels very natural if you're already comfortable with SQL.
+
+**Milvus** is where I move when scale requires it, large embedding collections and production-grade similarity search with more control over indexing and performance.
+
+---
+
+## Wrapping Up
+
+None of this is the glamorous part of machine learning. It doesn't show up in papers or model leaderboards. But in my experience, the difference between an ML engineer who can get things done end-to-end and one who needs constant support from a data engineering team often comes down to exactly these skills.
+
+If you're a data scientist or ML engineer who hasn't explored these areas yet, I'd suggest starting with just one thing: get comfortable SSHing into a server, or learn the basics of cron, or set up a proper Python environment with `uv`. The investment compounds quickly and quietly makes everything else easier.
