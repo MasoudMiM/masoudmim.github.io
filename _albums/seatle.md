@@ -3,10 +3,10 @@ layout: album
 title: Seattle
 slug: seattle
 country: U.S.
-flag: "🇫🇷"
+flag: "🏴󠁵󠁳󠁷󠁡󠁿"
 year: 2023
-continent: America
-description: Seattles
+continent: Americas
+description: Seattle
 lat: 47.608013
 lng: -122.335167
 photos:
