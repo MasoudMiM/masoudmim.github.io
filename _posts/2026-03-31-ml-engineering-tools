@@ -2,9 +2,9 @@
 layout: post
 title: "Where Data Science Ends and Data Engineering Begins"
 date: 2026-03-31 18:55:00
-categories: technical, machine-learning, data-engineering, tools
+description: Tools I've had to learn as a data scientist and ML engineer that no course ever mentioned, from command lines and servers to databases and cron jobs
 tags: python, linux, git, mongodb, vector-databases, vscode, devops
-description: "Tools I've had to learn as a data scientist and ML engineer that no course ever mentioned, from command lines and servers to databases and cron jobs."
+categories: technical
 ---
 
 When I started working as a data scientist and ML engineer, I quickly realized that a surprising chunk of my day had nothing to do with building or training models. It was about getting data, moving it around, keeping scripts running reliably on servers, and connecting to databases I had never heard of in typical data science training. Nobody warned me I'd need to know any of this.
