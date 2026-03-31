@@ -170,6 +170,9 @@ collections:
   projects:
     output: true
     permalink: /projects/:path/
+  albums:
+    output: true
+    permalink: /photos/:name/
 
 announcements:
   enabled: true
