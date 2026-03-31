@@ -13,7 +13,7 @@ layout: default
   </header>
 
   <div class="row row-cols-2 row-cols-md-3 g-2 mt-1">
-    {% for photo in page.photos %}
+    {% for photo in page.Travel-Photos %}
     <div class="col">
       <a href="{{ photo | relative_url }}"
          data-lightbox="{{ page.slug }}"
@@ -29,10 +29,10 @@ layout: default
   </div>
 
   <div class="mt-4 d-flex gap-2 align-items-center">
-    <a href="{{ '/photos/' | relative_url }}" class="btn btn-sm btn-outline-secondary">
+    <a href="{{ '/Travel-Photos/' | relative_url }}" class="btn btn-sm btn-outline-secondary">
       ← Back to albums
     </a>
-    <span style="font-size:0.8rem;color:#6c757d;">{{ page.photos | size }} photos</span>
+    <span style="font-size:0.8rem;color:#6c757d;">{{ page.Travel-Photos | size }} Travel-Photos</span>
   </div>
 </div>
 
