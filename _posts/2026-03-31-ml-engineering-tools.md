@@ -20,7 +20,7 @@ It might surprise you how little of an ML engineer's day is spent on the modelli
 | Area | Rough Share | What it looks like |
 |---|---|---|
 | Data prep & pipelines | ████████ 30% | cleaning, moving, transforming data |
-| Model dev & experiments | ██████ 25% | training, tuning, evaluating on CPUs |
+| Model dev & experiments | ██████ 25% | training, tuning, evaluating on CPUs/GPUs |
 | Infra, jobs & servers | █████ 20% | SSH, cron, logs, scheduling |
 | DB queries & data ops | ████ 15% | SQL, MongoDB, vector search |
 | Git & code review | ██ 10% | branching, reviewing, versioning |
