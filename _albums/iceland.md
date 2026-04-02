@@ -1,14 +1,14 @@
 ---
 layout: album
-title: Amsterdam
-slug: amsterdam
-country: Netherlands
-flag: "🇳🇱"
+title: Iceland
+slug: iceland
+country: Iceland
+flag: "🇮🇸"
 year: 2025
 continent: Europe
 description: 
-lat: 52.377956
-lng: -4.897070
+lat: 40.7535722
+lng: -73.6601275
 photos:
   - /assets/img/albums/london/01.jpg
 ---
