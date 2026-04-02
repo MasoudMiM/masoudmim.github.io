@@ -6,7 +6,7 @@ country: U.S.
 flag: "🏴󠁵󠁳󠁷󠁡󠁿"
 year: 2023
 continent: Americas
-description: Seattle
+description: 
 lat: 47.608013
 lng: -122.335167
 photos:

@@ -6,7 +6,7 @@ country: England
 flag: "🇬🇧"
 year: 2021
 continent: Europe
-description: Markets, museums, and too much tea.
+description: 
 lat: 51.5074
 lng: -0.1278
 photos:

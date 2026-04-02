@@ -6,7 +6,7 @@ country: France
 flag: "🇫🇷"
 year: 2022
 continent: Europe
-description: Paris
+description: 
 lat: 48.8566
 lng: 2.3522
 photos:
