@@ -8,7 +8,7 @@ year: 2025
 continent: Americas
 description: 
 lat: 35.6815697 
-lng: 105.9380989
+lng: -105.9380989
 photos:
   - /assets/img/albums/seattle/IMG_8716.JPG
 ---
