@@ -4,7 +4,7 @@ title: Seattle
 slug: seattle
 country: U.S.
 flag: "🏴󠁵󠁳󠁷󠁡󠁿"
-year: 2023
+year: 
 continent: Americas
 description: 
 lat: 47.608013

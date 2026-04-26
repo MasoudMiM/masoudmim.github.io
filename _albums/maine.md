@@ -4,7 +4,7 @@ title: Maine
 slug: maine
 country: U.S.
 flag: "🏴󠁵󠁳󠁭󠁥󠁿"
-year: 2025
+year: 
 continent: Americas
 description: 
 lat: 43.629661 
