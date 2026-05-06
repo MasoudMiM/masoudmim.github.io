@@ -52,7 +52,7 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
            style="min-width: 240px;">
           <i class="fab fa-linux"></i>&nbsp;&nbsp;Linux (AppImage)
         </a>
-        <p class="mt-2"><small class="text-muted">Ubuntu 24.04+ tested.  ~228&nbsp;MB.</small></p>
+        <p class="mt-2"><small class="text-muted">Ubuntu 24.04+ tested.</small></p>
       </div>
       <div class="col-md-6 mb-3">
         <a href="https://github.com/FEMStudio/femstudio-releases/releases/latest"
@@ -60,7 +60,7 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
            style="min-width: 240px;">
           <i class="fab fa-windows"></i>&nbsp;&nbsp;Windows (Installer)
         </a>
-        <p class="mt-2"><small class="text-muted">Windows 10 / 11.  ~250&nbsp;MB.</small></p>
+        <p class="mt-2"><small class="text-muted">Windows 10 / 11.</small></p>
       </div>
     </div>
 
