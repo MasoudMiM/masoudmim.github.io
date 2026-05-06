@@ -4,14 +4,15 @@ permalink: /femstudio/
 title: FEM Studio
 nav: true
 nav_order: 5
-description: A modern desktop GUI for the Elmer FEM solver, born from research frustration and shared in case it's useful to anyone else.
+description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born from research frustration and shared in case it's useful to anyone else.
 ---
 
 {% comment %}
-  Page tone: personal & humble. Two-tier naming: brand "FEM Studio"
-  on the website, binary "ElmerStudio" in downloads / window title /
-  --version output. Screenshots lead each section so users can see
-  the actual app before reading prose about it.
+  Page tone: personal & humble. Product name is "ElmerStudio"
+  throughout the page body. The page section / nav tab is named
+  "FEM Studio" because this section may host other FEM-related
+  projects in the future — keep that distinction in mind when
+  editing: "FEM Studio" is the section, "ElmerStudio" is the app.
 
   Note for future-me: Jekyll evaluates Liquid tags inside HTML
   comments (it parses Liquid before HTML). Use {% raw %}{ % comment %}{% endraw %}
@@ -22,7 +23,7 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
 <div class="row mt-4">
   <div class="col-md-12">
     <p class="lead">
-      FEM Studio is a desktop interface for the
+      ElmerStudio is a desktop interface for the
       <a href="http://www.elmerfem.org/" target="_blank" rel="noopener">Elmer FEM</a>
       solver.  It started as a personal project — I kept hitting the same
       friction every time I picked Elmer back up for research, and at some
@@ -69,13 +70,6 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
             See all release artifacts on GitHub
         </a>
     </p>
-    <p class="text-center">
-      <small class="text-muted">
-        The downloaded files are named <code>ElmerStudio-*</code> —
-        that's the binary's internal name, which also appears in the
-        application window title.  Same software, no surprises.
-      </small>
-    </p>
   </div>
 </div>
 
@@ -101,11 +95,11 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
       since early 2024 because of an upstream libexpat regression.
     </p>
     <p>
-      I built FEM Studio first to remove those rough edges from my own
+      I built ElmerStudio first to remove those rough edges from my own
       workflow, then realised it might help students and newcomers get
       to the interesting parts of FEM faster.  ElmerGUI, the official
       graphical frontend, remains a great option and a complementary
-      tool — FEM Studio simply takes a different approach in places
+      tool — ElmerStudio simply takes a different approach in places
       where I wanted something different.  Below is what's actually
       inside.
     </p>
@@ -120,11 +114,15 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
     <h2>Start fast: pick a template, hit go</h2>
     <p>
       Open the app and you're already a click away from a working
-      simulation.  Five quick-start templates cover the most common
+      simulation.  Four quick-start cards cover the most common
       Elmer workflows — Heat Conduction, Fluid Flow, Structural
-      Mechanics, Electrostatics — plus a Custom Setup wizard for
-      everything else.  Each template scaffolds a complete SIF with
-      sensible defaults that you can run immediately, then refine.
+      Mechanics, Electrostatics — each pre-wired to a sensible
+      solver and starting material.  A fifth card opens a four-step
+      Custom Setup wizard that walks you through picking physics,
+      simulation type and time-stepping, an existing mesh
+      directory, and an initial material from the library.  Either
+      way, you end up with a complete SIF that you can run
+      immediately and refine from there.
     </p>
   </div>
 </div>
@@ -132,7 +130,7 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
 <div class="row mt-3">
   <div class="col-md-12">
     <img src="{{ '/assets/img/femstudio/welcome.png' | relative_url }}"
-         alt="FEM Studio welcome screen showing five simulation templates and the Simulation Setup form pre-populated with defaults"
+         alt="ElmerStudio welcome screen showing four physics templates plus a Custom Setup wizard, with the Simulation Setup form pre-populated with defaults"
          class="img-fluid rounded z-depth-1">
     <p class="text-center mt-2">
       <small class="text-muted">
@@ -151,20 +149,34 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
   <div class="col-md-12">
     <h2>Built-in parametric mesh generator</h2>
     <p>
-      Mesh creation is integrated.  Nine geometry templates (1D line,
-      2D rectangles, L-shapes, layered slabs, axisymmetric cylinders,
-      polar shells, 3D boxes, hollow and solid cylinders) cover most
-      academic and prototyping cases.  Pick one, dial in the
-      parameters, and a 3D preview updates as you type — no exporting
-      to a separate mesh file format and re-importing.
+      Mesh creation is integrated.  Eleven geometry templates
+      (Segment 1D, Rectangle 2D, Rectangle with hole, L-shape,
+      Two-material plate, Layered slab, Box 3D, axisymmetric
+      cylinder, hollow cylinder, solid 3D cylinder, polar
+      cylindrical shell) cover most academic and prototyping cases.
+      Pick one, dial in the parameters, and a 3D preview updates
+      as you type — no exporting to a separate mesh file format
+      and re-importing.
     </p>
     <p>
       The 2D paint canvas lets you assign material regions and
       boundary IDs visually before the mesh is ever generated.
-      Coordinate-system conversions (revolve a 2D section into an
-      axisymmetric solid, extrude into 3D) are done through five
-      mapping modes that ship with the app, with no command-line
-      ElmerGrid invocations to remember.
+      Five curated geometry-mapping modes — piecewise linear,
+      circular arc, line-to-circle, line-to-sinusoid, and
+      polygonal-angle — let you bend the otherwise-rectangular
+      subcell boundaries into curves so the meshed result follows
+      the actual shape of your domain.
+    </p>
+    <p>
+      Three dedicated wizards handle the structurally bigger
+      operations: a <strong>Boundary Layer</strong> wizard for
+      adding inflated boundary-aligned layers (typical for CFD
+      wall treatment), an <strong>Extrusion</strong> wizard that
+      lifts a 2D mesh into 3D as a stack of layers, and a
+      <strong>Revolution</strong> wizard that sweeps a 2D section
+      around an axis to produce an axisymmetric or full 3D solid.
+      Each wizard ships with a live preview pane so you can
+      sanity-check divisions and limits before committing.
     </p>
   </div>
 </div>
@@ -184,19 +196,61 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
   </div>
 </div>
 
-<div class="row mt-3">
+<!-- ===========================================================
+     Mesh import + ElmerGrid operations through GUI
+     =========================================================== -->
+<div class="row mt-5">
   <div class="col-md-12">
+    <h2>Bring your own mesh, or clean up an existing one</h2>
     <p>
-      For the cases the templates don't cover, the
-      <strong>Mesh → Operations</strong> menu exposes ElmerGrid's
-      full toolbox through a GUI: Scale, Translate, Rotate, Merge
-      Nodes, Reduce Order, Clone, Mirror.  Each operation is a
-      simple form-based dialog that runs ElmerGrid for you with the
-      right flags — no need to remember the
-      <code>-scale</code> / <code>-rotate</code> / <code>-merge</code>
-      command-line syntax.  External meshes (Gmsh
-      <code>.msh</code>, Abaqus <code>.unv</code>, STL) load
-      directly.
+      External meshes import directly through <strong>File →
+      Import Mesh…</strong>.  Supported formats are Gmsh
+      (<code>.msh</code>), Universal / Salome (<code>.unv</code>),
+      ElmerGrid native (<code>.grd</code>), and ANSYS / Abaqus
+      input decks (<code>.ans</code>, <code>.inp</code>).
+      ElmerStudio shells out to ElmerGrid behind the scenes with
+      the right format codes, so you don't have to look up
+      <code>-input 14</code> vs. <code>-input 17</code> ever
+      again.  Existing Elmer mesh directories load by pointing
+      at the folder.
+    </p>
+    <p>
+      Once a mesh is loaded, the Mesh menu exposes the operations
+      you'd otherwise run by hand from the ElmerGrid command line:
+    </p>
+    <ul>
+      <li>
+        <strong>Mesh → Cleanup</strong>: Auto Clean, Merge Nodes,
+        Remove Unused Nodes, Reorder Bodies, Reorder Boundaries.
+        Each is a form-based dialog that runs ElmerGrid in place
+        and reloads the result.
+      </li>
+      <li>
+        <strong>Mesh → Transform</strong>: Scale, Translate, Rotate,
+        Centralize.
+      </li>
+      <li>
+        <strong>Mesh → Element Order</strong>: bump linear elements
+        up to quadratic, or reduce a quadratic mesh back down.
+      </li>
+      <li>
+        <strong>Mesh → Clone &amp; Mirror</strong>: replicate a
+        mesh in space or reflect it across an axis.
+      </li>
+      <li>
+        <strong>Mesh → Refine Mesh</strong>: uniform refinement
+        that splits each element (triangle → 4, tetrahedron → 8).
+      </li>
+    </ul>
+    <p>
+      For inspecting what you've got, the same menu has
+      <strong>Mesh Quality</strong> (toggles a colour overlay
+      shading elements by quality metric so distorted regions
+      jump out) and <strong>Mesh Statistics…</strong> (a popup
+      with element counts, types, bounding box, and per-axis
+      extents).  Display options — boundary colouring by ID,
+      wireframe, ground grid, origin axes, clip plane, slice
+      plane — all live in the same menu and persist across runs.
     </p>
   </div>
 </div>
@@ -211,19 +265,45 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
       The main editor is built around a single principle: everything
       you need to set up, run, and inspect a simulation lives in one
       window, not five.  The semantic outline on the left groups the
-      SIF into Setup, Physics, Domain, and Boundaries — click any
-      entry to jump to it.  The middle pane is a syntax-highlighted
-      SIF editor that round-trips losslessly with the form-based
-      dock panels.  The right pane is an integrated VTK results
-      viewer with field selection, colormaps (jet, viridis, plasma,
-      and more), displacement warping, and clip planes.
+      SIF into <strong>Setup</strong> (Header, Constants, Simulation),
+      <strong>Physics</strong> (Solver, Equation),
+      <strong>Domain</strong> (Body, Material, Body Force, Initial
+      Condition, Component), and <strong>Boundaries</strong>
+      (Boundary Condition).  Click any entry to jump to it; right-click
+      to delete, duplicate, or add a new section in place.
+      Validation badges flag problems inline so issues find you,
+      not the other way around.
     </p>
     <p>
-      When you do need ParaView's full power, one click opens the
-      current results in it.  The "Open in ParaView" path also
-      transparently re-encodes the VTU on the way out to dodge the
-      libexpat 2.6.0–2.6.2 bug that breaks ParaView on Ubuntu
-      24.04+ — so it just works on a stock install with no patching.
+      The middle pane is a syntax-highlighted SIF editor with a
+      line-number gutter, current-line highlight, monospace zoom
+      (Ctrl + / Ctrl − / Ctrl 0), Find/Replace bar (Ctrl+F /
+      Ctrl+H), and a comment-toggle shortcut (Ctrl + /).  It
+      round-trips losslessly with the form-based dock panels —
+      edit either side and the other stays in sync.  Dedicated
+      docks handle the common authoring surfaces: a
+      <strong>Simulation Setup</strong> dock for the Simulation
+      and Constants sections, a <strong>Solver Setup</strong> dock
+      that picks a solver from the bundled definitions and
+      auto-renders its parameters as a form (with Equation, Solver,
+      Body Force, and Initial Condition tabs), a
+      <strong>Material Library</strong> dock with a category filter
+      and a properties preview that injects materials with units
+      handled, and a <strong>Boundary Conditions</strong> form for
+      authoring BCs without touching the SIF.
+    </p>
+    <p>
+      The right pane is an integrated VTU results viewer with field
+      selection, eight built-in colormaps (viridis, plasma, coolwarm,
+      RdYlBu, jet, turbo, inferno, magma), warp-by-vector with a
+      scale factor, and a clip plane.  For transient runs, a
+      timestep slider beneath the viewport scrubs through the
+      sequence while preserving your scalar selection.  When you
+      do need ParaView's full power, one click opens the current
+      results in it.  The "Open in ParaView" path also transparently
+      re-encodes the VTU on the way out to dodge the libexpat
+      2.6.0–2.6.2 bug that breaks ParaView on Ubuntu 24.04+ — so
+      it just works on a stock install with no patching.
     </p>
   </div>
 </div>
@@ -255,39 +335,38 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
       Studying how a result depends on material properties, boundary
       conditions, or geometry is something Elmer users do constantly
       — and historically meant either duplicating the project N
-      times or writing shell scripts that templated the SIF.  FEM
-      Studio makes parameter sweeps a built-in feature.  Drop a
-      sibling <code>&lt;case&gt;.sweep.yaml</code> file next to your
-      SIF, declare which keywords vary and over what values, and
-      hit <strong>Run sweep</strong>.
+      times or writing shell scripts that templated the SIF.
+      ElmerStudio gives parameter sweeps a dedicated panel in the
+      main window, no manual file editing required.  Pick a
+      keyword from any section in your SIF, declare the values
+      you want to sweep over, and ElmerStudio handles the rest.
     </p>
     <p>
-      Three sweep modes ship out of the box:
+      Two sweep modes ship out of the box.  In
+      <strong>Cartesian</strong> mode, ElmerStudio runs every
+      combination of every parameter — full factorial, useful when
+      you want to map the response surface across two or more
+      independent dimensions.  In <strong>Zipped</strong> mode,
+      parameters advance together in lockstep, so you get N
+      pre-paired configurations rather than N×M combinations —
+      useful when you want to vary several keywords together along
+      a curve in parameter space.
     </p>
-    <ul>
-      <li>
-        <strong>Cartesian product</strong> — every combination of
-        every parameter.  Use it for full-factorial studies.
-      </li>
-      <li>
-        <strong>Zip</strong> — parameters advance together in
-        lockstep.  Use it when you want N pre-paired
-        configurations rather than N×M combinations.
-      </li>
-      <li>
-        <strong>Latin hypercube</strong> — random samples spread
-        across the parameter space.  Use it for design-of-experiments
-        style coverage when full Cartesian would be too many runs.
-      </li>
-    </ul>
     <p>
       Each sweep step runs in its own subdirectory with its own
       generated SIF, runs the solver, and surfaces results in a
-      live status table as the sweep progresses.  You can abort
-      the whole sweep, skip just the current step, or watch
-      convergence plot live for the active run.  When it's done,
-      you have a structured directory tree of every result, ready
-      to post-process or feed into your own analysis script.
+      live status table as the sweep progresses — values, exit
+      code, wall time, and any error per step.  You can abort the
+      whole sweep, skip just the current step, or watch the
+      convergence plot live for the active run.  When the sweep
+      finishes, the results viewer's slider scrubs through the
+      output VTUs from each step while preserving your chosen
+      scalar field, and a separate summary chart plots a chosen
+      output metric (max / min / mean) against the swept parameter
+      — line chart for one parameter, heatmap for two on a
+      Cartesian grid.  The structured directory tree of every
+      run is also yours to post-process or feed into your own
+      analysis script.
     </p>
   </div>
 </div>
@@ -301,27 +380,49 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
     <ul>
       <li>
         <strong>Live convergence plotting</strong> while ElmerSolver
-        runs.  Residuals stream into a chart in real time, so you
-        see divergence the moment it happens instead of staring at
-        terminal output.
+        runs.  Per-solver residuals stream into a chart on a log
+        y-axis in real time, so you see divergence the moment it
+        happens instead of staring at terminal output.
       </li>
       <li>
-        <strong>A 35-entry materials library</strong> with one-click
-        insert.  Steel, aluminum, copper, water, air, and the
-        usual suspects all pre-defined with units handled for you.
+        <strong>A 35-entry materials library</strong> — air,
+        nitrogen, argon, water, common metals, polymers, and the
+        usual suspects — searchable by category with units handled
+        for you.  One click injects the material properties into
+        the active <code>Material</code> section.
       </li>
       <li>
         <strong>Pre-flight validation</strong> before each run.
-        Catches things like two Body sections claiming the same
-        mesh ID (Elmer silently honors only the first) and unmapped
-        boundary conditions before you find them at simulation
-        time.
+        Verifies a mesh is loaded, at least one solver has a
+        Procedure, every Equation has Active Solvers, every
+        Boundary Condition has Target Boundaries assigned, and
+        every Body references existing Material / Equation / Body
+        Force / Initial Condition sections.  Catches the Elmer
+        gotcha where two Body sections claiming the same mesh ID
+        silently honor only the first.
+      </li>
+      <li>
+        <strong>Live solver output</strong> with a warning banner.
+        ElmerSolver's stdout / stderr stream into a coloured pane
+        as the run progresses.  Lines matching known warning
+        patterns are also collected separately and surfaced in a
+        summary banner at the top, so warnings buried thousands
+        of lines deep in the log don't go unseen.
+      </li>
+      <li>
+        <strong>Eight bundled solver definitions</strong> covering
+        common physics (heat equation, linear elasticity,
+        Navier-Stokes, electrostatics, Helmholtz,
+        advection-diffusion, static current, result output).
+        Each renders as a structured form with the right keywords
+        for that solver.  Custom ElmerGUI-style EDF files import
+        via <strong>File → Import Solver Definition…</strong>.
       </li>
       <li>
         <strong>Parallel solver support</strong> through a settings
-        dialog — pick the number of MPI processes and FEM Studio
+        dialog — pick the number of MPI processes and ElmerStudio
         invokes <code>ElmerSolver_mpi</code> with the right
-        partitioning.
+        partitioning.  Settings persist across sessions.
       </li>
       <li>
         <strong>Cross-platform</strong>: same UI, same project
@@ -345,9 +446,9 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
     <h2>What it isn't</h2>
     <ul>
       <li>
-        <strong>It isn't the solver.</strong>  FEM Studio is a frontend.
-        You need ElmerSolver itself installed and on your PATH for
-        simulations to run.  Get it from
+        <strong>It isn't the solver.</strong>  ElmerStudio is a
+        frontend.  You need ElmerSolver itself installed and on
+        your PATH for simulations to run.  Get it from
         <a href="http://www.elmerfem.org/blog/binaries/" target="_blank" rel="noopener">elmerfem.org</a>
         or your distribution's package manager.
       </li>
@@ -356,24 +457,23 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
         covers parametric primitives well but doesn't do general
         CAD import.  For complex geometries, mesh externally with
         Gmsh, Salome, or your CAD tool's mesh export, then load
-        the <code>.msh</code> / <code>.unv</code> / <code>.stl</code>
-        file into FEM Studio.
+        the resulting <code>.msh</code> / <code>.unv</code> /
+        <code>.grd</code> / <code>.ans</code> / <code>.inp</code>
+        file into ElmerStudio.
       </li>
       <li>
         <strong>It isn't every Elmer feature.</strong>  Elmer's
-        solver has decades of accumulated capability.  FEM Studio
-        ships eight solver definition files covering common
-        physics (heat, linear elasticity, Navier-Stokes,
-        electrostatics, Helmholtz, advection-diffusion, static
-        current, result output); the rest is still accessible by
-        editing the SIF directly in the integrated text view.  If
-        a feature you need would benefit from a structured form,
+        solver has decades of accumulated capability.  ElmerStudio
+        ships eight solver definition files covering the most
+        common physics; the rest is still accessible by editing
+        the SIF directly in the integrated text view.  If a feature
+        you need would benefit from a structured form,
         <a href="https://github.com/FEMStudio/femstudio-releases/issues" target="_blank" rel="noopener">file an issue</a>.
       </li>
       <li>
-        <strong>It isn't open source.</strong>  Free as in beer, not
-        as in speech.  See the license for what's allowed and what
-        isn't.  This may change in the future.
+        <strong>It isn't open source.</strong>  Free as in beer,
+        not as in speech.  See the license for what's allowed and
+        what isn't.  This may change in the future.
       </li>
     </ul>
   </div>
@@ -392,7 +492,7 @@ description: A modern desktop GUI for the Elmer FEM solver, born from research f
       Bug reports, feature ideas, "this menu is confusing"
       observations, "what does this option mean" questions — all
       welcome.  When reporting a bug, please include your OS, the
-      FEM Studio version (Help → About in the app, or run with
+      ElmerStudio version (Help → About in the app, or run with
       <code>--version</code>), and what you were doing when it
       happened.
     </p>
