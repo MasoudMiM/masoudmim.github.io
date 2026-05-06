@@ -4,18 +4,20 @@ permalink: /femstudio/
 title: FEM Studio
 nav: true
 nav_order: 5
-description: A modern desktop GUI for Elmer FEM, born from research frustration and shared in case it's useful to anyone else.
+description: A modern desktop GUI for the Elmer FEM solver, born from research frustration and shared in case it's useful to anyone else.
 ---
 
-<!--
-  Page tone: personal & humble.  Two-tier naming convention adopted
-  for FEM Studio: "FEM Studio" everywhere user-facing on the web,
-  while the underlying binary keeps its original "ElmerStudio" name
-  (which is what they'll see in their downloads folder, --version
-  output, and the application window title bar).  The third paragraph
-  of the "Why this exists" section names this explicitly so observant
-  users aren't confused.
--->
+{% comment %}
+  Page tone: personal & humble. Two-tier naming: brand "FEM Studio"
+  on the website, binary "ElmerStudio" in downloads / window title /
+  --version output. Screenshots lead each section so users can see
+  the actual app before reading prose about it.
+
+  Note for future-me: Jekyll evaluates Liquid tags inside HTML
+  comments (it parses Liquid before HTML). Use {% raw %}{ % comment %}{% endraw %}
+  blocks (like this one) for documentation that mentions other
+  Liquid tags — that way the parser just skips the whole region.
+{% endcomment %}
 
 <div class="row mt-4">
   <div class="col-md-12">
@@ -32,17 +34,7 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
 
 <!-- ===========================================================
      Downloads
-     ===========================================================
-     Direct links to the public release repo.  GitHub's
-     /releases/latest endpoint redirects to the most recent
-     release, so we don't have to update version numbers here
-     when shipping a new build.
-
-     Note: the BINARY filenames still have "ElmerStudio-" prefix
-     (that's the internal name of the underlying executable).
-     Users see this in their downloads folder.  Reassuring them
-     in the file-name notes column avoids confusion.
--->
+     =========================================================== -->
 <div class="row mt-4">
   <div class="col-md-12">
     <h2>Download</h2>
@@ -91,17 +83,6 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
   </div>
 </div>
 
-<!-- Optional: a hero screenshot.  Drop your screenshot at
-     assets/img/femstudio/hero.png and uncomment.  The figure.liquid
-     include is al-folio's standard image helper.
-
-<div class="row mt-4">
-  <div class="col-md-12">
-    {% include figure.liquid path="assets/img/femstudio/hero.png" class="img-fluid rounded z-depth-1" zoomable=true caption="The main editor view, showing the SIF outline, structured form panel, and integrated mesh / results viewers." %}
-  </div>
-</div>
--->
-
 <!-- ===========================================================
      Why this exists
      =========================================================== -->
@@ -109,124 +90,260 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
   <div class="col-md-12">
     <h2>Why this exists</h2>
     <p>
-      I used Elmer for research and kept running into the same wall:
+      I used Elmer for research and kept running into the same friction.
       Elmer's solver is genuinely excellent — decades of careful
       development by CSC and the Finnish FEM community, free, open
-      source, and with capabilities that hold their own against
-      commercial codes — but the GUI hadn't aged well.  ElmerGUI is
-      built on Qt 4, which has been end-of-life since 2015; on
-      modern Linux distributions it often won't compile at all
-      without manual intervention.  More fundamentally, as
-      Elmer's own maintainers have noted on the project forum,
-      ElmerGUI represents about
-      "<a href="http://www.elmerfem.org/forum/viewtopic.php?f=4&t=3485" target="_blank" rel="noopener">one man-year of work</a>"
-      and never fully kept up with the solver.
-    </p>
-    <p>
-      That meant every time I onboarded a student, the first hour of
-      working with Elmer was spent on the workflow rather than the
-      physics.  Setting up a problem meant editing the Solver Input
-      File (.sif) by hand, mostly without help from the GUI for
-      anything beyond the most common solvers.  Mesh generation
-      meant launching a separate tool, exporting in the right
-      format, importing again, and hoping the boundary numbers
-      lined up.  Looking at results meant launching ParaView,
-      which itself has been broken on Ubuntu 24.04+
-      <a href="https://discourse.paraview.org/t/im-using-ubuntu-and-i-am-unable-to-open-a-vtp-vtu-vti-file-that-was-working-previously/15517" target="_blank" rel="noopener">because of an upstream libexpat regression</a>.
+      source, and capable of holding its own against commercial codes.
+      But every time I onboarded a student, the first hour with Elmer
+      was spent on workflow rather than physics: setting up a problem
+      meant editing the Solver Input File (.sif) by hand, mesh
+      generation meant flipping between separate command-line tools,
+      tweaking a parameter to study a trend meant duplicating the whole
+      project, and viewing results meant launching ParaView, which
+      itself has been
+      <a href="https://discourse.paraview.org/t/im-using-ubuntu-and-i-am-unable-to-open-a-vtp-vtu-vti-file-that-was-working-previously/15517" target="_blank" rel="noopener">broken on Ubuntu 24.04+</a>
+      since early 2024 because of an upstream libexpat regression.
     </p>
     <p>
       I built FEM Studio first to remove those rough edges from my own
-      workflow.  Then I realised it might help students and newcomers
-      get to the interesting parts of FEM faster, without having to
-      become a SIF-format expert before solving their first problem.
-      So here it is.
+      workflow, then realised it might help students and newcomers get
+      to the interesting parts of FEM faster.  ElmerGUI, the official
+      graphical frontend, remains a great option and a complementary
+      tool — FEM Studio simply takes a different approach in places
+      where I wanted something different.  Below is what's actually
+      inside.
     </p>
   </div>
 </div>
 
 <!-- ===========================================================
-     What's different
-     ===========================================================
-     Honest comparison with ElmerGUI.  No marketing-speak.
-     Each row is something I can stand behind based on real
-     differences between the two tools.
--->
+     Quick start: welcome screen
+     =========================================================== -->
 <div class="row mt-5">
   <div class="col-md-12">
-    <h2>What's different from ElmerGUI</h2>
+    <h2>Start fast: pick a template, hit go</h2>
     <p>
-      FEM Studio is not a fork or a replacement of ElmerGUI — both are
-      frontends for the same Elmer solver underneath.  ElmerGUI works
-      well for many people and remains the official option.  FEM Studio
-      exists because there are specific places where I wanted something
-      different:
+      Open the app and you're already a click away from a working
+      simulation.  Five quick-start templates cover the most common
+      Elmer workflows — Heat Conduction, Fluid Flow, Structural
+      Mechanics, Electrostatics — plus a Custom Setup wizard for
+      everything else.  Each template scaffolds a complete SIF with
+      sensible defaults that you can run immediately, then refine.
     </p>
+  </div>
+</div>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th style="width: 30%;">Area</th>
-          <th>ElmerGUI</th>
-          <th>FEM Studio</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>Toolkit</strong></td>
-          <td>Qt 4 (end-of-life since 2015; build issues on modern distros)</td>
-          <td>Qt 6 / PySide6, ships as a self-contained binary</td>
-        </tr>
-        <tr>
-          <td><strong>Mesh creation</strong></td>
-          <td>Imports an external mesh; integrated meshing relies on a separate tool launch</td>
-          <td>Built-in template-based mesh generator with live preview (rectangle, layered slab, box, cylinder, etc.)</td>
-        </tr>
-        <tr>
-          <td><strong>SIF editing</strong></td>
-          <td>Form-based for supported solvers; manual text editing for everything else</td>
-          <td>Form-based panels backed by a structured outline of every section, with syntax-highlighted text view that round-trips losslessly</td>
-        </tr>
-        <tr>
-          <td><strong>Materials</strong></td>
-          <td>Add by hand or via a small built-in library</td>
-          <td>Searchable materials library with units handling and direct copy-into-current-project</td>
-        </tr>
-        <tr>
-          <td><strong>Results viewing</strong></td>
-          <td>External (ParaView)</td>
-          <td>Integrated VTK-based viewer for quick inspection; "Open in ParaView" button when you need full power</td>
-        </tr>
-        <tr>
-          <td><strong>Parameter sweeps</strong></td>
-          <td>Manual — duplicate the project for each variant</td>
-          <td>First-class feature: define a sweep, run all variants, compare convergence side-by-side</td>
-        </tr>
-        <tr>
-          <td><strong>"Open in ParaView"</strong></td>
-          <td>Direct launch (broken on systems with libexpat 2.6.0–2.6.2)</td>
-          <td>Re-encodes the VTU on the fly to dodge the libexpat bug, so it just works on Ubuntu 24.04+ out of the box</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <p>
-      <small>
-        If you're a long-time ElmerGUI user with custom solver definitions,
-        complex geometry imports, or a heavy parallel-MPI workflow, I'd
-        suggest sticking with what works.  FEM Studio's sweet spot is
-        students, newcomers, and anyone who wants a faster path from
-        problem statement to first solution.
+<div class="row mt-3">
+  <div class="col-md-12">
+    <img src="{{ '/assets/img/femstudio/welcome.png' | relative_url }}"
+         alt="FEM Studio welcome screen showing five simulation templates and the Simulation Setup form pre-populated with defaults"
+         class="img-fluid rounded z-depth-1">
+    <p class="text-center mt-2">
+      <small class="text-muted">
+        The welcome screen.  Pick a template card or open an existing
+        <code>.sif</code> file.  Common simulation parameters sit in
+        the dock on the left, ready to edit.
       </small>
     </p>
   </div>
 </div>
 
 <!-- ===========================================================
-     Note on what FEM Studio is NOT
-     ===========================================================
-     This section sets honest expectations.  Better to say what's
-     missing up front than to have users discover gaps mid-workflow.
--->
+     Mesh generator
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>Built-in parametric mesh generator</h2>
+    <p>
+      Mesh creation is integrated.  Nine geometry templates (1D line,
+      2D rectangles, L-shapes, layered slabs, axisymmetric cylinders,
+      polar shells, 3D boxes, hollow and solid cylinders) cover most
+      academic and prototyping cases.  Pick one, dial in the
+      parameters, and a 3D preview updates as you type — no exporting
+      to a separate mesh file format and re-importing.
+    </p>
+    <p>
+      The 2D paint canvas lets you assign material regions and
+      boundary IDs visually before the mesh is ever generated.
+      Coordinate-system conversions (revolve a 2D section into an
+      axisymmetric solid, extrude into 3D) are done through five
+      mapping modes that ship with the app, with no command-line
+      ElmerGrid invocations to remember.
+    </p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <img src="{{ '/assets/img/femstudio/mesh_generator.png' | relative_url }}"
+         alt="Mesh generator with subcell controls on the left, 2D paint canvas on the right, and a live 3D preview of the resulting cylinder mesh below"
+         class="img-fluid rounded z-depth-1">
+    <p class="text-center mt-2">
+      <small class="text-muted">
+        Mesh generator: parametric controls, 2D paint canvas for
+        material regions, and a live 3D preview that updates as you
+        change parameters.
+      </small>
+    </p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <p>
+      For the cases the templates don't cover, the
+      <strong>Mesh → Operations</strong> menu exposes ElmerGrid's
+      full toolbox through a GUI: Scale, Translate, Rotate, Merge
+      Nodes, Reduce Order, Clone, Mirror.  Each operation is a
+      simple form-based dialog that runs ElmerGrid for you with the
+      right flags — no need to remember the
+      <code>-scale</code> / <code>-rotate</code> / <code>-merge</code>
+      command-line syntax.  External meshes (Gmsh
+      <code>.msh</code>, Abaqus <code>.unv</code>, STL) load
+      directly.
+    </p>
+  </div>
+</div>
+
+<!-- ===========================================================
+     Editor + outline + integrated results
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>One window, full workflow</h2>
+    <p>
+      The main editor is built around a single principle: everything
+      you need to set up, run, and inspect a simulation lives in one
+      window, not five.  The semantic outline on the left groups the
+      SIF into Setup, Physics, Domain, and Boundaries — click any
+      entry to jump to it.  The middle pane is a syntax-highlighted
+      SIF editor that round-trips losslessly with the form-based
+      dock panels.  The right pane is an integrated VTK results
+      viewer with field selection, colormaps (jet, viridis, plasma,
+      and more), displacement warping, and clip planes.
+    </p>
+    <p>
+      When you do need ParaView's full power, one click opens the
+      current results in it.  The "Open in ParaView" path also
+      transparently re-encodes the VTU on the way out to dodge the
+      libexpat 2.6.0–2.6.2 bug that breaks ParaView on Ubuntu
+      24.04+ — so it just works on a stock install with no patching.
+    </p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <img src="{{ '/assets/img/femstudio/full_editor.png' | relative_url }}"
+         alt="Full editor view: outline tree on the left, syntax-highlighted SIF in the middle, integrated VTK results viewer on the right showing displacement field on a meshed solid"
+         class="img-fluid rounded z-depth-1">
+    <p class="text-center mt-2">
+      <small class="text-muted">
+        Outline tree, SIF editor, and integrated results viewer
+        all in one window.  This particular project couples linear
+        elasticity with a heat equation; the right pane is showing
+        the displacement field on a refined mesh of about 67k nodes
+        and 15k cells.
+      </small>
+    </p>
+  </div>
+</div>
+
+<!-- ===========================================================
+     Parameter sweeps
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>Parameter sweeps as a first-class feature</h2>
+    <p>
+      Studying how a result depends on material properties, boundary
+      conditions, or geometry is something Elmer users do constantly
+      — and historically meant either duplicating the project N
+      times or writing shell scripts that templated the SIF.  FEM
+      Studio makes parameter sweeps a built-in feature.  Drop a
+      sibling <code>&lt;case&gt;.sweep.yaml</code> file next to your
+      SIF, declare which keywords vary and over what values, and
+      hit <strong>Run sweep</strong>.
+    </p>
+    <p>
+      Three sweep modes ship out of the box:
+    </p>
+    <ul>
+      <li>
+        <strong>Cartesian product</strong> — every combination of
+        every parameter.  Use it for full-factorial studies.
+      </li>
+      <li>
+        <strong>Zip</strong> — parameters advance together in
+        lockstep.  Use it when you want N pre-paired
+        configurations rather than N×M combinations.
+      </li>
+      <li>
+        <strong>Latin hypercube</strong> — random samples spread
+        across the parameter space.  Use it for design-of-experiments
+        style coverage when full Cartesian would be too many runs.
+      </li>
+    </ul>
+    <p>
+      Each sweep step runs in its own subdirectory with its own
+      generated SIF, runs the solver, and surfaces results in a
+      live status table as the sweep progresses.  You can abort
+      the whole sweep, skip just the current step, or watch
+      convergence plot live for the active run.  When it's done,
+      you have a structured directory tree of every result, ready
+      to post-process or feed into your own analysis script.
+    </p>
+  </div>
+</div>
+
+<!-- ===========================================================
+     Other features worth mentioning
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>Other things you get</h2>
+    <ul>
+      <li>
+        <strong>Live convergence plotting</strong> while ElmerSolver
+        runs.  Residuals stream into a chart in real time, so you
+        see divergence the moment it happens instead of staring at
+        terminal output.
+      </li>
+      <li>
+        <strong>A 35-entry materials library</strong> with one-click
+        insert.  Steel, aluminum, copper, water, air, and the
+        usual suspects all pre-defined with units handled for you.
+      </li>
+      <li>
+        <strong>Pre-flight validation</strong> before each run.
+        Catches things like two Body sections claiming the same
+        mesh ID (Elmer silently honors only the first) and unmapped
+        boundary conditions before you find them at simulation
+        time.
+      </li>
+      <li>
+        <strong>Parallel solver support</strong> through a settings
+        dialog — pick the number of MPI processes and FEM Studio
+        invokes <code>ElmerSolver_mpi</code> with the right
+        partitioning.
+      </li>
+      <li>
+        <strong>Cross-platform</strong>: same UI, same project
+        files, same workflow on both Linux and Windows.  Modern
+        Qt 6 stack, no Qt 4 build battles on current distros.
+      </li>
+      <li>
+        <strong>Self-contained binary</strong>.  Linux AppImage and
+        Windows installer ship with everything they need.  No pip,
+        no virtualenv, no PySide6 dependency hell.
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===========================================================
+     Honest boundaries
+     =========================================================== -->
 <div class="row mt-5">
   <div class="col-md-12">
     <h2>What it isn't</h2>
@@ -239,19 +356,22 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
         or your distribution's package manager.
       </li>
       <li>
-        <strong>It isn't a CAD tool.</strong>  FEM Studio's mesh generator
-        covers parametric primitives well but doesn't do general CAD
-        import.  For complex geometries, mesh externally with Gmsh,
-        Salome, or your CAD tool's mesh export, then load the .msh /
-        .unv / .stl file into FEM Studio.
+        <strong>It isn't a CAD tool.</strong>  The mesh generator
+        covers parametric primitives well but doesn't do general
+        CAD import.  For complex geometries, mesh externally with
+        Gmsh, Salome, or your CAD tool's mesh export, then load
+        the <code>.msh</code> / <code>.unv</code> / <code>.stl</code>
+        file into FEM Studio.
       </li>
       <li>
-        <strong>It isn't every Elmer feature.</strong>  Elmer's solver
-        has decades of accumulated capability.  FEM Studio surfaces the
-        common 80% with structured forms; the remaining 20% is still
-        accessible by editing the SIF directly in the integrated text
-        view.  If a feature you need is buried in the text view and
-        you'd like a form for it,
+        <strong>It isn't every Elmer feature.</strong>  Elmer's
+        solver has decades of accumulated capability.  FEM Studio
+        ships eight solver definition files covering common
+        physics (heat, linear elasticity, Navier-Stokes,
+        electrostatics, Helmholtz, advection-diffusion, static
+        current, result output); the rest is still accessible by
+        editing the SIF directly in the integrated text view.  If
+        a feature you need would benefit from a structured form,
         <a href="https://github.com/FEMStudio/femstudio-releases/issues" target="_blank" rel="noopener">file an issue</a>.
       </li>
       <li>
@@ -265,13 +385,7 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
 
 <!-- ===========================================================
      Feedback
-     ===========================================================
-     Issue tracker on the public release repo doubles as the
-     bug/feature/feedback channel.  Issue creation requires a
-     GitHub account — most users in this audience already have one,
-     but if not, an alternative low-friction channel via the site's
-     contact info would be a future addition.
--->
+     =========================================================== -->
 <div class="row mt-5">
   <div class="col-md-12">
     <h2>Feedback &amp; bug reports</h2>
@@ -281,8 +395,8 @@ description: A modern desktop GUI for Elmer FEM, born from research frustration 
       <a href="https://github.com/FEMStudio/femstudio-releases/issues" target="_blank" rel="noopener">github.com/FEMStudio/femstudio-releases/issues</a>.
       Bug reports, feature ideas, "this menu is confusing"
       observations, "what does this option mean" questions — all
-      welcome.  When reporting a bug, please include your OS,
-      the FEM Studio version (Help → About in the app, or run with
+      welcome.  When reporting a bug, please include your OS, the
+      FEM Studio version (Help → About in the app, or run with
       <code>--version</code>), and what you were doing when it
       happened.
     </p>
