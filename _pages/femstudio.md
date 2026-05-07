@@ -66,9 +66,12 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
     </div>
 
     <p class="text-center">
-        <a href="https://github.com/FEMStudio/femstudio-releases/releases/latest" target="_blank" rel="noopener">
-            See all release artifacts on GitHub
-        </a>
+      <a href="https://github.com/FEMStudio/femstudio-releases/releases/latest" target="_blank" rel="noopener">
+        See all release artifacts on GitHub
+      </a>
+      &nbsp;·&nbsp;
+      <img src="https://img.shields.io/github/downloads/FEMStudio/femstudio-releases/total.svg?style=flat&label=Total downloads&color=blue"
+          alt="Total downloads" style="vertical-align: middle;">
     </p>
   </div>
 </div>
