@@ -310,16 +310,15 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
 
 <div class="row mt-3">
   <div class="col-md-12">
-    <img src="{{ '/assets/img/femstudio/full_editor.png' | relative_url }}"
-         alt="Full editor view: outline tree on the left, syntax-highlighted SIF in the middle, integrated VTK results viewer on the right showing displacement field on a meshed solid"
+    <img src="{{ '/assets/img/femstudio/mesh_generator.png' | relative_url }}"
+         alt="Mesh generator across four geometry templates: a rectangle with a hole, an axisymmetric solid cylinder, a hollow polar cylindrical shell, and a curved domain produced via geometry mappings."
          class="img-fluid rounded z-depth-1">
     <p class="text-center mt-2">
       <small class="text-muted">
-        Outline tree, SIF editor, and integrated results viewer
-        all in one window.  This particular project couples linear
-        elasticity with a heat equation; the right pane is showing
-        the displacement field on a refined mesh of about 67k nodes
-        and 15k cells.
+        Four mesh-generator examples: rectangle with a hole, axisymmetric
+        solid cylinder, hollow polar cylindrical shell, and a curved domain
+        produced via geometry mappings.  The 2D paint canvas, parametric
+        controls, and live 3D preview update together as you edit.
       </small>
     </p>
   </div>
