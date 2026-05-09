@@ -190,9 +190,7 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
          alt="Mesh generator across four geometry templates: a rectangle with a hole, an axisymmetric solid cylinder, a hollow polar cylindrical shell, and a curved domain produced via geometry mappings. The 2D paint canvas, parametric controls, and live 3D preview update together as you edit.">
     <p class="text-center mt-2">
       <small class="text-muted">
-        Mesh generator: parametric controls, 2D paint canvas for
-        material regions, and a live 3D preview that updates as you
-        change parameters.
+        Mesh generator across four geometry templates: a rectangle with a hole, an axisymmetric solid cylinder, a hollow polar cylindrical shell, and a curved domain produced via geometry mappings. The 2D paint canvas, parametric controls, and live 3D preview update together as you edit.
       </small>
     </p>
   </div>
