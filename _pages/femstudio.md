@@ -212,9 +212,9 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
     <ul>
       <li>
         <strong>Mesh → Cleanup</strong>: Auto Clean, Merge Nodes,
-        Remove Unused Nodes, Reorder Bodies, Reorder Boundaries.
-        Each is a form-based dialog that runs ElmerGrid in place
-        and reloads the result.
+        Remove Unused Nodes — the "fix actual mesh defects"
+        operations.  Each is a form-based dialog that runs
+        ElmerGrid in place and reloads the result.
       </li>
       <li>
         <strong>Mesh → Transform</strong>: Scale, Translate, Rotate,
@@ -245,6 +245,124 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
     </p>
   </div>
 </div>
+
+<!-- ===========================================================
+     M9 / M9b / M9c / M9d — Bodies & Boundaries submenu — NEW in 0.7.0
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>Edit body and boundary IDs without re-meshing <small class="text-muted">(new in 0.7.0)</small></h2>
+    <p>
+      An import-time mesh almost never lands with the body and
+      boundary IDs grouped the way your physics actually wants
+      them.  Three recurring frustrations come up on the Elmer
+      forum:
+    </p>
+    <ul>
+      <li>
+        <strong>"How do I group several boundary IDs under one
+        Boundary Condition?"</strong>  The classic workaround is
+        the `Type` column in <code>mesh.boundary</code>, but
+        finding it from the GUI was historically opaque.
+      </li>
+      <li>
+        <strong>"My plate has a hole and the outer and inner
+        perimeters got bundled under one BC index."</strong>
+        ElmerGrid's side-code system is direction-aware but not
+        topology-aware, so non-simply-connected domains lump
+        topologically-disconnected boundaries together.
+      </li>
+      <li>
+        <strong>"I have multiple physical volumes but Elmer sees
+        one body."</strong>  Cloning a
+        mesh, mirroring it, or importing from a CAD tool that
+        doesn't separate physical volumes at export all produce
+        meshes where one ID covers multiple disconnected pieces.
+      </li>
+    </ul>
+    <p>
+      The new <strong>Mesh → Bodies &amp; Boundaries</strong>
+      submenu collects fifteen operations that solve these
+      directly, post-import, no re-meshing required.  Four
+      categories:
+    </p>
+    <ul>
+      <li>
+        <strong>Merge</strong> ranges of body or boundary IDs into
+        one (<strong>Merge Body Range…</strong> /
+        <strong>Merge Boundary Range…</strong>).  Wraps the
+        relevant ElmerGrid command-line flags but with a dialog
+        that shows you the IDs and their element counts side-by-
+        side, so you pick visually instead of trying to remember
+        what's where.  This is the direct fix for the "group
+        several BCs under one Boundary Condition" question.
+      </li>
+      <li>
+        <strong>Add</strong> a new boundary at the interface
+        between two bodies (<strong>Add Interface Boundary…</strong>)
+        or at the intersection of two existing boundaries
+        (<strong>Add Intersection Boundary…</strong>).  Useful
+        for thermal contact, fluid-solid coupling, line loads,
+        and edge constraints added without revisiting the
+        mesher.
+      </li>
+      <li>
+        <strong>Split a boundary</strong> four different ways.
+        The headline is the one-click <strong>Split All
+        Disconnected Boundaries</strong> — no dialog, no
+        parameters: walks every boundary, finds the ones with
+        more than one connected component, and splits each into
+        fresh IDs.  For the canonical plate-with-hole import,
+        that's one click and the outer and inner perimeters
+        become separate BCs.  Per-boundary variants
+        (<strong>Split Boundary by Components</strong>,
+        <strong>by Feature Angle</strong>, <strong>by
+        Plane</strong>, <strong>by Coordinate</strong>) handle
+        more targeted cases — Feature Angle is the right tool
+        for splitting a cube that imported with all six faces
+        under one BC into per-face BCs (at the 30° default
+        threshold, the cube's 90° corners register as feature
+        edges and the six faces split cleanly).
+      </li>
+      <li>
+        <strong>Split a body</strong> by connected components
+        (<strong>Split Body by Components…</strong>), or
+        extract a subset of bodies into a new self-contained
+        mesh (<strong>Extract Bodies…</strong>).  Split Body
+        closes the "after Clone, everything is one body" gap
+        directly.  It offers face-adjacency (default — safer)
+        or node-adjacency (more permissive — useful when
+        touching-but-not-merged geometry should count as one
+        body).
+      </li>
+    </ul>
+    <p>
+      Every dialog shows a live ElmerGrid command preview at the
+      bottom, so you see the exact invocation that's about to run
+      before clicking OK — handy for learning the underlying
+      ElmerGrid flags or scripting the same operation later.
+      ID dropdowns are labelled with element counts
+      (<em>"3&nbsp;(1,842 elements)"</em>) so you pick the right
+      one visually instead of by memory.  All operations write
+      to a new output directory (suffixed with what was done,
+      e.g. <code>_split_disconnected</code>) and leave the
+      source mesh untouched.
+    </p>
+    <p>
+      The five splitting operations are implemented in pure
+      Python, directly editing <code>mesh.boundary</code> /
+      <code>mesh.elements</code> — ElmerGrid has no command for
+      splitting one boundary into many, so these fill a real
+      gap rather than wrap an existing flag.  The body-component
+      splitter and the topology-aware boundary splitter walk the
+      element-adjacency graph properly, so they handle the
+      pathological cases (a body that's "two cubes touching only
+      at an edge", a boundary that's actually a Möbius strip)
+      that simpler approaches would fail on.
+    </p>
+  </div>
+</div>
+
 
 <!-- ===========================================================
      Assembly tab — NEW in 0.7.0
@@ -387,6 +505,25 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
       and a properties preview that injects materials with units
       handled, and a <strong>Boundary Conditions</strong> form for
       authoring BCs without touching the SIF.
+    </p>
+    <p>
+      <strong>SIF keyword autocomplete <small class="text-muted">(new in 0.7.0)</small></strong>
+      &mdash; two characters into a keyword inside any known
+      section (Solver, Material, Body Force, Boundary Condition,
+      …) and a popup appears with the keywords valid for
+      <em>that section</em>, ranked by exact-prefix match first
+      then substring match.  Tooltips show what each keyword does
+      (the <code>Whatis</code> text from the bundled EDFs for
+      EDF-sourced keywords, hand-written descriptions for the
+      Header / Simulation / Constants / Body sections).
+      Combo-valued keywords also complete to their allowed values
+      once the user is past the <code>=</code> &mdash; type
+      <code>Convection = </code> in a Solver block and the popup
+      offers <code>None</code> / <code>Constant</code> /
+      <code>Computed</code>.  Top-level (between sections) the
+      popup suggests section kinds.  Esc dismisses; Enter / Tab
+      accepts.  Imported ElmerGUI EDF files contribute their
+      keywords to the popup the same way the bundled ones do.
     </p>
     <p>
       The right pane is an integrated VTU results viewer with field
