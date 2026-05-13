@@ -247,11 +247,11 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
 </div>
 
 <!-- ===========================================================
-     M9 / M9b / M9c / M9d — Bodies & Boundaries submenu — NEW in 0.7.0
+     M9 / M9b / M9c / M9d — Bodies & Boundaries submenu — NEW in 0.7+
      =========================================================== -->
 <div class="row mt-5">
   <div class="col-md-12">
-    <h2>Edit body and boundary IDs without re-meshing <small class="text-muted">(new in 0.7.0)</small></h2>
+    <h2>Edit body and boundary IDs without re-meshing <small class="text-muted">(new in 0.7+)</small></h2>
     <p>
       An import-time mesh almost never lands with the body and
       boundary IDs grouped the way your physics actually wants
@@ -364,11 +364,11 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
 
 
 <!-- ===========================================================
-     Assembly tab — NEW in 0.7.0
+     Assembly tab — NEW in 0.7+
      =========================================================== -->
 <div class="row mt-5">
   <div class="col-md-12">
-    <h2>Combine multiple meshes into one assembly <small class="text-muted">(new in 0.7.0)</small></h2>
+    <h2>Combine multiple meshes into one assembly <small class="text-muted">(new in 0.7+)</small></h2>
     <p>
       Some problems need more than one mesh.  A rotor next to a
       stator, a fuel rod inside a coolant channel, a pipe with an
@@ -505,7 +505,7 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
       authoring BCs without touching the SIF.
     </p>
     <p>
-      <strong>SIF keyword autocomplete <small class="text-muted">(new in 0.7.0)</small></strong>
+      <strong>SIF keyword autocomplete <small class="text-muted">(new in 0.7+)</small></strong>
       &mdash; two characters into a keyword inside any known
       section (Solver, Material, Body Force, Boundary Condition,
       …) and a popup appears with the keywords valid for
