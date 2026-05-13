@@ -255,8 +255,7 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
     <p>
       An import-time mesh almost never lands with the body and
       boundary IDs grouped the way your physics actually wants
-      them.  Three recurring frustrations come up on the Elmer
-      forum:
+      them.  Three recurring challenges:
     </p>
     <ul>
       <li>
@@ -432,8 +431,7 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
       (Rotational for cylindrical sliding boundaries, Radial for
       parallel periodic planes, Level Projector Generic as a
       universal fallback), and a <code>Galerkin Projector =
-      Logical True</code> on every master block.  The most common
-      Elmer-forum support thread, eliminated.
+      Logical True</code> on every master block.
     </p>
     <p>
       A <strong>Pick</strong> mode in the toolbar handles the
