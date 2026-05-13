@@ -7,19 +7,6 @@ nav_order: 5
 description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born from research frustration and shared in case it's useful to anyone else.
 ---
 
-{% comment %}
-  Page tone: personal & humble. Product name is "ElmerStudio"
-  throughout the page body. The page section / nav tab is named
-  "FEM Studio" because this section may host other FEM-related
-  projects in the future — keep that distinction in mind when
-  editing: "FEM Studio" is the section, "ElmerStudio" is the app.
-
-  Note for future-me: Jekyll evaluates Liquid tags inside HTML
-  comments (it parses Liquid before HTML). Use {% raw %}{ % comment %}{% endraw %}
-  blocks (like this one) for documentation that mentions other
-  Liquid tags — that way the parser just skips the whole region.
-{% endcomment %}
-
 <div class="row mt-4">
   <div class="col-md-12">
     <p class="lead">
@@ -255,6 +242,111 @@ description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born
       extents).  Display options — boundary colouring by ID,
       wireframe, ground grid, origin axes, clip plane, slice
       plane — all live in the same menu and persist across runs.
+    </p>
+  </div>
+</div>
+
+<!-- ===========================================================
+     Assembly tab — NEW in 0.7.0
+     =========================================================== -->
+<div class="row mt-5">
+  <div class="col-md-12">
+    <h2>Combine multiple meshes into one assembly <small class="text-muted">(new in 0.7.0)</small></h2>
+    <p>
+      Some problems need more than one mesh.  A rotor next to a
+      stator, a fuel rod inside a coolant channel, a pipe with an
+      embedded sensor — each part probably came from a different
+      source (one from your CAD export via Gmsh, another from an
+      Elmer <code>.grd</code> script, a third from a Salome
+      <code>.unv</code>), and historically the only way to join
+      them was a multi-step ElmerGrid dance: write a glue file by
+      hand, get the offset numbering right, hope the boundary IDs
+      didn't collide, hope you remembered the mortar BC keywords
+      correctly when you got to the SIF.  I lost an afternoon to
+      exactly this when a colleague asked for help with a
+      rotor-stator coupling, and the result is the Assembly tab.
+    </p>
+    <p>
+      The workflow is now: add each source mesh as a
+      <strong>Part</strong>, give it a position and orientation,
+      preview the whole thing in 3D, and bake.  Three bake modes
+      cover the common cases:
+    </p>
+    <ul>
+      <li>
+        <strong>Concatenate</strong> — drop the parts side-by-side
+        with offset IDs.  Useful when the parts are spatially
+        separate (e.g., two PCBs on a board) or when you want to
+        author the inter-part interfaces yourself in the SIF.
+      </li>
+      <li>
+        <strong>Weld</strong> — collapse coincident nodes across
+        parts within a tolerance, so meshes that nominally touch
+        but came from different sources become a single
+        watertight mesh.
+      </li>
+      <li>
+        <strong>Interface</strong> — keep both sides of every
+        detected mating face distinct (each gets its own boundary
+        ID) and emit a <code>mesh.mortars</code> sidecar listing
+        the pairs.  This is the right mode for sliding contacts,
+        non-conforming meshes, and rotor-stator setups.
+      </li>
+    </ul>
+    <p>
+      Per-Part topology operations let you tidy each mesh before
+      the bake without ever modifying the source files on disk:
+      merge boundaries that the source mesher split unhelpfully,
+      delete an interior interface that isn't really a boundary,
+      extract only the bodies you want.  Per-Part naming lets you
+      label each body and boundary ID with something
+      human-readable — <code>rotor_slide</code>, <code>stator_outer</code>,
+      <code>core</code> — and those labels flow through to the
+      baked <code>mesh.names</code>, the integrated Mesh tab's
+      region selectors, and any SIF you write afterward.
+    </p>
+    <p>
+      For Interface-mode bakes, the <strong>Generate Mortar
+      SIF…</strong> action turns the detected mortar pairs into
+      ready-to-paste <code>Boundary Condition</code> blocks with
+      proper <code>Mortar BC = Integer N</code> linkage, a
+      projector kind auto-detected from the interface geometry
+      (Rotational for cylindrical sliding boundaries, Radial for
+      parallel periodic planes, Level Projector Generic as a
+      universal fallback), and a <code>Galerkin Projector =
+      Logical True</code> on every master block.  The most common
+      Elmer-forum support thread, eliminated.
+    </p>
+    <p>
+      A <strong>Pick</strong> mode in the toolbar handles the
+      flip side: when you've imported a mesh and don't know which
+      numeric boundary tag corresponds to which physical face,
+      switch Pick to <em>Boundary</em>, click a face in the 3D
+      preview, and the status bar tells you the ID (and how many
+      cells the group contains).  The whole boundary group lights
+      up translucent orange so you see what you've actually
+      identified, not just one facet.  Body picks work the same
+      way.  Once you know which IDs are which, label them in
+      Edit Names and the rest of the workflow uses your labels.
+    </p>
+  </div>
+</div>
+
+<div class="row mt-3">
+  <div class="col-md-12">
+    <img src="{{ '/assets/img/femstudio/shaft_sleeve_demo.png' | relative_url }}"
+         alt="Assembly tab showing two coaxial cylinders — a red inner shaft and a blue outer annular sleeve — placed at the origin. The right panel lists the selected shaft Part's IDs (Bodies 1, 2 and Boundaries 3-6), placement transforms, and Bake options."
+         class="img-fluid rounded z-depth-1">
+    <p class="text-center mt-2">
+      <small class="text-muted">
+        Two coaxial cylinders composed in the Assembly tab.  The
+        red inner shaft (two material subdomains — core and ring)
+        is selected; the blue outer sleeve sits coaxially around
+        it.  Their mating surface at <code>r=1</code> becomes a
+        rotational mortar pair after an Interface-mode bake, and
+        Generate Mortar SIF emits the matching
+        <code>Boundary Condition</code> blocks.
+      </small>
     </p>
   </div>
 </div>
