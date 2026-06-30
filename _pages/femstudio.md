@@ -2,7 +2,7 @@
 layout: page
 permalink: /femstudio/
 title: FEM Studio
-nav: true
+nav: false
 nav_order: 5
 description: ElmerStudio — a modern desktop GUI for the Elmer FEM solver, born from research frustration and shared in case it's useful to anyone else.
 ---
