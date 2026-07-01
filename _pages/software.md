@@ -10,4 +10,6 @@ children:
   - title: divider
   - title: Sketch Mechanisms
     permalink: /sketch-mechanisms/
+  - title: Uncertainty Calculator
+    permalink: /uncertainty-calc/
 ---
