@@ -7,6 +7,8 @@ dropdown: true
 children:
   - title: FEM Studio
     permalink: /femstudio/
+  - title: MeshToFeatures
+    permalink: /meshtofeatures/
   - title: divider
   - title: Sketch Mechanisms
     permalink: /sketch-mechanisms/
