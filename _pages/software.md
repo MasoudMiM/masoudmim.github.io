@@ -14,4 +14,6 @@ children:
     permalink: /sketch-mechanisms/
   - title: Uncertainty Calculator
     permalink: /uncertainty-calc/
+  - title: Dogear
+    permalink: /dogear/
 ---
