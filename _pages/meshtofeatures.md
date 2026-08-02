@@ -36,9 +36,9 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
   <div class="col-md-6 mb-3">
     <a href="https://github.com/MasoudMiM/MeshToFeatures/releases"
        class="btn btn-primary btn-lg" target="_blank" rel="noopener" style="min-width: 240px;">
-      <i class="fas fa-download"></i>&nbsp;&nbsp;Download (beta)
+      <i class="fas fa-download"></i>&nbsp;&nbsp;Download
     </a>
-    <p class="mt-2"><small class="text-muted">First public beta — reports welcome.</small></p>
+    <p class="mt-2"><small class="text-muted">v0.17.0 — bug reports with the STL attached are welcome.</small></p>
   </div>
 </div>
 
@@ -50,7 +50,8 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
       Each rebuild produces two things: a reconstruction group holding the
       recognized analytic surfaces, and a PartDesign body whose feature
       tree reads like the part's manufacturing story — terraces, hole
-      patterns, counterbores, cross-holes, lateral pads.
+      patterns, counterbores, countersinks, conical pockets, cross-holes,
+      lateral pads.
     </p>
   </div>
 </div>
@@ -88,7 +89,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
     <p>
       The pipeline has four stages.  <strong>Segmentation &amp;
       recognition</strong> region-grows the mesh into patches and fits
-      analytic surfaces (planes, cylinders) to each.
+      analytic surfaces (planes, cylinders, cones) to each.
       <strong>Snapping</strong> then nudges the raw fits toward design
       intent — near-parallel directions unify to canonical axes, coaxial
       cylinders merge, near-equal radii equalize, and values round to
@@ -103,7 +104,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
     </p>
     <p>
       The geometry core is FreeCAD-free (numpy / scipy / trimesh /
-      shapely), which is what makes the 300+ test pytest suite and the
+      shapely), which is what makes the 450+ test pytest suite and the
       multi-part regression gate possible outside the GUI.
     </p>
   </div>
@@ -115,16 +116,18 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
     <h2>What it handles — and what it doesn't</h2>
     <p>
       The sweet spot is <strong>prismatic parts</strong>: plates, brackets,
-      housings, fixtures — the world of planes and cylinders.  Within that
-      scope it rebuilds base solids from arbitrary footprints, multi-depth
-      stepped pockets with islands, through and blind holes, grid patterns,
-      counterbores (including bores opening below the top face),
-      cross-axis holes, and lateral flanges and gussets with true-slope
+      housings, fixtures — the world of planes, cylinders, and cones.  Within
+      that scope it rebuilds base solids from arbitrary footprints,
+      multi-depth stepped pockets with islands, through and blind holes,
+      grid patterns, counterbores (including bores opening below the top
+      face), countersunk and counterdrilled holes, conical pockets and
+      tapered through holes, cross-axis holes both through and blind,
+      chamfers, and lateral flanges and gussets with true-slope
       undersides.
     </p>
     <p>
-      Honest limits, per the beta label: organic and 3D-scanned shapes are
-      out of scope; chamfers are detected but not yet rebuilt; and
+      Honest limits: organic and 3D-scanned shapes are out of scope; spheres
+      and tori are fitted by the core but not yet rebuilt as features; and
       dimensional fidelity is bounded by the mesh tessellation (snapping
       works at roughly 0.1% of the part diagonal).  The
       <a href="https://github.com/MasoudMiM/MeshToFeatures#limitations-please-read-before-filing-bugs"
@@ -138,11 +141,12 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
   <div class="col-md-12">
     <h2>Install</h2>
     <p>
-      In FreeCAD (1.1+), open <strong>Edit → Preferences → Addon
-      Manager</strong> and add
+      In FreeCAD (1.0+), install <em>MeshToFeatures</em> from the
+      <strong>Addon Manager</strong> and restart (until it appears in the
+      official addon index, add
       <code>https://github.com/MasoudMiM/MeshToFeatures</code> as a custom
-      repository, then install <em>MeshToFeatures</em> from the Addon
-      Manager and restart.  The geometry core needs a few Python packages
+      repository under <strong>Edit → Preferences → Addon
+      Manager</strong> first).  The geometry core needs a few Python packages
       inside FreeCAD's interpreter (numpy, scipy, trimesh, shapely) — the
       Addon Manager will offer them, and the
       <a href="https://github.com/MasoudMiM/MeshToFeatures/blob/main/docs/VERIFY.md"
@@ -150,7 +154,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
       platform.
     </p>
     <p>
-      This is a first beta.  If a part reconstructs badly, the most useful
+      If a part reconstructs badly, the most useful
       bug report in the world is the STL itself plus the Report view
       output — the
       <a href="https://github.com/MasoudMiM/MeshToFeatures/issues"
