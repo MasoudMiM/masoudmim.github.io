@@ -67,7 +67,7 @@ og_image: # The site-wide (default for all links) Open Graph preview image
 github_username: MasoudMiM # your GitHub user name
 gitlab_username: # your GitLab user name
 x_username: MasoudMiM # your X handle
-bluesky_username: masoudmim.bsky.social # bluesky
+bluesky_username: masoudmim.com # bluesky
 mastodon_username: # your mastodon instance+username in the format instance.tld/@username
 linkedin_username: masoudmim # your LinkedIn user name
 telegram_username: # your Telegram user name
@@ -433,5 +433,5 @@ jsonresume:
 # Bluesky Feed Configuration
 bluesky:
   enabled: true
-  username: masoudmim.bsky.social
+  username: masoudmim.com
   post_limit: 10
