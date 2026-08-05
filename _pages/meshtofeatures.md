@@ -38,7 +38,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
        class="btn btn-primary btn-lg" target="_blank" rel="noopener" style="min-width: 240px;">
       <i class="fas fa-download"></i>&nbsp;&nbsp;Download
     </a>
-    <p class="mt-2"><small class="text-muted">v0.17.0 — bug reports with the STL attached are welcome.</small></p>
+    <p class="mt-2"><small class="text-muted">v0.17.1 — bug reports with the STL attached are welcome.</small></p>
   </div>
 </div>
 
@@ -141,7 +141,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
   <div class="col-md-12">
     <h2>Install</h2>
     <p>
-      In FreeCAD (1.0+), install <em>MeshToFeatures</em> from the
+      In FreeCAD (1.1+), install <em>MeshToFeatures</em> from the
       <strong>Addon Manager</strong> and restart (until it appears in the
       official addon index, add
       <code>https://github.com/MasoudMiM/MeshToFeatures</code> as a custom
@@ -149,7 +149,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
       Manager</strong> first).  The geometry core needs a few Python packages
       inside FreeCAD's interpreter (numpy, scipy, trimesh, shapely) — the
       Addon Manager will offer them, and the
-      <a href="https://github.com/MasoudMiM/MeshToFeatures/blob/main/docs/VERIFY.md"
+      <a href="https://github.com/MasoudMiM/MeshToFeatures/blob/main/freecad/meshtofeatures_wb/docs/VERIFY.md"
          target="_blank" rel="noopener">verification guide</a> covers each
       platform.
     </p>
