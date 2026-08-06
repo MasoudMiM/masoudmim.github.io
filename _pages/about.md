@@ -19,8 +19,21 @@ selected_papers: false # includes a list of papers marked as "selected={true}"
 social: true  # includes social icons at the bottom of the page
 ---
  
-Welcome to my corner of the digital space! I'm Masoud Masoumi, a passionate problem solver with a strong academic foundation in Engineering, Data Analytics, and Machine Learning. My expertise lies in harnessing cutting-edge technologies to address complex challenges. Beyond the classroom, I've immersed myself in research, exploring applications of machine learning and data analytics in science and engineering. 
 
-In addition to my academic pursuits, I've earned certificates in Applied Mathematics and Data Analytics and completed specialized training in Deep Learning. My professional trajectory spans a spectrum of projects, ranging from predicting stress fields using Convolutional Neural Networks and designing electricity consumption models with real-time energy data to implementing Large Language Models and Natural Language Processing to tackle various tasks. I've also delved into data analytics and machine learning solutions for atmospheric data analysis and predictions.
+I'm Masoud Masoumi, a data scientist and machine learning engineer with a PhD in Engineering and a track record of building and shipping production software
 
-Since leaving my full-time academic position, I worked as a Physical Scientist at the Hydrographic Surveys Division within the Office of Coast Survey, part of NOAA’s National Ocean Service. In this role, I was primarily responsible for all phases of automated workflow development for the [National Bathymetric Source](https://registry.opendata.aws/noaa-bathymetry) model, including design, algorithm and software development, testing, and documentation. I am currently with the U.S. Department of the Treasury at the Internal Revenue Service as a Data Scientist, where I focus on exploring novel data retrieval methods and providing innovative recommendations for data-driven decisions. Additionally, I collaborate with business and technology partners to understand their needs and implement analytical solutions. My responsibilities also include cleaning, transforming, analyzing, and integrating structured and unstructured data from various sources, as well as troubleshooting and proposing solutions to project bottlenecks.
+I'm currently a Data Scientist at the U.S. Department of the Treasury (IRS), where I build data retrieval and analytics solutions over large-scale structured and unstructured data, working with business and technology partners to turn messy sources into decisions. Before that, I was a Physical Scientist at NOAA's Office of Coast Survey, where I designed and developed the automated workflows behind the [National Bathymetric Source](https://registry.opendata.aws/noaa-bathymetry) model, from algorithm design through software development, testing, and documentation.
+
+My machine learning work spans both research and production: predicting stress fields with convolutional neural networks, modeling electricity consumption from real-time energy data, applying LLMs and NLP to document and text problems, and building ML pipelines for atmospheric data prediction. I came to this from six years as a professor of mechanical engineering, and I also teach part-time on occasion, which keeps me practiced at explaining complex technical material to any audience
+
+I also build and maintain open tools that people actually use. A few of them:
+
+- **[FEM Studio](https://masoudmim.com/femstudio/)**: a cross-platform desktop GUI for the Elmer finite element solver, with an integrated mesh generator, parameter sweeps, and live results visualization.
+- **[MeshToFeatures](https://masoudmim.com/meshtofeatures/)**: a FreeCAD workbench that reverse-engineers STL meshes into editable CAD feature trees, backed by a 450+ test geometry core built on NumPy, SciPy, and Trimesh.
+- **[Dogear](https://masoudmim.com/dogear/)** and **[Sketch Mechanisms](https://masoudmim.com/sketch-mechanisms/)**: Obsidian plugins for reading tracking and animated mechanism sketches, with over 1,100 tests between them.
+
+I hold Azure certifications in AI engineering and data science, Certified Scrum credentials, and a master's certificate in applied mathematics and data analytics. My work has been recognized as a top-ten finalist in the FAA Data Challenge and funded by the U.S. Department of Energy.
+
+I'm always open to discussing work at the intersection of machine learning, scientific computing, and production software. Feel free to reach out. [Get in touch](mailto:masoumi.masoud@pm.me).
+
+
