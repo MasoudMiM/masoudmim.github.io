@@ -30,7 +30,7 @@ I also build and maintain open tools that people actually use. A few of them:
 
 - **[FEM Studio](https://masoudmim.com/femstudio/)**: a cross-platform desktop GUI for the Elmer finite element solver, with an integrated mesh generator, parameter sweeps, and live results visualization.
 - **[MeshToFeatures](https://masoudmim.com/meshtofeatures/)**: a FreeCAD workbench that reverse-engineers STL meshes into editable CAD feature trees, backed by a 450+ test geometry core built on NumPy, SciPy, and Trimesh.
-- **[Dogear](https://masoudmim.com/dogear/)** and **[Sketch Mechanisms](https://masoudmim.com/sketch-mechanisms/)**: Obsidian plugins for reading tracking and animated mechanism sketches, with over 1,100 tests between them.
+- **[Dogear](https://masoudmim.com/dogear/)** and **[Sketch Mechanisms](https://masoudmim.com/sketch-mechanisms/)**: Obsidian plugins for reading tracking and animated mechanism sketches, with over 1,400 tests between them.
 
 I hold Azure certifications in AI engineering and data science, Certified Scrum credentials, and a master's certificate in applied mathematics and data analytics. My work has been recognized as a top-ten finalist in the FAA Data Challenge and funded by the U.S. Department of Energy.
 

@@ -3,7 +3,7 @@ layout: page
 permalink: /dogear/
 title: Dogear
 nav: false
-description: An Obsidian plugin that turns your vault into a reading tracker- Goodreads import, progress by page, percentage or listening time, a cover grid, and reading statistics, all in plain Markdown.
+description: An Obsidian plugin that turns your vault into a reading tracker- Goodreads import and CSV export, progress by page, percentage or listening time, a cover grid, and reading statistics, all in plain Markdown.
 ---
 
 <div class="row mt-4">
@@ -108,6 +108,12 @@ Anything you write here is yours.
       and admits the gap in the note.  A tracker that quietly fabricates your
       reading history is worse than one that tells you what it could not know.
     </p>
+    <p>
+      The way out is as open as the way in.  The whole library can be exported
+      as a CSV in the same shape Goodreads produces, so it can be imported into
+      other trackers; your notes and reviews stay in the vault, and the file is
+      written beside them rather than hidden in a download folder.
+    </p>
   </div>
 </div>
 
@@ -189,6 +195,12 @@ Anything you write here is yours.
         loses information.
       </li>
       <li>
+        <strong>CSV export</strong> in the same shape Goodreads produces, so
+        the library can move on to another tracker the way it arrived, with
+        series preserved so a library can round-trip back in without losing
+        them.
+      </li>
+      <li>
         <strong>A library view</strong> with a cover grid, shelf filters,
         accent-insensitive search across titles, authors and series, and sorting
         by recent activity, title, author or rating.
@@ -202,7 +214,9 @@ Anything you write here is yours.
         <strong>Metadata from four catalogues</strong>: Open Library, Google
         Books, the Library of Congress and the Internet Archive, tried in order
         with automatic fallback and client-side rate limiting, so their limits
-        are respected rather than discovered.
+        are respected rather than discovered.  Lookups are cached on your
+        machine and survive a restart, so reopening Obsidian does not repeat
+        them.
       </li>
       <li>
         <strong>Covers that survive</strong>: fetched from Open Library by ISBN
@@ -217,7 +231,7 @@ Anything you write here is yours.
       </li>
       <li>
         <strong>A tested core</strong>: the logic layer imports neither the DOM
-        nor the Obsidian API and is covered by more than 1,100 tests, including
+        nor the Obsidian API and is covered by more than 1,300 tests, including
         fuzzing that checks your own writing survives repeated rewrites
         untouched.
       </li>
