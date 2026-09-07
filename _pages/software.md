@@ -10,6 +10,8 @@ children:
   - title: MeshToFeatures
     permalink: /meshtofeatures/
   - title: divider
+  - title: omagent
+    permalink: /omagent/
   - title: Sketch Mechanisms
     permalink: /sketch-mechanisms/
   - title: Uncertainty Calculator
