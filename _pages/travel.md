@@ -53,10 +53,10 @@ nav_order: 7
   /* Detect al-folio dark mode (it sets data-theme="dark" on <html>) */
   var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
 
-  /* Tile layers — CartoDB, no API key required */
-  var tileLight = 'https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png';
-  var tileDark  = 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
-  var tileAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/">CARTO</a>';
+  /* Tile layers — OpenStreetMap (no API key required) */
+  var tileLight = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var tileDark  = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+  var tileAttrib = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
 
   var map = L.map('travel-map', {
     center: [25, 10],
@@ -66,10 +66,16 @@ nav_order: 7
     maxZoom: 10
   });
 
+  /* Apply CSS filter to map tiles in dark mode */
+  function updateMapFilter(dark) {
+    document.getElementById('travel-map').style.filter = dark
+      ? 'invert(1) hue-rotate(180deg) brightness(0.8) contrast(1.2)'
+      : 'none';
+  }
+  updateMapFilter(isDark);
+
   L.tileLayer(isDark ? tileDark : tileLight, {
-    attribution: tileAttrib,
-    subdomains: 'abcd',
-    maxZoom: 19
+    attribution: tileAttrib
   }).addTo(map);
 
   /* If user toggles theme after load, swap tile layer */
@@ -79,10 +85,9 @@ nav_order: 7
       isDark = nowDark;
       map.eachLayer(function (layer) { if (layer._url) map.removeLayer(layer); });
       L.tileLayer(isDark ? tileDark : tileLight, {
-        attribution: tileAttrib,
-        subdomains: 'abcd',
-        maxZoom: 19
+        attribution: tileAttrib
       }).addTo(map);
+      updateMapFilter(nowDark);
     }
   });
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
