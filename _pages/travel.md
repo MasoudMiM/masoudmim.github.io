@@ -97,7 +97,7 @@ nav_order: 7
     'Europe':   '#7F77DD',
     'Americas': '#1D9E75',
     'Asia':     '#BA7517',
-    'Africa':   '#D85A30',
+    'Africa':   '#C2185B',
     'Oceania':  '#378ADD'
   };
 
