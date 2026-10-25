@@ -3,7 +3,7 @@ layout: page
 permalink: /dogear/
 title: Dogear
 nav: false
-description: An Obsidian plugin that turns your vault into a reading tracker- Goodreads import and CSV export, progress by page, percentage or listening time, a cover grid, and reading statistics, all in plain Markdown.
+description: "An Obsidian plugin that turns your vault into a reading tracker, with Goodreads import, per-year goals, progress tracking, covers, and statistics in plain Markdown."
 ---
 
 <div class="row mt-4">
@@ -12,8 +12,9 @@ description: An Obsidian plugin that turns your vault into a reading tracker- Go
       Dogear is a community plugin for
       <a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian</a>
       that keeps your reading life in your own notes.  It brings your library
-      across from Goodreads, stores one Markdown note per book, and logs your
-      progress by page, by percentage, by time elapsed, or by time remaining.
+      across from Goodreads, stores one Markdown note per book, logs your
+      progress by page, by percentage, by time elapsed, or by time remaining,
+      and tracks a reading goal for each year.
       It grew out of the closure of the Goodreads API and the slow decay of the
       plugins that once depended on it: a decade of reading history should not
       sit behind someone else's login.
@@ -38,6 +39,12 @@ description: An Obsidian plugin that turns your vault into a reading tracker- Go
     <p class="mt-2"><small class="text-muted">MIT licensed.</small></p>
   </div>
 </div>
+
+<p class="text-center">
+  <small class="text-muted">
+    See the <a href="https://github.com/MasoudMiM/obsidian-dogear/releases/latest" target="_blank" rel="noopener">latest release</a> for version notes and manual install files.
+  </small>
+</p>
 
 <!-- =========================================================== Hero -->
 <div class="row mt-4">
@@ -166,11 +173,19 @@ Anything you write here is yours.
       out of your totals.
     </p>
     <p>
+      Set a goal for any year in settings and the statistics page shows a
+      progress bar for that year.  Goals are stored per year, so changing this
+      year's target does not rewrite last year's, and nothing appears until you
+      set one.
+    </p>
+    <p>
       It is deliberately small.  Every figure works from a finish date, a rating
       and a page count, because that is all an imported library knows: Goodreads
       exports no start dates, so reading pace and streaks cannot be computed for
       the great majority of anyone's books.  A page of empty charts helps
       nobody, so there is no mood tracking, no genre wheel, and no streaks.
+      Reading goals are the exception: a target you set yourself, not a score
+      the plugin invents.
     </p>
   </div>
 </div>
@@ -180,7 +195,7 @@ Anything you write here is yours.
     <img src="{{ '/assets/dogear/stats.png' | relative_url }}"
          alt="The Dogear statistics view: headline figures for books and pages, a bar chart of books finished each month, a rating distribution, and a breakdown of book lengths."
          class="img-fluid rounded z-depth-1">
-    <p class="mt-2"><small class="text-muted">Reading statistics for a selected year, drawn from finish dates, ratings and page counts alone.</small></p>
+    <p class="mt-2"><small class="text-muted">Reading statistics across the whole library, drawn from finish dates, ratings and page counts alone.  A goal bar appears when you select a year with a target.</small></p>
   </div>
 </div>
 
@@ -227,11 +242,18 @@ Anything you write here is yours.
       <li>
         <strong>Manual entry that always works</strong>.  Looking a book up is
         enrichment, never a prerequisite, so a book can be added with no network
-        at all.
+        at all.  A hand-added book can be enriched later with the
+        <em>Enrich this book</em> command, which fills gaps without overwriting
+        anything you entered.
+      </li>
+      <li>
+        <strong>Per-year reading goals</strong>: set a target for any year in
+        settings.  The statistics page tracks it with a progress bar, keeps each
+        year's target separate, and stays out of the way until you set one.
       </li>
       <li>
         <strong>A tested core</strong>: the logic layer imports neither the DOM
-        nor the Obsidian API and is covered by more than 1,300 tests, including
+        nor the Obsidian API and is covered by more than 1,350 tests, including
         fuzzing that checks your own writing survives repeated rewrites
         untouched.
       </li>
@@ -250,6 +272,13 @@ Anything you write here is yours.
       from the command palette to bring an existing library across.  The plugin
       is free and open source under the MIT license, and works on desktop and
       mobile.
+    </p>
+    <p>
+      Prefer to install by hand?  Download <code>main.js</code>,
+      <code>manifest.json</code> and <code>styles.css</code> from the
+      <a href="https://github.com/MasoudMiM/obsidian-dogear/releases/latest" target="_blank" rel="noopener">latest release</a>
+      into <code>VaultFolder/.obsidian/plugins/dogear/</code>, then enable it
+      under <strong>Settings &rarr; Community plugins</strong>.
     </p>
     <p>
       Found a bug or want another feature?  The
