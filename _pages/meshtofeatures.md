@@ -89,7 +89,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
     <p>
       The pipeline has four stages.  <strong>Segmentation &amp;
       recognition</strong> region-grows the mesh into patches and fits
-      analytic surfaces (planes, cylinders, cones) to each.
+      analytic surfaces (planes, cylinders, cones, spheres, and tori) to each.
       <strong>Snapping</strong> then nudges the raw fits toward design
       intent — near-parallel directions unify to canonical axes, coaxial
       cylinders merge, near-equal radii equalize, and values round to
@@ -104,7 +104,7 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
     </p>
     <p>
       The geometry core is FreeCAD-free (numpy / scipy / trimesh /
-      shapely), which is what makes the 450+ test pytest suite and the
+      shapely), which is what makes the 550+ test pytest suite and the
       multi-part regression gate possible outside the GUI.
     </p>
   </div>
@@ -121,13 +121,15 @@ description: A FreeCAD workbench that reverse-engineers STL meshes of prismatic 
       multi-depth stepped pockets with islands, through and blind holes,
       grid patterns, counterbores (including bores opening below the top
       face), countersunk and counterdrilled holes, conical pockets and
-      tapered through holes, cross-axis holes both through and blind,
+      tapered through holes, tapered bosses, spherical domes and sockets,
+      rounded ring bands (tori), cross-axis holes both through and blind,
       chamfers, and lateral flanges and gussets with true-slope
       undersides.
     </p>
     <p>
-      Honest limits: organic and 3D-scanned shapes are out of scope; spheres
-      and tori are fitted by the core but not yet rebuilt as features; and
+      Honest limits: organic and 3D-scanned shapes are out of scope; full
+      spheres and standalone donuts are fitted by the core but not yet
+      rebuilt as features; and
       dimensional fidelity is bounded by the mesh tessellation (snapping
       works at roughly 0.1% of the part diagonal).  The
       <a href="https://github.com/MasoudMiM/MeshToFeatures#limitations-please-read-before-filing-bugs"
