@@ -100,10 +100,9 @@
       worldCopyJump: true, renderer: L.canvas(),
       scrollWheelZoom: false, zoomControl: true,
     }).setView([16, -60], 3);
-    var tiles = L.tileLayer("https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png", {
+    var tiles = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> ' +
-        'contributors &copy; <a href="https://wikimedia.org">Wikimedia</a>',
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
     var fellBack = false;
     tiles.on("tileerror", function () {
